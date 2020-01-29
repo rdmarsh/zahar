@@ -1,12 +1,14 @@
-zart Zabbix API Retrieval Tool
+zart (Zabbix API Retrieval Tool)
 
-zahar Zabbix Audit Hygiene and Report
+Part of the zahar (Zabbix Audit Hygiene and Report) project
 
 config in ~/.config/zahar
 
+```
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install --editable .
+```
 
 ```
 $ ./zart.py --help
@@ -144,4 +146,15 @@ $ ./zart.py action --actionid 3 --output name --output ack_shortdata -f html
     </tr>
   </tbody>
 </table>
+```
+
+```
+$ ./zart.py action --actionid 3 --output name --output ack_shortdata -f latex
+\begin{tabular}{lll}
+\toprule
+actionid &                                      name &                  ack\_shortdata \\
+\midrule
+       3 &  Report problems to Zabbix administrators &  Updated problem: \{EVENT.NAME\} \\
+\bottomrule
+\end{tabular}
 ```
