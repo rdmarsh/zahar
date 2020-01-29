@@ -105,3 +105,23 @@ Options:
                                   Output format.
   --help                          Show this message and exit.
   ```
+  
+  ```
+  $ ./zart.py action --actionid 3 --output extend -f json | jq
+[
+  {
+    "actionid": "3",
+    "name": "Report problems to Zabbix administrators",
+    "eventsource": "0",
+    "status": "0",
+    "esc_period": "1h",
+    "def_shortdata": "Problem: {EVENT.NAME}",
+    "def_longdata": "Problem started at {EVENT.TIME} on {EVENT.DATE}\r\nProblem name: {EVENT.NAME}\r\nHost: {HOST.NAME}\r\nSeverity: {EVENT.SEVERITY}\r\n\r\nOriginal problem ID: {EVENT.ID}\r\n{TRIGGER.URL}",
+    "r_shortdata": "Resolved: {EVENT.NAME}",
+    "r_longdata": "Problem has been resolved at {EVENT.RECOVERY.TIME} on {EVENT.RECOVERY.DATE}\r\nProblem name: {EVENT.NAME}\r\nHost: {HOST.NAME}\r\nSeverity: {EVENT.SEVERITY}\r\n\r\nOriginal problem ID: {EVENT.ID}\r\n{TRIGGER.URL}",
+    "pause_suppressed": "1",
+    "ack_shortdata": "Updated problem: {EVENT.NAME}",
+    "ack_longdata": "{USER.FULLNAME} {EVENT.UPDATE.ACTION} problem at {EVENT.UPDATE.DATE} {EVENT.UPDATE.TIME}.\r\n{EVENT.UPDATE.MESSAGE}\r\n\r\nCurrent problem status is {EVENT.STATUS}, acknowledged: {EVENT.ACK.STATUS}."
+  }
+]
+```
