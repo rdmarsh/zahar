@@ -125,3 +125,23 @@ Options:
   }
 ]
 ```
+
+```
+$ ./zart.py action --actionid 3 --output name --output ack_shortdata -f html
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>actionid</th>
+      <th>name</th>
+      <th>ack_shortdata</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3</td>
+      <td>Report problems to Zabbix administrators</td>
+      <td>Updated problem: {EVENT.NAME}</td>
+    </tr>
+  </tbody>
+</table>
+```
