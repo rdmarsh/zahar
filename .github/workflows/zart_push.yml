@@ -1,4 +1,4 @@
-name: Zart application
+name: Zart
 
 on: [push]
 
