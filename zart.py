@@ -37,7 +37,6 @@ from apiclasses import application
 from apiclasses import correlation
 from apiclasses import dcheck
 from apiclasses import dhost
-from apiclasses import discoveryrule
 from apiclasses import drule
 from apiclasses import dservice
 from apiclasses import event
@@ -110,7 +109,6 @@ cli.add_command(application.application)
 cli.add_command(correlation.correlation)
 cli.add_command(dcheck.dcheck)
 cli.add_command(dhost.dhost)
-cli.add_command(discoveryrule.discoveryrule)
 cli.add_command(drule.drule)
 cli.add_command(dservice.dservice)
 cli.add_command(event.event)

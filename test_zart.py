@@ -172,7 +172,6 @@ def main():
     method_ids['correlation'] = ['correlationid']
     method_ids['dcheck'] = ['dcheckid', 'druleid', 'dserviceid']
     method_ids['dhost'] = ['dhostid', 'druleid', 'dserviceid']
-    method_ids['discoveryrule'] = ['itemid', 'hostid', 'interfaceid', 'templateid']
     method_ids['drule'] = ['dhostid', 'druleid', 'dserviceid']
     method_ids['dservice'] = ['dserviceid', 'dhostid', 'dcheckid', 'druleid']
     method_ids['event'] = ['eventid', 'groupid', 'hostid', 'objectid', 'applicationid']
