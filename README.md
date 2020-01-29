@@ -1,3 +1,5 @@
+![Zart application](https://github.com/rdmarsh/zahar/workflows/Zart%20application/badge.svg)
+
 zart (Zabbix API Retrieval Tool)
 
 Part of the zahar (Zabbix Audit Hygiene and Report) project
