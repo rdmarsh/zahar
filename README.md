@@ -1,4 +1,4 @@
-![Zart application](https://github.com/rdmarsh/zahar/workflows/Zart%20application/badge.svg)
+![Zart](https://github.com/rdmarsh/zahar/workflows/Zart/badge.svg)
 
 zart (Zabbix API Retrieval Tool)
 
