@@ -67,3 +67,41 @@ Commands:
   usermedia           This command retrieves usermedias.
   valuemap            This command retrieves valuemaps.
   ```
+
+```
+$ ./zart.py action --help
+Usage: zart.py action [OPTIONS]
+
+  This command retrieves actions.
+
+Options:
+  --actionid INTEGER              Return responses with the given action ids.
+  --groupid INTEGER               Return responses that use the host groups in
+                                  conditions
+  --hostid INTEGER                Return responses that use the host id.
+  --triggerid INTEGER             Return only actions that use the given
+                                  triggers in action conditions.
+  --mediatypeid INTEGER           Return only actions that use the given media
+                                  types to send messages.
+  --usrgrpid INTEGER              Return only actions that are configured to
+                                  send messages to the given user groups.
+  --userid INTEGER                Return only actions that are configured to
+                                  send messages to the given users.
+  --scriptid INTEGER              Return only actions that are configured to
+                                  run the given scripts.
+  --sortfield [actionid|name|status]
+  --countOutput                   Return count of records instead of data.
+  --editable                      Return objects with write permissions.
+  --filter TEXT                   Return only results that exactly match the
+                                  filter.
+  --limit INTEGER                 Limit results returned.
+  --output TEXT                   Object properties to be returned (refered to
+                                  as "output" in API docs).
+  --preservekeys                  Use IDs as keys in the resulting array.
+  --sortorder [ASC|DESC]          Order of sorting
+  --search TEXT                   Return results that match wildcard search
+                                  (case-insensitive).
+  -f [csv|html|json|latex|raw|clip|xls|txt]
+                                  Output format.
+  --help                          Show this message and exit.
+  ```
