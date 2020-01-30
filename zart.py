@@ -31,6 +31,11 @@ import click
 import click_config_file
 from pyzabbix import ZabbixAPI
 
+# todo: temp proxy
+import socks
+import socket
+
+
 from apiclasses import action
 from apiclasses import alert
 from apiclasses import application
@@ -97,6 +102,11 @@ def cli(ctx, zaburl, userid, passwd):
     """
     zart Zabbix API Retrieval Tool.
     """
+
+    # todo: temp proxy
+    socks.set_default_proxy(socks.SOCKS5, "localhost", 1080)
+    socket.socket = socks.socksocket
+
     zapi = ZabbixAPI(zaburl)
     zapi.login(userid, passwd)
     apiversion = zapi.apiinfo.version()

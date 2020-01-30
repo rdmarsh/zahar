@@ -31,31 +31,6 @@ from apiclasses import outputformat
 def dhost(zart, sortfield, **kwargs):
     """This command retrieves dhosts."""
 
-# todo: make better
-    keywords = {}
-    for option in [
-            'dhostids',
-            'druleids',
-            'dserviceids',
-            'selectDRules',
-            'selectDServices',
-            'limitSelects',
-            #'sortfield',
-            'countOutput',
-            'editable',
-            'excludeSearch',
-            'filter',
-            'limit',
-            'output',
-            'preservekeys',
-            'search',
-            'searchByAny',
-            'searchWildcardsEnabled',
-            'sortorder',
-            'startSearch',
-            'outputformat',
-            ]:
-        keywords[option] = kwargs.get(option) if kwargs.get(option) else None
 
     # setting the default in common passes a tuple
     if kwargs.get('output') and 'extend' in kwargs.get('output'):
@@ -71,12 +46,12 @@ def dhost(zart, sortfield, **kwargs):
         click.secho('Error: todo.',
                     fg='red', err=True)
 
-    if keywords['countOutput'] is None:
-        outputformat.outputformat(obj, keywords['outputformat'])
-    else:
+    if 'countOutput' in keywords and keywords['countOutput']:
         click.echo(obj)
+    else:
+        outputformat.outputformat(obj, keywords['outputformat'])
 
-    if keywords['limit'] and len(obj) >= keywords['limit']:
+    if 'limit' in keywords and len(obj) >= keywords['limit']:
         click.secho('Warning: row limit matches records returned,'
                     ' there may be data you are not seeing.',
                     fg='yellow', err=True)

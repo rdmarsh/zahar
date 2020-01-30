@@ -27,28 +27,8 @@ from apiclasses import outputformat
 def image(zart, sortfield, **kwargs):
     """This command retrieves images."""
 
-# todo: make better
-    keywords = {}
-    for option in [
-            'imageids',
-            'sysmapids',
-            'select_image',
-            #'sortfield',
-            'countOutput',
-            'editable',
-            'excludeSearch',
-            'filter',
-            'limit',
-            'output',
-            'preservekeys',
-            'search',
-            'searchByAny',
-            'searchWildcardsEnabled',
-            'sortorder',
-            'startSearch',
-            'outputformat',
-            ]:
-        keywords[option] = kwargs.get(option) if kwargs.get(option) else None
+    #ben magic, throw away False and Empty items
+    keywords = {k:v for k,v in kwargs.items() if v}
 
     # setting the default in common passes a tuple
     if kwargs.get('output') and 'extend' in kwargs.get('output'):
@@ -64,12 +44,12 @@ def image(zart, sortfield, **kwargs):
         click.secho('Error: todo.',
                     fg='red', err=True)
 
-    if keywords['countOutput'] is None:
-        outputformat.outputformat(obj, keywords['outputformat'])
-    else:
+    if 'countOutput' in keywords and keywords['countOutput']:
         click.echo(obj)
+    else:
+        outputformat.outputformat(obj, keywords['outputformat'])
 
-    if keywords['limit'] and len(obj) >= keywords['limit']:
+    if 'limit' in keywords and len(obj) >= keywords['limit']:
         click.secho('Warning: row limit matches records returned,'
                     ' there may be data you are not seeing.',
                     fg='yellow', err=True)

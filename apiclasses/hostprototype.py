@@ -9,12 +9,12 @@ from apiclasses import outputformat
 @common.add_options(common.discoveryids)
 @common.add_options(common.inherited)
 # todo: for future use once we sort out passing queries
-#@common.add_options(common.selectDiscoveryRule)
-#@common.add_options(common.selectGroupLinks)
-#@common.add_options(common.selectGroupPrototypes)
-#@common.add_options(common.selectInventory)
-#@common.add_options(common.selectParentHost)
-#@common.add_options(common.selectTemplates)
+# @common.add_options(common.selectDiscoveryRule)
+# @common.add_options(common.selectGroupLinks)
+# @common.add_options(common.selectGroupPrototypes)
+# @common.add_options(common.selectInventory)
+# @common.add_options(common.selectParentHost)
+# @common.add_options(common.selectTemplates)
 # todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['hostid', 'host', 'name', 'status']))
 @common.add_options(common.countOutput)
@@ -34,34 +34,8 @@ from apiclasses import outputformat
 def hostprototype(zart, sortfield, **kwargs):
     """This command retrieves hostprototypes."""
 
-# todo: make better
-    keywords = {}
-    for option in [
-            'hostids',
-            'discoveryids',
-            'inherited',
-            'selectDiscoveryRule',
-            'selectGroupLinks',
-            'selectGroupPrototypes',
-            'selectInventory',
-            'selectParentHost',
-            'selectTemplates',
-            #'sortfield',
-            'countOutput',
-            'editable',
-            'excludeSearch',
-            'filter',
-            'limit',
-            'output',
-            'preservekeys',
-            'search',
-            'searchByAny',
-            'searchWildcardsEnabled',
-            'sortorder',
-            'startSearch',
-            'outputformat',
-            ]:
-        keywords[option] = kwargs.get(option) if kwargs.get(option) else None
+    #ben magic, throw away False and Empty items
+    keywords = {k:v for k,v in kwargs.items() if v}
 
     # setting the default in common passes a tuple
     if kwargs.get('output') and 'extend' in kwargs.get('output'):
@@ -77,12 +51,12 @@ def hostprototype(zart, sortfield, **kwargs):
         click.secho('Error: todo.',
                     fg='red', err=True)
 
-    if keywords['countOutput'] is None:
-        outputformat.outputformat(obj, keywords['outputformat'])
-    else:
+    if 'countOutput' in keywords and keywords['countOutput']:
         click.echo(obj)
+    else:
+        outputformat.outputformat(obj, keywords['outputformat'])
 
-    if keywords['limit'] and len(obj) >= keywords['limit']:
+    if 'limit' in keywords and len(obj) >= keywords['limit']:
         click.secho('Warning: row limit matches records returned,'
                     ' there may be data you are not seeing.',
                     fg='yellow', err=True)

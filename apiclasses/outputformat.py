@@ -2,7 +2,7 @@ import click
 import pandas as pd
 
 
-def outputformat(obj, outputformat):
+def outputformat(obj, outputformat='txt'):
     df = pd.DataFrame(obj)
 
     if not df.empty:
