@@ -6,6 +6,9 @@ import click
 
 time_from = [click.option('--time_from', help='Return only objects that have been generated after the given time')]
 time_till = [click.option('--time_till', help='Return only objects that have been generated before the given time.')]
+lastChangeSince = [click.option('--lastChangeSince', 'lastChangeSince', help='Return only triggers that have changed their state after the given time.')]
+lastChangeTill = [click.option('--lastChangeTill', 'lastChangeTill', help='Return only triggers that have changed their state before the given time.')]
+
 
 
 # booleans
@@ -14,12 +17,29 @@ inherited = [click.option('--inherited', is_flag=True, default=False, help='Retu
 templated = [click.option('--templated', is_flag=True, default=False, help='Return only objects that belong to a template.')]
 monitored = [click.option('--monitored', is_flag=True, default=False, help='Return only enabled objects that belong to monitored host.')]
 acknowledged = [click.option('--acknowledged', is_flag=True, default=False, help='Return only objects that have been acknowledged.')]
+dependent	 = [click.option('--dependent', is_flag=True, default=False, help='return only triggers that have dependencies')]
+maintenance	 = [click.option('--maintenance', is_flag=True, default=False, help='return only enabled triggers that belong to hosts in maintenance')]
 
 editable = [click.option('--editable', is_flag=True, default=False, help='Return objects with write permissions.')]
 
 # flags
 
+withUnacknowledgedEvents = [click.option('--withUnacknowledgedEvents', 'withUnacknowledgedEvents', is_flag=True, default=None, help='Return only triggers that have unacknowledged events.')]
+withAcknowledgedEvents = [click.option('--withAcknowledgedEvents', 'withAcknowledgedEvents', is_flag=True, default=None, help='Return only triggers with all events acknowledged')]
+withLastEventUnacknowledged = [click.option('--withLastEventUnacknowledged', 'withLastEventUnacknowledged', is_flag=True, default=None, help='Return only triggers with the last event unacknowledged')]
+skipDependent = [click.option('--skipDependent', 'skipDependent', is_flag=True, default=None, help='Skip triggers in a problem state that are dependent on other triggers')]
+only_true = [click.option('--only_true', 'only_true', is_flag=True, default=None, help='Return only triggers that have recently been in a problem state.')]
+expandComment = [click.option('--expandComment', 'expandComment', is_flag=True, default=None, help='Expand macros in the trigger description.')]
+expandDescription = [click.option('--expandDescription', 'expandDescription', is_flag=True, default=None, help='Expand macros in the name of the trigger.')]
+expandExpression = [click.option('--expandExpression', 'expandExpression', is_flag=True, default=None, help='Expand functions and macros in the trigger expression.')]
+noInheritance = [click.option('--noInheritance', 'noInheritance', is_flag=True, default=None, help='Do not return inherited template screens.')]
+
+
+
+
+active = [click.option('--active', 'active', is_flag=True, default=None, help='Return only enabled triggers that belong to monitored hosts.')]
 countOutput = [click.option('--countOutput', 'countOutput', is_flag=True, default=None, help='Return count of records instead of data.')]
+expandUrls = [click.option('--expandUrls', 'expandUrls', is_flag=True, default=None, help='Adds global map URLs to the corresponding map elements and expands macros in all map element URLs.')]
 webitems = [click.option('--webitems', 'webitems', is_flag=True, default=None, help='Include web items in the result.')]
 expandStepName = [click.option('--expandStepName', 'expandStepName', is_flag=True, default=None, help='Expand macros in the names of steps.')]
 expandName  = [click.option('--expandName',  'expandName',  is_flag=True, default=None, help='Expand macros in the name.')]
@@ -45,18 +65,25 @@ getAccess  = [click.option('--getAccess',  'getAccess',  is_flag=True, default=N
 # strings
 
 group  = [click.option('--group',  'group',  help='Return only items that belong to a group with the given name.')]
+functions  = [click.option('--functions',  'functions',  help='Return only triggers that use the given functions.')]
 host  = [click.option('--host',  'host',  help='Return only items that belong to a host with the given name.')]
 application  = [click.option('--application',  'application',  help='Return only items that belong to an application with the given name.')]
+intervals  = [click.option('--intervals',  'intervals',  help='Time intervals to return service layer availability information about')]
+
+# todo: this should be a flag, but zabbix doco says otherwise
+recent  = [click.option('--recent',  'recent',  help='return PROBLEM and recently RESOLVED problems')]
 
 
 
 # ints
 
+min_severity  = [click.option('--min_severity',  'min_severity',  help='Return only triggers with severity greater or equal than the given severity.')]
 # todo: make this a choices
 eventobject  = [click.option('--eventobject',  'eventobject',  default='0', help='Return objects generated by events related to objects of the given type.')]
 eventsource  = [click.option('--eventsource',  'eventsource',  default='0', help='Return objects generated by events of the given type')]
 limitSelects = [click.option('--limitSelects', 'limitSelects', type=int, default=1000, help='Return objects generated by events of the given type')]
 severities = [click.option('--severity', type=int, multiple=True, help='Return only objects with given trigger severities.')]
+evaltype = [click.option('--evaltype', type=int, multiple=True, default=0, help='Rules for tag searching')]
 
 value          = [click.option('--value',         'value',          type=int, multiple=True, help='Return objects with given value.')]
 status         = [click.option('--status',        'status',         type=int, multiple=True, help='Return users with given status.')]
@@ -72,11 +99,15 @@ history      = [click.option('--history',      'history',      type=int, default
 # ids
 
 actionids      = [click.option('--actionid',      'actionids',      type=int, multiple=True, help='Return responses with the given action id.')]
+parentTemplateids = [click.option('--parentTemplateid', 'parentTemplateids', type=int, multiple=True, help='Return responses with the given parentTemplate id.')]
+serviceids     = [click.option('--serviceid',     'serviceids',     type=int, multiple=True, help='Return responses with the given service id.')]
+parentids      = [click.option('--parentid',      'parentids',      type=int, multiple=True, help='Return responses with the given parent id.')]
+childids       = [click.option('--childid',       'childids',       type=int, multiple=True, help='Return responses with the given child id.')]
 valuemapids    = [click.option('--valuemapid',    'valuemapids',    type=int, multiple=True, help='Return responses with the given valuemap id.')]
 globalmacroids = [click.option('--globalmacroid', 'globalmacroid',  type=int, multiple=True, help='Return responses with the given globmacro id.')]
 hostmacroids   = [click.option('--hostmacroid',   'hostmacroids',   type=int, multiple=True, help='Return responses with the given hostmacro id.')]
 iconmapids     = [click.option('--iconmapid',     'iconmapids',     type=int, multiple=True, help='Return responses with the given iconmap id.')]
-nodeids        = [click.option('--actionid',      'actionids',      type=int, multiple=True, help='Return responses with the given node id.')]
+nodeids        = [click.option('--nodeid',        'nodeids',        type=int, multiple=True, help='Return responses with the given node id.')]
 proxyids       = [click.option('--proxyid',       'proxyids',       type=int, multiple=True, help='Return only hosts that are monitored by the given proxies.')]
 alertids       = [click.option('--alertid',       'alertids',       type=int, multiple=True, help='Return responses with the given alert id.')]
 applicationids = [click.option('--applicationid', 'applicationids', type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
@@ -111,7 +142,7 @@ userids        = [click.option('--userid',        'userids',        type=int, mu
 usrgrpids      = [click.option('--usrgrpid',      'usrgrpids',      type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
 mediaids       = [click.option('--mediaid',       'mediaids',       type=int, multiple=True, help='Return responses with the given media id.')]
 
-#object
+# object
 
 # todo this sucks
 tags      = [click.option('--tags',      'tags',      help='Return objects with given tags.')]
@@ -149,13 +180,13 @@ filter = [
     ]
 
 limit = [
-    click.option('--limit',
+    click.option('-l', '--limit', 'limit',
                  type=int, default=1000,
                  help='Limit results returned.'),
     ]
 
 output = [
-    click.option('--output',
+    click.option('--output', 'output',
                  multiple=True,
                  help='Object properties to be returned (refered to as "output" in API docs).'),
     ]
@@ -205,7 +236,7 @@ sortorder = [
 # are more natural
 
 outputformat = [
-    click.option('-f', 'outputformat',
+    click.option('-o', 'outputformat',
                 default='txt',
                 type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'clip', 'xls', 'txt']),
                 help='Output format.')

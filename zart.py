@@ -30,8 +30,6 @@ import os
 import click
 import click_config_file
 from pyzabbix import ZabbixAPI
-
-# todo: temp proxy
 import socks
 import socket
 
@@ -67,6 +65,7 @@ from apiclasses import screen
 from apiclasses import screenitem
 from apiclasses import script
 from apiclasses import service
+from apiclasses import servicesla
 from apiclasses import template
 from apiclasses import templatescreen
 from apiclasses import templatescreenitem
@@ -93,11 +92,13 @@ class Zart(object):
 @click.option('--zaburl', help='Zabbix URL.')
 @click.option('--userid', help='Zabbix username.')
 @click.option('--passwd', help='Zabbix password.')
+# todo: add a proxy flag
 # todo: add a flag to show the api version and exit
 # @click.option('--api', is_flag=True, expose_value=False,
 #               help='Display Zabbix API version.')
 @click.version_option(version=__version__)
 @click.pass_context
+#def cli(ctx, zaburl, userid, passwd, proxy):
 def cli(ctx, zaburl, userid, passwd):
     """
     zart Zabbix API Retrieval Tool.
@@ -144,6 +145,7 @@ cli.add_command(screen.screen)
 cli.add_command(screenitem.screenitem)
 cli.add_command(script.script)
 cli.add_command(service.service)
+cli.add_command(servicesla.servicesla)
 cli.add_command(template.template)
 cli.add_command(templatescreen.templatescreen)
 cli.add_command(templatescreenitem.templatescreenitem)

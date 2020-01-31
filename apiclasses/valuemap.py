@@ -1,13 +1,12 @@
 import click
-
 from apiclasses import common
-from apiclasses import outputformat
+from apiclasses import engine
 
 
 @click.command(short_help='retrieve valuemaps')
 @common.add_options(common.valuemapids)
 # todo: for future use once we sort out passing queries
-#@common.add_options(common.selectMappings)
+# @common.add_options(common.selectMappings)
 # todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['valuemapid', 'name']))
 @common.add_options(common.countOutput)
@@ -26,31 +25,5 @@ from apiclasses import outputformat
 @click.pass_obj
 def valuemap(zart, sortfield, **kwargs):
     """This command retrieves valuemaps."""
-
-    #ben magic, throw away False and Empty items
-    keywords = {k:v for k,v in kwargs.items() if v}
-
-    # setting the default in common passes a tuple
-    if kwargs.get('output') and 'extend' in kwargs.get('output'):
-        keywords['output'] = 'extend'
-
-    # todo: sortfield needs to move to common
-    keywords['sortfield'] = sortfield if sortfield else None
-
-    print(keywords)
-    try:
-        obj = zart.zapi.valuemap.get(**keywords)
-    except:
-        # todo: fix bare except above and write a better error messages
-        click.secho('Error: todo.',
-                    fg='red', err=True)
-
-    if 'countOutput' in keywords and keywords['countOutput']:
-        click.echo(obj)
-    else:
-        outputformat.outputformat(obj, keywords['outputformat'])
-
-    if 'limit' in keywords and len(obj) >= keywords['limit']:
-        click.secho('Warning: row limit matches records returned,'
-                    ' there may be data you are not seeing.',
-                    fg='yellow', err=True)
+    zart.method = 'valuemap'
+    engine.engine(zart, sortfield, **kwargs)

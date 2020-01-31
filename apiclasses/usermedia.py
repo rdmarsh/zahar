@@ -1,14 +1,6 @@
 import click
-
-
-@click.command()
-def usermedia():
-    """This command retrieves usermedias."""
-    click.echo('usermedia function')
-import click
-
 from apiclasses import common
-from apiclasses import outputformat
+from apiclasses import engine
 
 
 @click.command(short_help='retrieve usermedias')
@@ -33,37 +25,5 @@ from apiclasses import outputformat
 @click.pass_obj
 def usermedia(zart, sortfield, **kwargs):
     """This command retrieves usermedias."""
-
-# todo: version check placeholder
-#    if zart.apiversion == 4 and usermediaid:
-#        usermediaid=None
-#        click.secho('Warning: API Version {} does not support --{} flag,'
-#                    ' ignorning'.format(zart.apiversion, 'usermediaid'),
-#                    fg='yellow, err=True)
-
-    #ben magic, throw away False and Empty items
-    keywords = {k:v for k,v in kwargs.items() if v}
-
-    # setting the default in common passes a tuple
-    if kwargs.get('output') and 'extend' in kwargs.get('output'):
-        keywords['output'] = 'extend'
-
-    # todo: sortfield needs to move to common
-    keywords['sortfield'] = sortfield if sortfield else None
-
-    try:
-        obj = zart.zapi.usermedia.get(**keywords)
-    except:
-        # todo: fix bare except above and write a better error messages
-        click.secho('Error: todo.',
-                    fg='red', err=True)
-
-    if 'countOutput' in keywords and keywords['countOutput']:
-        click.echo(obj)
-    else:
-        outputformat.outputformat(obj, keywords['outputformat'])
-
-    if 'limit' in keywords and len(obj) >= keywords['limit']:
-        click.secho('Warning: row limit matches records returned,'
-                    ' there may be data you are not seeing.',
-                    fg='yellow', err=True)
+    zart.method = 'usermedia'
+    engine.engine(zart, sortfield, **kwargs)

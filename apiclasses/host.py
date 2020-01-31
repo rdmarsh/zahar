@@ -1,7 +1,6 @@
 import click
-
 from apiclasses import common
-from apiclasses import outputformat
+from apiclasses import engine
 
 
 @click.command(short_help='retrieve hosts')
@@ -31,20 +30,20 @@ from apiclasses import outputformat
 @common.add_options(common.with_triggers)
 @common.add_options(common.withInventory)
 # todo: for future use once we sort out passing queries
-#@common.add_options(common.selectGroups)
-#@common.add_options(common.selectApplications)
-#@common.add_options(common.selectDiscoveries)
-#@common.add_options(common.selectDiscoveryRule)
-#@common.add_options(common.selectGraphs)
-#@common.add_options(common.selectHostDiscovery)
-#@common.add_options(common.selectHttpTests)
-#@common.add_options(common.selectInterfaces)
-#@common.add_options(common.selectInventory)
-#@common.add_options(common.selectItems)
-#@common.add_options(common.selectMacros)
-#@common.add_options(common.selectParentTemplates)
-#@common.add_options(common.selectScreens)
-#@common.add_options(common.selectTriggers)
+# @common.add_options(common.selectGroups)
+# @common.add_options(common.selectApplications)
+# @common.add_options(common.selectDiscoveries)
+# @common.add_options(common.selectDiscoveryRule)
+# @common.add_options(common.selectGraphs)
+# @common.add_options(common.selectHostDiscovery)
+# @common.add_options(common.selectHttpTests)
+# @common.add_options(common.selectInterfaces)
+# @common.add_options(common.selectInventory)
+# @common.add_options(common.selectItems)
+# @common.add_options(common.selectMacros)
+# @common.add_options(common.selectParentTemplates)
+# @common.add_options(common.selectScreens)
+# @common.add_options(common.selectTriggers)
 @common.add_options(common.filter)
 @common.add_options(common.limitSelects)
 @common.add_options(common.search)
@@ -65,30 +64,5 @@ from apiclasses import outputformat
 @click.pass_obj
 def host(zart, sortfield, **kwargs):
     """This command retrieves hosts."""
-
-    #ben magic, throw away False and Empty items
-    keywords = {k:v for k,v in kwargs.items() if v}
-
-    # setting the default in common passes a tuple
-    if kwargs.get('output') and 'extend' in kwargs.get('output'):
-        keywords['output'] = 'extend'
-
-    # todo: sortfield needs to move to common
-    keywords['sortfield'] = sortfield if sortfield else None
-
-    try:
-        obj = zart.zapi.host.get(**keywords)
-    except:
-        # todo: fix bare except above and write a better error messages
-        click.secho('Error: todo.',
-                    fg='red', err=True)
-
-    if 'countOutput' in keywords and keywords['countOutput']:
-        click.echo(obj)
-    else:
-        outputformat.outputformat(obj, keywords['outputformat'])
-
-    if 'limit' in keywords and len(obj) >= keywords['limit']:
-        click.secho('Warning: row limit matches records returned,'
-                    ' there may be data you are not seeing.',
-                    fg='yellow', err=True)
+    zart.method = 'host'
+    engine.engine(zart, sortfield, **kwargs)
