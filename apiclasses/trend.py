@@ -15,4 +15,5 @@ from apiclasses import engine
 def trend(zart, **kwargs):
     """This command retrieves trends."""
     zart.method = 'trend'
+    sortfield=None
     engine.engine(zart, sortfield, **kwargs)
