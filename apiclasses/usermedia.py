@@ -25,5 +25,5 @@ from apiclasses import engine
 @click.pass_obj
 def usermedia(zart, sortfield, **kwargs):
     """This command retrieves usermedias."""
-    zart.method = 'usermedia'
+    zart.command = 'usermedia'
     engine.engine(zart, sortfield, **kwargs)
