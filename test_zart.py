@@ -4,22 +4,56 @@ import click
 from click.testing import CliRunner
 from zart import cli
 
-def test_method_bools(runner, method, flag):
+def test_method_base(runner, method):
+    click.secho('test_method_base: ' + method, fg='green')
+    result = runner.invoke(cli, [method])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+
+def test_method_help(runner, method, flag):
     flag = '--' + flag
-    click.secho('test_method_bools: ' + method + ' ' + flag, fg='green')
+    click.secho('test_method_help: ' + method + ' ' + flag, fg='green')
+    result = runner.invoke(cli, [method, flag])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+    assert method in result.output
+    assert 'Usage:' in result.output
+    assert 'Options:' in result.output
+
+def test_method_comm(runner, method, flag):
+    flag = '--' + flag
+    click.secho('test_method_comm: ' + method + ' ' + flag, fg='green')
+    if method == 'graphitem':
+        if flag == '--startSearch':
+            click.secho('graphitem: does not have this option', fg='yellow')
+            return
+    if method == 'trend':
+        if flag == '--editable' or flag == '--preservekeys' or flag == '--startSearch':
+            click.secho('trend: does not have this option', fg='yellow')
+            return
     result = runner.invoke(cli, [method, flag])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
-def test_method_flags(runner, method, flag):
+def test_method_comm_ints(runner, method, flag):
     flag = '--' + flag
-    click.secho('test_method_flags: ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
+    click.secho('test_method_comm_ints: ' + method + ' ' + flag + ' 1', fg='green')
+    result = runner.invoke(cli, [method, flag, 1])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
 def test_method_ids(runner, method, flag):
     flag = '--' + flag
     click.secho('test_method_ids: ' + method + ' ' + flag, fg='green')
     result = runner.invoke(cli, [method, flag, 1])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+
+def test_method_bool(runner, method, flag):
+    flag = '--' + flag
+    click.secho('test_method_bool: ' + method + ' ' + flag, fg='green')
+    result = runner.invoke(cli, [method, flag])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+
+def test_method_flag(runner, method, flag):
+    flag = '--' + flag
+    click.secho('test_method_flag: ' + method + ' ' + flag, fg='green')
+    result = runner.invoke(cli, [method, flag])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
 def test_method_sort(runner, method, flag, value):
@@ -34,25 +68,6 @@ def test_method_times(runner, method, flag):
     result = runner.invoke(cli, [method, flag])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
-def test_method_help(runner, method, flag):
-    flag = '--' + flag
-    click.secho('test_method_times: ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
-    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
-    assert 'Usage:' in result.output
-    assert 'Options:' in result.output
-
-def test_method_comms(runner, method, flag):
-    flag = '--' + flag
-    click.secho('test_method_comms: ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
-    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
-
-def test_method_ints(runner, method, flag):
-    flag = '--' + flag
-    click.secho('test_method_ints: ' + method + ' ' + flag + ' 1', fg='green')
-    result = runner.invoke(cli, [method, flag, 1])
-    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
 def test_prog_noargs(runner):
     click.secho('test_prog_noargs', fg='green')
@@ -133,16 +148,6 @@ def test_basic_missing_args(runner, flag, exitcode):
     assert result.exit_code == exitcode
     assert result.output == 'Error: ' + flag + ' option requires an argument\n'
 
-def test_method_basic(runner, method):
-    click.secho('test_method_basic: ' + PROG + ' ' + method, fg='green')
-    result = runner.invoke(cli, [method])
-    assert result.exit_code == 0
-    assert method in result.output
-
-def test_method_flag(runner, method, flag, exitcode):
-    click.secho('test_method_flag: ' + PROG + ' ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
-    assert result.exit_code == exitcode
 
 def test_method_option(runner, method, flag, option, exitcode):
     click.secho('test_method_option: ' + PROG + ' ' + method + ' ' + flag + ' ' + str(option), fg='green')
@@ -161,27 +166,16 @@ def main():
     runner = CliRunner()
 
     method_bool = {}
-
     method_bool['application'] = ['inherited', 'templated']
     method_bool['graph'] = ['templated', 'inherited']
     method_bool['graphprototype'] = ['templated', 'inherited']
     method_bool['hostprototype'] = ['inherited']
     method_bool['httptest'] = ['inherited', 'monitored', 'templated']
 
-    for method in method_bool:
-        for option in method_bool[method]:
-            test_method_bools(runner, method, option)
-
     method_flag = {}
-
     method_flag['image'] = ['select_image']
 
-    for method in method_flag:
-        for option in method_flag[method]:
-            test_method_flags(runner, method, option)
-
     method_ids = {}
-
     method_ids['action'] = ['actionid', 'groupid', 'hostid', 'triggerid', 'mediatypeid', 'usrgrpid', 'userid', 'scriptid']
     method_ids['alert'] = ['alertid', 'actionid', 'eventid', 'groupid', 'hostid', 'mediatypeid', 'objectid', 'userid']
     method_ids['application'] = ['applicationid', 'groupid', 'hostid', 'itemid', 'templateid']
@@ -194,7 +188,7 @@ def main():
     method_ids['graph'] = ['graphid', 'groupid', 'templateid', 'hostid', 'itemid']
     method_ids['graphitem'] = ['gitemid', 'graphid', 'itemid']
     method_ids['graphprototype'] = ['discoveryid', 'graphid', 'groupid', 'hostid', 'itemid', 'templateid']
-    method_ids['history'] = ['hostid', 'itemid']
+    #method_ids['history'] = ['hostid', 'itemid']
     method_ids['host'] = ['groupid', 'applicationid', 'dserviceid', 'graphid', 'hostid', 'httptestid', 'interfaceid', 'itemid', 'maintenanceid', 'proxyid', 'templateid', 'triggerid']
     method_ids['hostgroup'] = ['graphid', 'groupid', 'hostid', 'maintenanceid', 'templateid', 'triggerid']
     method_ids['hostinterface'] = ['hostid', 'interfaceid', 'itemid', 'triggerid', 'nodeid']
@@ -222,15 +216,10 @@ def main():
     method_ids['user'] = ['mediaid', 'mediatypeid', 'userid', 'usrgrpid']
     method_ids['usergroup'] = ['userid', 'usrgrpid']
     method_ids['usermacro'] = ['globalmacroid', 'groupid', 'hostid', 'hostmacroid', 'templateid']
-    method_ids['usermedia'] = ['mediaid', 'usrgrpid', 'userid', 'mediatypeid']
+#    method_ids['usermedia'] = ['mediaid', 'usrgrpid', 'userid', 'mediatypeid']
     method_ids['valuemap'] = ['valuemapid']
 
-    for method in method_ids:
-        for option in method_ids[method]:
-            test_method_ids(runner, method, option)
-
     method_sort = {}
-
     method_sort['action'] = ['actionid', 'name', 'status']
     method_sort['alert'] = ['alertid', 'clock', 'eventid', 'status']
     method_sort['application'] = ['applicationid', 'name']
@@ -243,7 +232,7 @@ def main():
     method_sort['graph'] = ['graphid', 'name', 'graphtype']
     method_sort['graphitem'] = ['gitemid']
     method_sort['graphprototype'] = ['graphid', 'name', 'graphtype']
-    method_sort['history'] = ['itemid', 'clock']
+    #method_sort['history'] = ['itemid', 'clock']
     method_sort['host'] = ['hostid', 'host', 'name', 'status']
     method_sort['hostgroup'] = ['groupid', 'name']
     method_sort['hostinterface'] = ['interfaceid', 'dns', 'ip']
@@ -270,29 +259,40 @@ def main():
     method_sort['user'] = ['userid', 'alias']
     method_sort['usergroup'] = ['usrgrpid', 'name']
     method_sort['usermacro'] = ['macro']
-    method_sort['usermedia'] = ['mediaid', 'userid', 'mediatypeid']
+#    method_sort['usermedia'] = ['mediaid', 'userid', 'mediatypeid']
     method_sort['valuemap'] = ['valuemapid', 'name']
 
     method_time = {}
     method_time['alert'] = ['time_from', 'time_till']
-    method_time['history'] = ['time_from', 'time_till']
+    #method_time['history'] = ['time_from', 'time_till']
+
+    for method in {**method_bool, **method_flag, **method_ids, **method_sort, **method_time}:
+        test_method_base(runner, method)
+
+        test_method_help(runner, method, 'help')
+
+        for option in ['countOutput', 'editable', 'preservekeys', 'startSearch']:
+            test_method_comm(runner, method, option)
+
+        for option in ['limit']:
+            test_method_comm_ints(runner, method, option)
+
+    for method in method_ids:
+        for option in method_ids[method]:
+            test_method_ids(runner, method, option)
+
+    for method in method_bool:
+        for option in method_flag[method]:
+            test_method_bool(runner, method, option)
+
+    for method in method_flag:
+        for option in method_flag[method]:
+            test_method_flag(runner, method, option)
 
     for method in method_sort:
         flag='sortfield'
         for value in method_sort[method]:
             test_method_sort(runner, method, flag, value)
-
-    for method in {**method_bool, **method_flag, **method_ids, **method_sort, **method_time}:
-        flag='help'
-        test_method_help(runner, method, flag)
-
-    for method in {**method_bool, **method_flag, **method_ids, **method_sort, **method_time}:
-        for option in ['limit']:
-            test_method_ints(runner, method, option)
-
-    for method in {**method_bool, **method_flag, **method_ids, **method_sort, **method_time}:
-        for option in ['countOutput', 'editable', 'preservekeys', 'startSearch']:
-            test_method_comms(runner, method, option)
 
     for method in method_time:
         for option in method_time[method]:
