@@ -80,9 +80,9 @@ from apiclasses import valuemap
 
 
 class Zart(object):
-    def __init__(self, zapi, apiversion):
+    def __init__(self, zapi, apiv):
         self.zapi = zapi
-        self.apiversion = int(apiversion[:1])
+        self.apiv = apiv
 
 
 @click.group()
@@ -105,13 +105,13 @@ def cli(ctx, zaburl, userid, passwd):
     """
 
     # todo: temp proxy
-    socks.set_default_proxy(socks.SOCKS5, "localhost", 1080)
-    socket.socket = socks.socksocket
+    # socks.set_default_proxy(socks.SOCKS5, "localhost", 1080)
+    # socket.socket = socks.socksocket
 
     zapi = ZabbixAPI(zaburl)
     zapi.login(userid, passwd)
-    apiversion = zapi.apiinfo.version()
-    ctx.obj = Zart(zapi, apiversion)
+    apiv = zapi.apiinfo.version()
+    ctx.obj = Zart(zapi, apiv)
 
 
 cli.add_command(action.action)
