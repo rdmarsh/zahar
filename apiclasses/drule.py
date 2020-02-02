@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def drule(zart, sortfield, **kwargs):
     """This command retrieves drules."""
-    zart.method = 'drule'
+    zart.command = 'drule'
     engine.engine(zart, sortfield, **kwargs)

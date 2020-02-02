@@ -32,5 +32,5 @@ from apiclasses import engine
 @click.pass_obj
 def hostprototype(zart, sortfield, **kwargs):
     """This command retrieves hostprototypes."""
-    zart.method = 'hostprototype'
+    zart.command = 'hostprototype'
     engine.engine(zart, sortfield, **kwargs)

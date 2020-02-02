@@ -9,16 +9,14 @@ time_till = [click.option('--time_till', help='Return only objects that have bee
 lastChangeSince = [click.option('--lastChangeSince', 'lastChangeSince', help='Return only triggers that have changed their state after the given time.')]
 lastChangeTill = [click.option('--lastChangeTill', 'lastChangeTill', help='Return only triggers that have changed their state before the given time.')]
 
-
-
 # booleans
 
-inherited = [click.option('--inherited', is_flag=True, default=False, help='Return only objects inherited from a template.')]
-templated = [click.option('--templated', is_flag=True, default=False, help='Return only objects that belong to a template.')]
-monitored = [click.option('--monitored', is_flag=True, default=False, help='Return only enabled objects that belong to monitored host.')]
+inherited    = [click.option('--inherited', is_flag=True, default=False, help='Return only objects inherited from a template.')]
+templated    = [click.option('--templated', is_flag=True, default=False, help='Return only objects that belong to a template.')]
+monitored    = [click.option('--monitored', is_flag=True, default=False, help='Return only enabled objects that belong to monitored host.')]
 acknowledged = [click.option('--acknowledged', is_flag=True, default=False, help='Return only objects that have been acknowledged.')]
-dependent	 = [click.option('--dependent', is_flag=True, default=False, help='return only triggers that have dependencies')]
-maintenance	 = [click.option('--maintenance', is_flag=True, default=False, help='return only enabled triggers that belong to hosts in maintenance')]
+dependent    = [click.option('--dependent', is_flag=True, default=False, help='return only triggers that have dependencies')]
+maintenance  = [click.option('--maintenance', is_flag=True, default=False, help='return only enabled triggers that belong to hosts in maintenance')]
 
 editable = [click.option('--editable', is_flag=True, default=False, help='Return objects with write permissions.')]
 
@@ -91,9 +89,9 @@ with_gui_access = [click.option('--with_gui_access', 'with_gui_access', type=int
 
 # todo: these don't work or are wonky https://www.zabbix.com/documentation/3.2/manual/api/reference/event/get
 source       = [click.option('--source',       'source',       type=int, help='Return objects with the given type')]
+history      = [click.option('--history',      'history',      type=int, help='History object types to return.')]
 object       = [click.option('--object',       'object',       type=int, help='Return objects with the given type')]
 type         = [click.option('--type',         'type',         type=int, default=0, help='Return only graph items with the given type.')]
-history      = [click.option('--history',      'history',      type=int, default=3, help='History object types to return.')]
 
 
 # ids
@@ -171,7 +169,7 @@ tags      = [click.option('--tags',      'tags',      help='Return objects with 
 #        help='Sort the result by the given properties.'),
 #    ]
 
-# These parameters being common for all get methods
+# These parameters being common for all get command
 
 
 filter = [
@@ -198,8 +196,8 @@ preservekeys = [
                  help='Use IDs as keys in the resulting array.'),
     ]
 
-search = [ click.option('--search', help='Return results that match wildcard search (case-insensitive).'), ]
-searchInventory = [ click.option('--searchInventory', help='Return only hosts that have inventory data matching the given wildcard search.')]
+search = [click.option('--search', help='Return results that match wildcard search (case-insensitive).'), ]
+searchInventory = [click.option('--searchInventory', help='Return only hosts that have inventory data matching the given wildcard search.')]
 
 excludeSearch = [
     click.option('--excludeSearch', 'excludeSearch',
@@ -237,10 +235,11 @@ sortorder = [
 
 outputformat = [
     click.option('-o', 'outputformat',
-                default='txt',
-                type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'clip', 'xls', 'txt']),
-                help='Output format.')
+                 default='txt',
+                 type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'clip', 'xls', 'txt']),
+                 help='Output format.')
     ]
+
 
 def add_options(options):
     def _add_options(func):

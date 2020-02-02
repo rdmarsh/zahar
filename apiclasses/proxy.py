@@ -26,5 +26,5 @@ from apiclasses import engine
 @click.pass_obj
 def proxy(zart, sortfield, **kwargs):
     """This command retrieves proxy."""
-    zart.method = 'proxy'
+    zart.command = 'proxy'
     engine.engine(zart, sortfield, **kwargs)

@@ -35,5 +35,5 @@ from apiclasses import engine
 @click.pass_obj
 def httptest(zart, sortfield, **kwargs):
     """This command retrieves httptests."""
-    zart.method = 'httptest'
+    zart.command = 'httptest'
     engine.engine(zart, sortfield, **kwargs)

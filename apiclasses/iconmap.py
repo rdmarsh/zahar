@@ -26,5 +26,5 @@ from apiclasses import engine
 @click.pass_obj
 def iconmap(zart, sortfield, **kwargs):
     """This command retrieves iconmaps."""
-    zart.method = 'iconmap'
+    zart.command = 'iconmap'
     engine.engine(zart, sortfield, **kwargs)

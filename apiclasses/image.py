@@ -25,5 +25,5 @@ from apiclasses import engine
 @click.pass_obj
 def image(zart, sortfield, **kwargs):
     """This command retrieves images."""
-    zart.method = 'image'
+    zart.command = 'image'
     engine.engine(zart, sortfield, **kwargs)

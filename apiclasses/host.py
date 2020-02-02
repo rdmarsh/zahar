@@ -64,5 +64,5 @@ from apiclasses import engine
 @click.pass_obj
 def host(zart, sortfield, **kwargs):
     """This command retrieves hosts."""
-    zart.method = 'host'
+    zart.command = 'host'
     engine.engine(zart, sortfield, **kwargs)

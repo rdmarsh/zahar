@@ -24,5 +24,5 @@ from apiclasses import engine
 @click.pass_obj
 def screenitem(zart, sortfield, **kwargs):
     """This command retrieves screenitems."""
-    zart.method = 'screenitem'
+    zart.command = 'screenitem'
     engine.engine(zart, sortfield, **kwargs)

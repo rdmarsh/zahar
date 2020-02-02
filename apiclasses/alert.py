@@ -39,5 +39,5 @@ from apiclasses import engine
 @click.pass_obj
 def alert(zart, sortfield, **kwargs):
     """This command retrieves alerts."""
-    zart.method = 'alert'
+    zart.command = 'alert'
     engine.engine(zart, sortfield, **kwargs)

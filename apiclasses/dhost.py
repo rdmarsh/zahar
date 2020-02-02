@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def dhost(zart, sortfield, **kwargs):
     """This command retrieves dhosts."""
-    zart.method = 'dhost'
+    zart.command = 'dhost'
     engine.engine(zart, sortfield, **kwargs)

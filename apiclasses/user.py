@@ -31,5 +31,5 @@ from apiclasses import engine
 @click.pass_obj
 def user(zart, sortfield, **kwargs):
     """This command retrieves users."""
-    zart.method = 'user'
+    zart.command = 'user'
     engine.engine(zart, sortfield, **kwargs)

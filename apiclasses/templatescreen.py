@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def templatescreen(zart, sortfield, **kwargs):
     """This command retrieves templatescreens."""
-    zart.method = 'templatescreen'
+    zart.command = 'templatescreen'
     engine.engine(zart, sortfield, **kwargs)

@@ -25,5 +25,5 @@ from apiclasses import engine
 @click.pass_obj
 def dcheck(zart, sortfield, **kwargs):
     """This command retrieves dchecks."""
-    zart.method = 'dcheck'
+    zart.command = 'dcheck'
     engine.engine(zart, sortfield, **kwargs)

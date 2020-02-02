@@ -32,5 +32,5 @@ from apiclasses import engine
 @click.pass_obj
 def usermacro(zart, sortfield, **kwargs):
     """This command retrieves usermacros."""
-    zart.method = 'usermacro'
+    zart.command = 'usermacro'
     engine.engine(zart, sortfield, **kwargs)

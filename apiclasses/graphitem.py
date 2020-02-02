@@ -22,5 +22,5 @@ from apiclasses import engine
 @click.pass_obj
 def graphitem(zart, sortfield, **kwargs):
     """This command retrieves graphitems."""
-    zart.method = 'graphitem'
+    zart.command = 'graphitem'
     engine.engine(zart, sortfield, **kwargs)

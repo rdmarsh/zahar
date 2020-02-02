@@ -44,5 +44,5 @@ from apiclasses import engine
 @click.pass_obj
 def event(zart, sortfield, **kwargs):
     """This command retrieves events."""
-    zart.method = 'event'
+    zart.command = 'event'
     engine.engine(zart, sortfield, **kwargs)

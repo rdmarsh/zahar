@@ -47,5 +47,5 @@ from apiclasses import engine
 @click.pass_obj
 def hostgroup(zart, sortfield, **kwargs):
     """This command retrieves hostgroups."""
-    zart.method = 'hostgroup'
+    zart.command = 'hostgroup'
     engine.engine(zart, sortfield, **kwargs)

@@ -26,5 +26,5 @@ from apiclasses import engine
 @click.pass_obj
 def history(zart, sortfield, **kwargs):
     """This command retrieves historys."""
-    zart.method = 'history'
+    zart.command = 'history'
     engine.engine(zart, sortfield, **kwargs)

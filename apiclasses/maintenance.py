@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def maintenance(zart, sortfield, **kwargs):
     """This command retrieves maintenances."""
-    zart.method = 'maintenance'
+    zart.command = 'maintenance'
     engine.engine(zart, sortfield, **kwargs)

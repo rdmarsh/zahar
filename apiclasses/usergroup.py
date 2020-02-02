@@ -30,5 +30,5 @@ from apiclasses import engine
 @click.pass_obj
 def usergroup(zart, sortfield, **kwargs):
     """This command retrieves usergroups."""
-    zart.method = 'usergroup'
+    zart.command = 'usergroup'
     engine.engine(zart, sortfield, **kwargs)

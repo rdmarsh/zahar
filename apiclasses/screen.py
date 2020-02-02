@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def screen(zart, sortfield, **kwargs):
     """This command retrieves screens."""
-    zart.method = 'screen'
+    zart.command = 'screen'
     engine.engine(zart, sortfield, **kwargs)

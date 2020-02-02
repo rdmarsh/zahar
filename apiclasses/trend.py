@@ -14,6 +14,7 @@ from apiclasses import engine
 @click.pass_obj
 def trend(zart, **kwargs):
     """This command retrieves trends."""
-    zart.method = 'trend'
+    zart.command = 'trend'
+    # trend command does not support sortfield flag
     sortfield=None
     engine.engine(zart, sortfield, **kwargs)

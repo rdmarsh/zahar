@@ -34,5 +34,5 @@ from apiclasses import engine
 @click.pass_obj
 def map(zart, sortfield, **kwargs):
     """This command retrieves maps."""
-    zart.method = 'map'
+    zart.command = 'map'
     engine.engine(zart, sortfield, **kwargs)

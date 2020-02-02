@@ -29,5 +29,5 @@ from apiclasses import engine
 @click.pass_obj
 def script(zart, sortfield, **kwargs):
     """This command retrieves scripts."""
-    zart.method = 'script'
+    zart.command = 'script'
     engine.engine(zart, sortfield, **kwargs)

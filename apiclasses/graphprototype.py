@@ -37,6 +37,5 @@ from apiclasses import engine
 @click.pass_obj
 def graphprototype(zart, sortfield, **kwargs):
     """This command retrieves graphprototype."""
-    zart.method = 'graphprototype'
+    zart.command = 'graphprototype'
     engine.engine(zart, sortfield, **kwargs)
-

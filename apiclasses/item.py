@@ -48,5 +48,5 @@ from apiclasses import engine
 @click.pass_obj
 def item(zart, sortfield, **kwargs):
     """This command retrieves items."""
-    zart.method = 'item'
+    zart.command = 'item'
     engine.engine(zart, sortfield, **kwargs)

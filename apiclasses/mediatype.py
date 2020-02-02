@@ -27,5 +27,5 @@ from apiclasses import engine
 @click.pass_obj
 def mediatype(zart, sortfield, **kwargs):
     """This command retrieves mediatypes."""
-    zart.method = 'mediatype'
+    zart.command = 'mediatype'
     engine.engine(zart, sortfield, **kwargs)

@@ -48,5 +48,5 @@ from apiclasses import engine
 @click.pass_obj
 def template(zart, sortfield, **kwargs):
     """This command retrieves templates."""
-    zart.method = 'template'
+    zart.command = 'template'
     engine.engine(zart, sortfield, **kwargs)

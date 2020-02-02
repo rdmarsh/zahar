@@ -26,5 +26,5 @@ from apiclasses import engine
 @click.pass_obj
 def correlation(zart, sortfield, **kwargs):
     """This command retrieves correlations."""
-    zart.method = 'correlation'
+    zart.command = 'correlation'
     engine.engine(zart, sortfield, **kwargs)

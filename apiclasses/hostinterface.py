@@ -32,5 +32,5 @@ from apiclasses import engine
 @click.pass_obj
 def hostinterface(zart, sortfield, **kwargs):
     """This command retrieves hostinterfaces."""
-    zart.method = 'hostinterface'
+    zart.command = 'hostinterface'
     engine.engine(zart, sortfield, **kwargs)

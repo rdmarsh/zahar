@@ -61,5 +61,5 @@ from apiclasses import engine
 @click.pass_obj
 def trigger(zart, sortfield, **kwargs):
     """This command retrieves triggers."""
-    zart.method = 'trigger'
+    zart.command = 'trigger'
     engine.engine(zart, sortfield, **kwargs)

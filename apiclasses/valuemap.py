@@ -25,5 +25,7 @@ from apiclasses import engine
 @click.pass_obj
 def valuemap(zart, sortfield, **kwargs):
     """This command retrieves valuemaps."""
-    zart.method = 'valuemap'
+    zart.command = 'valuemap'
+    # valuemap command does not fully support sortfield flag
+    sortfield=None
     engine.engine(zart, sortfield, **kwargs)

@@ -10,11 +10,11 @@ from apiclasses import outputformat
 def servicesla(zart, **kwargs):
     """This command retrieves service slas."""
 
-    # ben magic, throw away False and Empty items
-    keywords = {k:v for k,v in kwargs.items() if v}
+    # ben magic, throw away False and Empty flags
+    flags = {k: v for k, v in kwargs.items() if v}
 
     try:
-        obj = zart.zapi.service.getsla(**keywords)
+        obj = zart.zapi.service.getsla(**flags)
     except:
         # todo: fix bare except above and write a better error messages
         click.secho('Error: todo.',

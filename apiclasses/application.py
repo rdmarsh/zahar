@@ -34,5 +34,5 @@ from apiclasses import engine
 @click.pass_obj
 def application(zart, sortfield, **kwargs):
     """This command retrieves applications."""
-    zart.method = 'application'
+    zart.command = 'application'
     engine.engine(zart, sortfield, **kwargs)

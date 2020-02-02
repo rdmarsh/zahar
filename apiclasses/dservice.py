@@ -31,5 +31,5 @@ from apiclasses import engine
 @click.pass_obj
 def dservice(zart, sortfield, **kwargs):
     """This command retrieves dservices."""
-    zart.method = 'dservice'
+    zart.command = 'dservice'
     engine.engine(zart, sortfield, **kwargs)
