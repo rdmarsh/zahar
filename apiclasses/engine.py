@@ -43,7 +43,7 @@ def engine(zart, sortfield, **kwargs):
                         fg='red', err=True)
 
     if 'countOutput' in flags and flags['countOutput']:
-        if obj.isdigit():
+        if str(obj).isdigit():
             click.echo(obj)
         else:
             click.secho('0', fg='yellow')
