@@ -84,6 +84,7 @@ class Zart(object):
         self.zapi = zapi
         self.apiv = apiv
 
+
 @click.group()
 # todo: replace with click.get_app_dir
 @click_config_file.configuration_option(config_file_name=os.environ['HOME']
@@ -91,7 +92,9 @@ class Zart(object):
 @click.option('--zaburl', help='Zabbix URL.')
 @click.option('--userid', help='Zabbix username.')
 @click.option('--passwd', help='Zabbix password.')
-@click.option('--proxy', type=(str, int), help='Socks5 proxy address and port.')
+@click.option('--proxy', type=(str, int),
+              default=(None, 1080),
+              help='Socks5 proxy address and port.')
 # todo: add a flag to show the api version and exit
 @click.version_option(version=__version__)
 @click.pass_context
@@ -100,7 +103,7 @@ def cli(ctx, zaburl, userid, passwd, proxy):
     zart Zabbix API Retrieval Tool.
     """
 
-    if proxy:
+    if proxy and None not in proxy:
         socks.set_default_proxy(socks.SOCKS5, proxy[0], proxy[1])
         socket.socket = socks.socksocket
 
