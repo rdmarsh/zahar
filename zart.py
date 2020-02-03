@@ -91,18 +91,17 @@ class Zart(object):
 @click.option('--zaburl', help='Zabbix URL.')
 @click.option('--userid', help='Zabbix username.')
 @click.option('--passwd', help='Zabbix password.')
-@click.option('--proxy_name', help='Socks5 proxy address')
-@click.option('--proxy_port', default=1080, type=int, help='Socks5 proxy port)')
+@click.option('--proxy', type=(str, int), help='Socks5 proxy address and port.')
 # todo: add a flag to show the api version and exit
 @click.version_option(version=__version__)
 @click.pass_context
-def cli(ctx, zaburl, userid, passwd, proxy_name, proxy_port):
+def cli(ctx, zaburl, userid, passwd, proxy):
     """
     zart Zabbix API Retrieval Tool.
     """
 
-    if proxy_name and proxy_port:
-        socks.set_default_proxy(socks.SOCKS5, proxy_name, proxy_port)
+    if proxy:
+        socks.set_default_proxy(socks.SOCKS5, proxy[0], proxy[1])
         socket.socket = socks.socksocket
 
     zapi = ZabbixAPI(zaburl)
