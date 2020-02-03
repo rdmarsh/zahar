@@ -19,7 +19,7 @@
 __project__ = 'zahar'
 __appname__ = 'zart'
 __appdesc__ = 'Zabbix API Retrieval Tool'
-__version__ = '0.1'
+__version__ = '0.2'
 __author__ = 'David Marsh'
 __license__ = 'GPLv3'
 __copyright__ = 'Copyright 2020 David Marsh'
@@ -84,7 +84,6 @@ class Zart(object):
         self.zapi = zapi
         self.apiv = apiv
 
-
 @click.group()
 # todo: replace with click.get_app_dir
 @click_config_file.configuration_option(config_file_name=os.environ['HOME']
@@ -105,8 +104,8 @@ def cli(ctx, zaburl, userid, passwd):
     """
 
     # todo: temp proxy
-    # socks.set_default_proxy(socks.SOCKS5, "localhost", 1080)
-    # socket.socket = socks.socksocket
+    socks.set_default_proxy(socks.SOCKS5, "localhost", 1080)
+    socket.socket = socks.socksocket
 
     zapi = ZabbixAPI(zaburl)
     zapi.login(userid, passwd)

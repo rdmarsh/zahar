@@ -26,6 +26,4 @@ from apiclasses import engine
 def valuemap(zart, sortfield, **kwargs):
     """This command retrieves valuemaps."""
     zart.command = 'valuemap'
-    # valuemap command does not fully support sortfield flag
-    sortfield=None
     engine.engine(zart, sortfield, **kwargs)
