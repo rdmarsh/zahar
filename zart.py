@@ -92,7 +92,7 @@ class Zart(object):
 @click.option('--userid', help='Zabbix username.')
 @click.option('--passwd', help='Zabbix password.')
 @click.option('--proxy_name', help='Socks5 proxy address')
-@click.option('--proxy_port', type=int, help='Socks5 proxy port)')
+@click.option('--proxy_port', default=1080, type=int, help='Socks5 proxy port)')
 # todo: add a flag to show the api version and exit
 # @click.option('--api', is_flag=True, expose_value=False,
 #               help='Display Zabbix API version.')
