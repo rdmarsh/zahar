@@ -94,8 +94,6 @@ class Zart(object):
 @click.option('--proxy_name', help='Socks5 proxy address')
 @click.option('--proxy_port', default=1080, type=int, help='Socks5 proxy port)')
 # todo: add a flag to show the api version and exit
-# @click.option('--api', is_flag=True, expose_value=False,
-#               help='Display Zabbix API version.')
 @click.version_option(version=__version__)
 @click.pass_context
 def cli(ctx, zaburl, userid, passwd, proxy_name, proxy_port):
