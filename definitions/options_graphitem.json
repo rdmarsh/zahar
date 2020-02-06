@@ -1,0 +1,16 @@
+{ "command": "graphitem", "options": [
+        { "option": "graphids", "version": [ 4.4 ] },
+        { "option": "itemids", "version": [ 4.4 ] },
+        { "option": "type", "version": [ 4.4 ] },
+        { "option": "selectGraphs", "version": [ 4.4 ] },
+        { "option": "sortfield", "version": [ 4.4 ], "fields": [
+            { "field": "gitemid", "version": [ 4.4 ] }
+        ] },
+        { "option": "countOutput", "version": [ 4.4 ] },
+        { "option": "editable", "version": [ 4.4 ] },
+        { "option": "limit", "version": [ 4.4 ] },
+        { "option": "output", "version": [ 4.4 ] },
+        { "option": "preservekeys", "version": [ 4.4 ] },
+        { "option": "sortorder", "version": [ 4.4 ] },
+        { "option": "outputformat", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
+] }
