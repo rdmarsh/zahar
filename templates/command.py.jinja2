@@ -1,5 +1,7 @@
 import click
+{%- if 'apiinfo' not in command_options.command %}
 from apiclasses import common
+{%- endif %}
 from apiclasses import engine
 
 
