@@ -4,7 +4,7 @@ zart (Zabbix API Retrieval Tool)
 
 Part of the zahar (Zabbix Audit Hygiene and Report) project
 
-config in ~/.config/zahar
+config in ~/.zahar
 
 ```
 $ virtualenv venv
