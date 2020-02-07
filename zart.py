@@ -19,7 +19,7 @@
 __project__ = 'zahar'
 __appname__ = 'zart'
 __appdesc__ = 'Zabbix API Retrieval Tool'
-__version__ = '0.2'
+__version__ = '0.3'
 __author__ = 'David Marsh'
 __license__ = 'GPLv3'
 __copyright__ = 'Copyright 2020 David Marsh'
