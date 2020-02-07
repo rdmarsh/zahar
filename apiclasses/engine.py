@@ -42,10 +42,9 @@ def engine(zart, **kwargs):
     # version checks
     version_check(zart.apiv, zart.command, flags.keys())
 
-    if zart.command == 'history' or zart.command == 'valuemap':
-        #click.secho(zart.command + ' doesnt support sortmap', bg='red', fg='white', err=True)
+    if zart.command == 'apiinfo':
         try:
-            obj = getattr(zart.zapi, zart.command).get(limit=1)
+            obj = getattr(zart.zapi, zart.command).version()
         except:
             # todo: fix bare except above and write a better error messages
             click.secho('Error: todo Exception.',
@@ -59,7 +58,9 @@ def engine(zart, **kwargs):
             click.secho('Error: todo Exception.',
                         fg='red', err=True)
 
-    if 'countOutput' in flags and flags['countOutput']:
+    if zart.command == 'apiinfo':
+        click.echo(obj)
+    elif 'countOutput' in flags and flags['countOutput']:
         if str(obj).isdigit():
             click.echo(obj)
         else:
