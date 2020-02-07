@@ -43,7 +43,6 @@ def engine(zart, **kwargs):
     version_check(zart.apiv, zart.command, flags.keys())
 
     if zart.command == 'history' or zart.command == 'valuemap':
-        # probably not needed: del flags['sortfield']
         #click.secho(zart.command + ' doesnt support sortmap', bg='red', fg='white', err=True)
         try:
             obj = getattr(zart.zapi, zart.command).get(limit=1)
