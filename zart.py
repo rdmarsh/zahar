@@ -44,6 +44,7 @@ from apiclasses import correlation
 from apiclasses import dashboard
 from apiclasses import dcheck
 from apiclasses import dhost
+from apiclasses import discoveryrule
 from apiclasses import drule
 from apiclasses import dservice
 from apiclasses import event
@@ -82,7 +83,8 @@ from apiclasses import usermacro
 from apiclasses import usermedia
 from apiclasses import valuemap
 
-config_file=os.path.join(click.get_app_dir(__project__,force_posix=True), 'config.ini')
+config_file = os.path.join(click.get_app_dir(__project__, force_posix=True), 'config.ini')
+
 
 class Zart(object):
     def __init__(self, zapi, apiv):
@@ -130,6 +132,7 @@ cli.add_command(correlation.correlation)
 cli.add_command(dashboard.dashboard)
 cli.add_command(dcheck.dcheck)
 cli.add_command(dhost.dhost)
+cli.add_command(discoveryrule.discoveryrule)
 cli.add_command(drule.drule)
 cli.add_command(dservice.dservice)
 cli.add_command(event.event)
