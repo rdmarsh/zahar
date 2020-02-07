@@ -21,17 +21,16 @@ from apiclasses import engine
 @common.add_options(common.host)
 @common.add_options(common.application)
 @common.add_options(common.with_triggers)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectInterfaces)
-# @common.add_options(common.selectTriggers)
-# @common.add_options(common.selectGraphs)
-# @common.add_options(common.selectApplications)
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectItemDiscovery)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectInterfaces)
+@common.add_options(common.selectTriggers)
+@common.add_options(common.selectGraphs)
+@common.add_options(common.selectApplications)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectItemDiscovery)
+@common.add_options(common.selectPreprocessing)
 @common.add_options(common.filter)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['itemid', 'name', 'key_', 'delay', 'history', 'trends', 'type', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -49,4 +48,6 @@ from apiclasses import engine
 def item(zart, sortfield, **kwargs):
     """This command retrieves items."""
     zart.command = 'item'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

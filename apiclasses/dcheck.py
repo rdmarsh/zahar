@@ -7,7 +7,6 @@ from apiclasses import engine
 @common.add_options(common.dcheckids)
 @common.add_options(common.druleids)
 @common.add_options(common.dserviceids)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['dcheckid', 'druleid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -26,4 +25,6 @@ from apiclasses import engine
 def dcheck(zart, sortfield, **kwargs):
     """This command retrieves dchecks."""
     zart.command = 'dcheck'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

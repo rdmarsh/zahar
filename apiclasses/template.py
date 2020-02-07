@@ -15,22 +15,22 @@ from apiclasses import engine
 @common.add_options(common.with_triggers)
 @common.add_options(common.with_graphs)
 @common.add_options(common.with_httptests)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectTemplates)
-# @common.add_options(common.selectParentTemplates)
-# @common.add_options(common.selectHttpTests)
-# @common.add_options(common.selectItems)
-# @common.add_options(common.selectDiscoveries)
-# @common.add_options(common.selectTriggers)
-# @common.add_options(common.selectGraphs)
-# @common.add_options(common.selectApplications)
-# @common.add_options(common.selectMacros)
-# @common.add_options(common.selectScreens)
+@common.add_options(common.evaltype)
+@common.add_options(common.tags)
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectTags)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectTemplates)
+@common.add_options(common.selectParentTemplates)
+@common.add_options(common.selectHttpTests)
+@common.add_options(common.selectItems)
+@common.add_options(common.selectDiscoveries)
+@common.add_options(common.selectTriggers)
+@common.add_options(common.selectGraphs)
+@common.add_options(common.selectApplications)
+@common.add_options(common.selectMacros)
+@common.add_options(common.selectScreens)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
-# todo: status may not be part of the api even though it's in the zabbix doco
 @click.option('--sortfield', type=click.Choice(['hostid', 'host', 'name', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -49,4 +49,6 @@ from apiclasses import engine
 def template(zart, sortfield, **kwargs):
     """This command retrieves templates."""
     zart.command = 'template'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

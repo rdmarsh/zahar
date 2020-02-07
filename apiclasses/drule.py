@@ -7,11 +7,9 @@ from apiclasses import engine
 @common.add_options(common.dhostids)
 @common.add_options(common.druleids)
 @common.add_options(common.dserviceids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectDChecks)
-# @common.add_options(common.selectDHosts)
+@common.add_options(common.selectDChecks)
+@common.add_options(common.selectDHosts)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['druleid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -30,4 +28,6 @@ from apiclasses import engine
 def drule(zart, sortfield, **kwargs):
     """This command retrieves drules."""
     zart.command = 'drule'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

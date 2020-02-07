@@ -11,12 +11,10 @@ from apiclasses import engine
 @common.add_options(common.itemids)
 @common.add_options(common.templated)
 @common.add_options(common.templateids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHost)
-# @common.add_options(common.selectItems)
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectApplicationDiscovery)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectHost)
+@common.add_options(common.selectItems)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectApplicationDiscovery)
 @click.option('--sortfield', type=click.Choice(['applicationid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -35,4 +33,6 @@ from apiclasses import engine
 def application(zart, sortfield, **kwargs):
     """This command retrieves applications."""
     zart.command = 'application'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

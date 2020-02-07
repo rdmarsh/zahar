@@ -3,16 +3,12 @@ from apiclasses import common
 from apiclasses import engine
 
 
-@click.command(short_help='retrieve users')
-@common.add_options(common.mediaids)
-@common.add_options(common.mediatypeids)
-@common.add_options(common.userids)
-@common.add_options(common.usrgrpids)
-@common.add_options(common.getAccess)
-@common.add_options(common.selectMedias)
-@common.add_options(common.selectMediatypes)
-@common.add_options(common.selectUsrgrps)
-@click.option('--sortfield', type=click.Choice(['userid', 'alias']))
+@click.command(short_help='retrieve dashboards')
+@common.add_options(common.dashboardids)
+@common.add_options(common.selectWidgets)
+@common.add_options(common.selectUsers)
+@common.add_options(common.selectUserGroups)
+@click.option('--sortfield', type=click.Choice(['dashboardid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
 @common.add_options(common.excludeSearch)
@@ -27,9 +23,9 @@ from apiclasses import engine
 @common.add_options(common.startSearch)
 @common.add_options(common.outputformat)
 @click.pass_obj
-def user(zart, sortfield, **kwargs):
-    """This command retrieves users."""
-    zart.command = 'user'
+def dashboard(zart, sortfield, **kwargs):
+    """This command retrieves dashboards."""
+    zart.command = 'dashboard'
     if sortfield:
         zart.sortfield = sortfield
     engine.engine(zart, **kwargs)

@@ -8,10 +8,8 @@ from apiclasses import engine
 @common.add_options(common.hostids)
 @common.add_options(common.scriptids)
 @common.add_options(common.usrgrpids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectHosts)
 @click.option('--sortfield', type=click.Choice(['scriptid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -30,4 +28,6 @@ from apiclasses import engine
 def script(zart, sortfield, **kwargs):
     """This command retrieves scripts."""
     zart.command = 'script'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

@@ -32,19 +32,17 @@ from apiclasses import engine
 @common.add_options(common.expandComment)
 @common.add_options(common.expandDescription)
 @common.add_options(common.expandExpression)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectItems)
-# @common.add_options(common.selectFunctions)
-# @common.add_options(common.selectDependencies)
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectLastEvent)
-# @common.add_options(common.selectTags)
-# @common.add_options(common.selectTriggerDiscovery)
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectItems)
+@common.add_options(common.selectFunctions)
+@common.add_options(common.selectDependencies)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectLastEvent)
+@common.add_options(common.selectTags)
+@common.add_options(common.selectTriggerDiscovery)
 @common.add_options(common.filter)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['triggerid', 'description', 'status', 'priority', 'lastchange', 'hostname']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -62,4 +60,6 @@ from apiclasses import engine
 def trigger(zart, sortfield, **kwargs):
     """This command retrieves triggers."""
     zart.command = 'trigger'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

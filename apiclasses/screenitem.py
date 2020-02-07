@@ -6,7 +6,6 @@ from apiclasses import engine
 @click.command(short_help='retrieve screenitems')
 @common.add_options(common.screenitemids)
 @common.add_options(common.screenids)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['screenitemid', 'screenid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -25,4 +24,6 @@ from apiclasses import engine
 def screenitem(zart, sortfield, **kwargs):
     """This command retrieves screenitems."""
     zart.command = 'screenitem'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

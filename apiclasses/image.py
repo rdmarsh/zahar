@@ -7,7 +7,6 @@ from apiclasses import engine
 @common.add_options(common.imageids)
 @common.add_options(common.sysmapids)
 @common.add_options(common.select_image)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['imageid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -26,4 +25,6 @@ from apiclasses import engine
 def image(zart, sortfield, **kwargs):
     """This command retrieves images."""
     zart.command = 'image'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

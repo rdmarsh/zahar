@@ -8,12 +8,10 @@ from apiclasses import engine
 @common.add_options(common.dhostids)
 @common.add_options(common.dcheckids)
 @common.add_options(common.druleids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectDRules)
-# @common.add_options(common.selectDHosts)
-# @common.add_options(common.selectHosts)
+@common.add_options(common.selectDRules)
+@common.add_options(common.selectDHosts)
+@common.add_options(common.selectHosts)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['dserviceid', 'dhostid', 'ip']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -32,4 +30,6 @@ from apiclasses import engine
 def dservice(zart, sortfield, **kwargs):
     """This command retrieves dservices."""
     zart.command = 'dservice'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

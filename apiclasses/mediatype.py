@@ -7,9 +7,7 @@ from apiclasses import engine
 @common.add_options(common.mediatypeids)
 @common.add_options(common.mediaids)
 @common.add_options(common.userids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectUsers)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectUsers)
 @click.option('--sortfield', type=click.Choice(['mediatypeid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -28,4 +26,6 @@ from apiclasses import engine
 def mediatype(zart, sortfield, **kwargs):
     """This command retrieves mediatypes."""
     zart.command = 'mediatype'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

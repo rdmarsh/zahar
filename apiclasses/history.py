@@ -9,7 +9,6 @@ from apiclasses import engine
 @common.add_options(common.itemids)
 @common.add_options(common.time_from)
 @common.add_options(common.time_till)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['itemid', 'clock']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -27,4 +26,6 @@ from apiclasses import engine
 def history(zart, sortfield, **kwargs):
     """This command retrieves historys."""
     zart.command = 'history'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

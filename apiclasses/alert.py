@@ -12,17 +12,14 @@ from apiclasses import engine
 @common.add_options(common.mediatypeids)
 @common.add_options(common.objectids)
 @common.add_options(common.userids)
-# todo: fix the way integer works for these
-# @common.add_options(common.eventobject)
-# @common.add_options(common.eventsource)
+@common.add_options(common.eventobject)
+@common.add_options(common.eventsource)
 @common.add_options(common.time_from)
 @common.add_options(common.time_till)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectMediatypes)
-# @common.add_options(common.selectUsers)
-# todo: work out how to pass choices to DRY this
-@click.option('--sortfield', type=click.Choice(['alertid', 'clock', 'eventid', 'status']))
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectMediatypes)
+@common.add_options(common.selectUsers)
+@click.option('--sortfield', type=click.Choice(['alertid', 'clock', 'eventid', 'mediatypeid', 'sendto', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
 @common.add_options(common.excludeSearch)
@@ -40,4 +37,6 @@ from apiclasses import engine
 def alert(zart, sortfield, **kwargs):
     """This command retrieves alerts."""
     zart.command = 'alert'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

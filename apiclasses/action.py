@@ -12,11 +12,10 @@ from apiclasses import engine
 @common.add_options(common.usrgrpids)
 @common.add_options(common.userids)
 @common.add_options(common.scriptids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectFilters)
-# @common.add_options(common.selectOperations)
-# @common.add_options(common.selectRecoveryOperations)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectFilter)
+@common.add_options(common.selectOperations)
+@common.add_options(common.selectRecoveryOperations)
+@common.add_options(common.selectAcknowledgeOperations)
 @click.option('--sortfield', type=click.Choice(['actionid', 'name', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -35,4 +34,6 @@ from apiclasses import engine
 def action(zart, sortfield, **kwargs):
     """This command retrieves actions."""
     zart.command = 'action'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

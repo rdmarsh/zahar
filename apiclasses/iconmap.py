@@ -6,9 +6,7 @@ from apiclasses import engine
 @click.command(short_help='retrieve iconmaps')
 @common.add_options(common.iconmapids)
 @common.add_options(common.sysmapids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectMappings)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectMappings)
 @click.option('--sortfield', type=click.Choice(['iconmapid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -27,4 +25,6 @@ from apiclasses import engine
 def iconmap(zart, sortfield, **kwargs):
     """This command retrieves iconmaps."""
     zart.command = 'iconmap'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

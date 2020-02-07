@@ -3,30 +3,47 @@ import pandas as pd
 from packaging import version
 
 
-def engine(zart, sortfield, **kwargs):
+def engine(zart, **kwargs):
     """This is common engine for all commands."""
 
     # ben magic, throw away False and Empty flags
     flags = {k: v for k, v in kwargs.items() if v}
 
-    # todo: sortfield needs to move to common flags
-    # todo: fix history doesn't like sortfield being None
-    flags['sortfield'] = sortfield if sortfield else None
-
     # setting the default in common passes a tuple
     # maybe there's a better way?
+    #if kwargs.get('output') and 'extend' in kwargs.get('output'):
     if kwargs.get('output') and 'extend' in kwargs.get('output'):
         flags['output'] = 'extend'
+
+    # at the moment it's all or nothing, maybe in future
+    # we can change this and select what we want returned
+    for select in [
+            'selectAcknowledgeOperations',
+            'selectApplicationDiscovery',
+            'selectApplications',
+            'selectDiscoveries',
+            'selectDiscoveryRule',
+            'selectFilter',
+            'selectGraphs',
+            'selectGroups',
+            'selectHost',
+            'selectHosts',
+            'selectItems',
+            'selectMediatypes',
+            'selectOperations',
+            'selectRecoveryOperations',
+            'selectUserGroups',
+            'selectUsers',
+            'selectWidgets',
+            ]:
+        if kwargs.get(select):
+            flags[select] = 'extend'
 
     # version checks
     version_check(zart.apiv, zart.command, flags.keys())
 
-    # todo: make this better...
-    # workaround bug with history and valuemap
-    # sortfield crashes the api call
-    # and can't pass zart.command
     if zart.command == 'history' or zart.command == 'valuemap':
-        del flags['sortfield']
+        # probably not needed: del flags['sortfield']
         #click.secho(zart.command + ' doesnt support sortmap', bg='red', fg='white', err=True)
         try:
             obj = getattr(zart.zapi, zart.command).get(limit=1)
@@ -35,6 +52,7 @@ def engine(zart, sortfield, **kwargs):
             click.secho('Error: todo Exception.',
                         fg='red', err=True)
     else:
+
         try:
             obj = getattr(zart.zapi, zart.command).get(**flags)
         except:
@@ -89,6 +107,12 @@ def outputformat(obj, outputformat='txt'):
 def version_check(apiv, command, flags):
     # todo: convert into a json object we can load
     version_dict = {
+            'autoregistration': {
+                '*': ('4.4', '99'),
+                },
+            'dashboard': {
+                '*': ('99', '99'),
+                },
             'usermedia': {
                 '*': ('2.0', '3.4'),
                 },

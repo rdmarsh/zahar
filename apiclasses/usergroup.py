@@ -8,11 +8,10 @@ from apiclasses import engine
 @common.add_options(common.userids)
 @common.add_options(common.usrgrpids)
 @common.add_options(common.with_gui_access)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectUsers)
-# @common.add_options(common.selectRights)
+@common.add_options(common.selectTagFilters)
+@common.add_options(common.selectUsers)
+@common.add_options(common.selectRights)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['usrgrpid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -31,4 +30,6 @@ from apiclasses import engine
 def usergroup(zart, sortfield, **kwargs):
     """This command retrieves usergroups."""
     zart.command = 'usergroup'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

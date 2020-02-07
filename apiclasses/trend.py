@@ -15,6 +15,4 @@ from apiclasses import engine
 def trend(zart, **kwargs):
     """This command retrieves trends."""
     zart.command = 'trend'
-    # trend command does not support sortfield flag
-    sortfield=None
-    engine.engine(zart, sortfield, **kwargs)
+    engine.engine(zart, **kwargs)

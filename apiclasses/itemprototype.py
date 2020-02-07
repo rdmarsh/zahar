@@ -13,16 +13,15 @@ from apiclasses import engine
 @common.add_options(common.templated)
 @common.add_options(common.templateids)
 @common.add_options(common.triggerids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectApplications)
-# @common.add_options(common.selectApplicationPrototypes)
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectGraphs)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectTriggers)
+@common.add_options(common.selectApplications)
+@common.add_options(common.selectApplicationPrototypes)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectGraphs)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectTriggers)
+@common.add_options(common.selectPreprocessing)
 @common.add_options(common.filter)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['itemid', 'name', 'key_', 'delay', 'type', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -40,4 +39,6 @@ from apiclasses import engine
 def itemprototype(zart, sortfield, **kwargs):
     """This command retrieves itemprototypes."""
     zart.command = 'itemprototype'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

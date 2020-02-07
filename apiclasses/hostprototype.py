@@ -7,14 +7,12 @@ from apiclasses import engine
 @common.add_options(common.hostids)
 @common.add_options(common.discoveryids)
 @common.add_options(common.inherited)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectGroupLinks)
-# @common.add_options(common.selectGroupPrototypes)
-# @common.add_options(common.selectInventory)
-# @common.add_options(common.selectParentHost)
-# @common.add_options(common.selectTemplates)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectGroupLinks)
+@common.add_options(common.selectGroupPrototypes)
+@common.add_options(common.selectInventory)
+@common.add_options(common.selectParentHost)
+@common.add_options(common.selectTemplates)
 @click.option('--sortfield', type=click.Choice(['hostid', 'host', 'name', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -33,4 +31,6 @@ from apiclasses import engine
 def hostprototype(zart, sortfield, **kwargs):
     """This command retrieves hostprototypes."""
     zart.command = 'hostprototype'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

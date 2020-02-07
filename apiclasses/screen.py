@@ -7,11 +7,9 @@ from apiclasses import engine
 @common.add_options(common.screenids)
 @common.add_options(common.userids)
 @common.add_options(common.screenitemids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectUsers)
-# @common.add_options(common.selectUserGroups)
-# @common.add_options(common.selectScreenItems)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectScreenItems)
+@common.add_options(common.selectUsers)
+@common.add_options(common.selectUserGroups)
 @click.option('--sortfield', type=click.Choice(['screenid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -30,4 +28,6 @@ from apiclasses import engine
 def screen(zart, sortfield, **kwargs):
     """This command retrieves screens."""
     zart.command = 'screen'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

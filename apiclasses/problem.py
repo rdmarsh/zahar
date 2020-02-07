@@ -12,17 +12,18 @@ from apiclasses import engine
 @common.add_options(common.source)
 @common.add_options(common.object)
 @common.add_options(common.acknowledged)
+@common.add_options(common.suppressed)
 @common.add_options(common.severities)
+@common.add_options(common.evaltype)
 @common.add_options(common.tags)
 @common.add_options(common.recent)
 @common.add_options(common.eventid_from)
 @common.add_options(common.eventid_till)
 @common.add_options(common.time_from)
 @common.add_options(common.time_till)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectAcknowledges)
-# @common.add_options(common.selectTags)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectAcknowledges)
+@common.add_options(common.selectTags)
+@common.add_options(common.selectSuppressionData)
 @click.option('--sortfield', type=click.Choice(['eventid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -41,4 +42,6 @@ from apiclasses import engine
 def problem(zart, sortfield, **kwargs):
     """This command retrieves problems."""
     zart.command = 'problem'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

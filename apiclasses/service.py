@@ -7,14 +7,12 @@ from apiclasses import engine
 @common.add_options(common.serviceids)
 @common.add_options(common.parentids)
 @common.add_options(common.childids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectParent)
-# @common.add_options(common.selectDependencies)
-# @common.add_options(common.selectParentDependencies)
-# @common.add_options(common.selectTimes)
-# @common.add_options(common.selectAlarms)
-# @common.add_options(common.selectTrigger)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectParent)
+@common.add_options(common.selectDependencies)
+@common.add_options(common.selectParentDependencies)
+@common.add_options(common.selectTimes)
+@common.add_options(common.selectAlarms)
+@common.add_options(common.selectTrigger)
 @click.option('--sortfield', type=click.Choice(['name', 'sortorder']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -33,4 +31,6 @@ from apiclasses import engine
 def service(zart, sortfield, **kwargs):
     """This command retrieves services."""
     zart.command = 'service'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

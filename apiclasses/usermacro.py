@@ -10,11 +10,9 @@ from apiclasses import engine
 @common.add_options(common.hostids)
 @common.add_options(common.hostmacroids)
 @common.add_options(common.templateids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectTemplates)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectTemplates)
 @click.option('--sortfield', type=click.Choice(['macro']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -33,4 +31,6 @@ from apiclasses import engine
 def usermacro(zart, sortfield, **kwargs):
     """This command retrieves usermacros."""
     zart.command = 'usermacro'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

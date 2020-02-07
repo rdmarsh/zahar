@@ -14,10 +14,8 @@ from apiclasses import engine
 @common.add_options(common.templateids)
 @common.add_options(common.expandName)
 @common.add_options(common.expandStepName)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectSteps)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectSteps)
 @click.option('--sortfield', type=click.Choice(['httptestid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -36,4 +34,6 @@ from apiclasses import engine
 def httptest(zart, sortfield, **kwargs):
     """This command retrieves httptests."""
     zart.command = 'httptest'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

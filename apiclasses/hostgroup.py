@@ -15,21 +15,22 @@ from apiclasses import engine
 @common.add_options(common.triggerids)
 @common.add_options(common.with_applications)
 @common.add_options(common.with_graphs)
+@common.add_options(common.with_graph_prototypes)
 @common.add_options(common.with_hosts_and_templates)
 @common.add_options(common.with_httptests)
 @common.add_options(common.with_items)
+@common.add_options(common.with_item_prototypes)
+@common.add_options(common.with_simple_graph_item_prototypes)
 @common.add_options(common.with_monitored_httptests)
 @common.add_options(common.with_monitored_items)
 @common.add_options(common.with_monitored_triggers)
 @common.add_options(common.with_simple_graph_items)
 @common.add_options(common.with_triggers)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectGroupDiscovery)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectTemplates)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectGroupDiscovery)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectTemplates)
 @common.add_options(common.limitSelects)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['groupid', 'name']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -48,4 +49,6 @@ from apiclasses import engine
 def hostgroup(zart, sortfield, **kwargs):
     """This command retrieves hostgroups."""
     zart.command = 'hostgroup'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

@@ -12,16 +12,14 @@ from apiclasses import engine
 @common.add_options(common.templated)
 @common.add_options(common.inherited)
 @common.add_options(common.expandName)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectTemplates)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectItems)
-# @common.add_options(common.selectGraphDiscovery)
-# @common.add_options(common.selectGraphItems)
-# @common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectTemplates)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectItems)
+@common.add_options(common.selectGraphDiscovery)
+@common.add_options(common.selectGraphItems)
+@common.add_options(common.selectDiscoveryRule)
 @common.add_options(common.filter)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['graphid', 'name', 'graphtype']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -39,4 +37,6 @@ from apiclasses import engine
 def graph(zart, sortfield, **kwargs):
     """This command retrieves graphs."""
     zart.command = 'graph'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

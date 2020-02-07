@@ -8,9 +8,7 @@ from apiclasses import engine
 @common.add_options(common.graphids)
 @common.add_options(common.itemids)
 @common.add_options(common.type)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGraphs)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectGraphs)
 @click.option('--sortfield', type=click.Choice(['gitemid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -23,4 +21,6 @@ from apiclasses import engine
 def graphitem(zart, sortfield, **kwargs):
     """This command retrieves graphitems."""
     zart.command = 'graphitem'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

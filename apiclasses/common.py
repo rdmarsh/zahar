@@ -1,5 +1,4 @@
 # magic from https://stackoverflow.com/questions/40182157/python-click-shared-options-and-flags-between-commands
-
 import click
 
 # time
@@ -36,7 +35,7 @@ noInheritance = [click.option('--noInheritance', 'noInheritance', is_flag=True, 
 
 
 active = [click.option('--active', 'active', is_flag=True, default=None, help='Return only enabled triggers that belong to monitored hosts.')]
-countOutput = [click.option('--countOutput', 'countOutput', is_flag=True, default=None, help='Return count of records instead of data.')]
+countOutput = [click.option('--countOutput', 'countOutput', is_flag=True, help='Return count of records instead of data.')]
 expandUrls = [click.option('--expandUrls', 'expandUrls', is_flag=True, default=None, help='Adds global map URLs to the corresponding map elements and expands macros in all map element URLs.')]
 webitems = [click.option('--webitems', 'webitems', is_flag=True, default=None, help='Include web items in the result.')]
 expandStepName = [click.option('--expandStepName', 'expandStepName', is_flag=True, default=None, help='Expand macros in the names of steps.')]
@@ -97,20 +96,12 @@ type         = [click.option('--type',         'type',         type=int, default
 # ids
 
 actionids      = [click.option('--actionid',      'actionids',      type=int, multiple=True, help='Return responses with the given action id.')]
-parentTemplateids = [click.option('--parentTemplateid', 'parentTemplateids', type=int, multiple=True, help='Return responses with the given parentTemplate id.')]
-serviceids     = [click.option('--serviceid',     'serviceids',     type=int, multiple=True, help='Return responses with the given service id.')]
-parentids      = [click.option('--parentid',      'parentids',      type=int, multiple=True, help='Return responses with the given parent id.')]
-childids       = [click.option('--childid',       'childids',       type=int, multiple=True, help='Return responses with the given child id.')]
-valuemapids    = [click.option('--valuemapid',    'valuemapids',    type=int, multiple=True, help='Return responses with the given valuemap id.')]
-globalmacroids = [click.option('--globalmacroid', 'globalmacroid',  type=int, multiple=True, help='Return responses with the given globmacro id.')]
-hostmacroids   = [click.option('--hostmacroid',   'hostmacroids',   type=int, multiple=True, help='Return responses with the given hostmacro id.')]
-iconmapids     = [click.option('--iconmapid',     'iconmapids',     type=int, multiple=True, help='Return responses with the given iconmap id.')]
-nodeids        = [click.option('--nodeid',        'nodeids',        type=int, multiple=True, help='Return responses with the given node id.')]
-proxyids       = [click.option('--proxyid',       'proxyids',       type=int, multiple=True, help='Return only hosts that are monitored by the given proxies.')]
 alertids       = [click.option('--alertid',       'alertids',       type=int, multiple=True, help='Return responses with the given alert id.')]
 applicationids = [click.option('--applicationid', 'applicationids', type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
+childids       = [click.option('--childid',       'childids',       type=int, multiple=True, help='Return responses with the given child id.')]
 correlationids = [click.option('--correlationid', 'correlationids', type=int, multiple=True, help='Return only objects with the given correlations IDs.')]
 correlationids = [click.option('--correlationid', 'correlationids', type=int, multiple=True, help='Return responses with the given correlation id.')]
+dashboardids   = [click.option('--dashboardid',   'dashboardids',   type=int, multiple=True, help='Return responses with the given dashboard id.')]
 dcheckids      = [click.option('--dcheckid',      'dcheckids',      type=int, multiple=True, help='Return only objects with the Discovered Host ID')]
 dhostids       = [click.option('--dhostid',       'dhostids',       type=int, multiple=True, help='Return only objects with the Discovered Host ID')]
 discoveryids   = [click.option('--discoveryid',   'discoveryids',   type=int, multiple=True, help='Return responses with the given discovery id.')]
@@ -120,54 +111,113 @@ eventid_from   = [click.option('--eventid_from',  'eventid_from',   type=int, mu
 eventid_till   = [click.option('--eventid_till',  'eventid_till',   type=int, multiple=False, help='Return results equal to or more than event id.')]
 eventids       = [click.option('--eventid',       'eventids',       type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
 gitemids       = [click.option('--gitemid',       'gitemids',       type=int, multiple=True, help='Return results with the given graphitem id.')]
+globalmacroids = [click.option('--globalmacroid', 'globalmacroid',  type=int, multiple=True, help='Return responses with the given globmacro id.')]
 graphids       = [click.option('--graphid',       'graphids',       type=int, multiple=True, help='Return objects that use the given graph id.')]
-groupids       = [click.option('--groupid',       'groupids',       type=int, multiple=True, help='Return responses that use the host groups in conditions')]
+groupids       = [click.option('--groupid',       'groupids',       type=int, multiple=True, help='Return responses that use the given groups.')]
 hostids        = [click.option('--hostid',        'hostids',        type=int, multiple=True, help='Return responses that use the host id.')]
+hostmacroids   = [click.option('--hostmacroid',   'hostmacroids',   type=int, multiple=True, help='Return responses with the given hostmacro id.')]
 httptestids    = [click.option('--httptestid',    'httptestids',    type=int, multiple=True, help='Return responses with the given httptest id.')]
+iconmapids     = [click.option('--iconmapid',     'iconmapids',     type=int, multiple=True, help='Return responses with the given iconmap id.')]
 imageids       = [click.option('--imageid',       'imageids',       type=int, multiple=True, help='Return objects that use the given image id.')]
 interfaceids   = [click.option('--interfaceid',   'interfaceid',    type=int, multiple=True, help='Return results with the given interface id')]
 itemids        = [click.option('--itemid',        'itemids',        type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
 maintenanceids = [click.option('--maintenanceid', 'maintenanceids', type=int, multiple=True, help='Return responses with the given maintenance id.')]
+mediaids       = [click.option('--mediaid',       'mediaids',       type=int, multiple=True, help='Return responses with the given media id.')]
 mediatypeids   = [click.option('--mediatypeid',   'mediatypeids',   type=int, multiple=True, help='Return only actions that use the given media types to send messages.')]
+nodeids        = [click.option('--nodeid',        'nodeids',        type=int, multiple=True, help='Return responses with the given node id.')]
 objectids      = [click.option('--objectid',      'objectids',      type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
+parentTemplateids = [click.option('--parentTemplateid', 'parentTemplateids', type=int, multiple=True, help='Return responses with the given parentTemplate id.')]
+parentids      = [click.option('--parentid',      'parentids',      type=int, multiple=True, help='Return responses with the given parent id.')]
+proxyids       = [click.option('--proxyid',       'proxyids',       type=int, multiple=True, help='Return only hosts that are monitored by the given proxies.')]
 screenids      = [click.option('--screenid',      'screenids',      type=int, multiple=True, help='Return objects that use the given screen id.')]
 screenitemids  = [click.option('--screenitemid',  'screenitemid',   type=int, multiple=True, help='Return objects that use the given screenitem id.')]
 scriptids      = [click.option('--scriptid',      'scriptids',      type=int, multiple=True, help='Return only actions that are configured to run the given scripts.')]
+serviceids     = [click.option('--serviceid',     'serviceids',     type=int, multiple=True, help='Return responses with the given service id.')]
 sysmapids      = [click.option('--sysmapid',      'sysmapids',      type=int, multiple=True, help='Return objects that use the given sysmap id.')]
 templateids    = [click.option('--templateid',    'templateids',    type=int, multiple=True, help='Return objects that use the given template id.')]
 triggerids     = [click.option('--triggerid',     'triggerids',     type=int, multiple=True, help='Return only actions that use the given triggers in action conditions.')]
 userids        = [click.option('--userid',        'userids',        type=int, multiple=True, help='Return only actions that are configured to send messages to the given users.')]
 usrgrpids      = [click.option('--usrgrpid',      'usrgrpids',      type=int, multiple=True, help='Return only actions that are configured to send messages to the given user groups.')]
-mediaids       = [click.option('--mediaid',       'mediaids',       type=int, multiple=True, help='Return responses with the given media id.')]
+valuemapids    = [click.option('--valuemapid',    'valuemapids',    type=int, multiple=True, help='Return responses with the given valuemap id.')]
 
 # object
 
 # todo this sucks
 tags      = [click.option('--tags',      'tags',      help='Return objects with given tags.')]
 
-# todo: for future use once we sort out passing queries
-# selectFilter = [
-#     click.option('--selectFilter', 'selectFilter',
-#                help='Returns the action filter in the filter property.'),
-#    ]
+selectAcknowledgeOperations            = [click.option('--selectAcknowledgeOperations',            'selectAcknowledgeOperations',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectApplicationDiscovery            = [click.option('--selectApplicationDiscovery',            'selectApplicationDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectApplicationPrototypes            = [click.option('--selectApplicationPrototypes',            'selectApplicationPrototypes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectApplications       = [click.option('--selectApplications',       'selectApplications',       is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDChecks            = [click.option('--selectDChecks',            'selectDChecks',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDHosts            = [click.option('--selectDHosts',            'selectDHosts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDHosts            = [click.option('--selectDHosts',            'selectDHosts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDRules            = [click.option('--selectDRules',            'selectDRules',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDRules            = [click.option('--selectDRules',            'selectDRules',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDServices            = [click.option('--selectDServices',            'selectDServices',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDiscoveries            = [click.option('--selectDiscoveries',            'selectDiscoveries',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDiscoveryRule            = [click.option('--selectDiscoveryRule',            'selectDiscoveryRule',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectFilter             = [click.option('--selectFilter',             'selectFilter',             is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGraphDiscovery            = [click.option('--selectGraphDiscovery',            'selectGraphDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGraphItems            = [click.option('--selectGraphItems',            'selectGraphItems',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGraphs            = [click.option('--selectGraphs',            'selectGraphs',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGroupDiscovery            = [click.option('--selectGroupDiscovery',            'selectGroupDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGroupLinks            = [click.option('--selectGroupLinks',            'selectGroupLinks',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGroupPrototypes            = [click.option('--selectGroupPrototypes',            'selectGroupPrototypes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectGroups             = [click.option('--selectGroups',             'selectGroups',             is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHost            = [click.option('--selectHost',            'selectHost',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHostDiscovery            = [click.option('--selectHostDiscovery',            'selectHostDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHosts            = [click.option('--selectHosts',            'selectHosts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHosts            = [click.option('--selectHosts',            'selectHosts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHosts            = [click.option('--selectHosts',            'selectHosts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHttpTests            = [click.option('--selectHttpTests',            'selectHttpTests',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectIconMap            = [click.option('--selectIconMap',            'selectIconMap',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectInterfaces            = [click.option('--selectInterfaces',            'selectInterfaces',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectInventory            = [click.option('--selectInventory',            'selectInventory',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectItemDiscovery            = [click.option('--selectItemDiscovery',            'selectItemDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectItems            = [click.option('--selectItems',            'selectItems',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectLinks            = [click.option('--selectLinks',            'selectLinks',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectMacros            = [click.option('--selectMacros',            'selectMacros',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectMappings            = [click.option('--selectMappings',            'selectMappings',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectMediatypes            = [click.option('--selectMediatypes',            'selectMediatypes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectOperations         = [click.option('--selectOperations',         'selectOperations',         is_flag=True, default=None, help='Return action operations in the operations property.')]
+selectOperations         = [click.option('--selectOperations',         'selectOperations',         is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectParentHost            = [click.option('--selectParentHost',            'selectParentHost',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectParentTemplates            = [click.option('--selectParentTemplates',            'selectParentTemplates',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectRecoveryOperations = [click.option('--selectRecoveryOperations', 'selectRecoveryOperations', is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectRelatedObject            = [click.option('--selectRelatedObject',            'selectRelatedObject',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectScreens            = [click.option('--selectScreens',            'selectScreens',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectSteps            = [click.option('--selectSteps',            'selectSteps',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTags            = [click.option('--selectTags',            'selectTags',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTemplates            = [click.option('--selectTemplates',            'selectTemplates',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTimeperiods            = [click.option('--selectTimeperiods',            'selectTimeperiods',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTriggers            = [click.option('--selectTriggers',            'selectTriggers',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectUserGroups         = [click.option('--selectUserGroups',         'selectUserGroups',         is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectUsers              = [click.option('--selectUsers',              'selectUsers',              is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectUsers            = [click.option('--selectUsers',            'selectUsers',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectWidgets            = [click.option('--selectWidgets',            'selectWidgets',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+select_acknowledges       = [click.option('--select_acknowledges',       'select_acknowledges',       is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+select_alerts            = [click.option('--select_alerts',            'select_alerts',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectSelements            = [click.option('--selectSelements',            'selectSelements',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectUrls            = [click.option('--selectUrls',            'selectUrls',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectShapes            = [click.option('--selectShapes',            'selectShapes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectLines            = [click.option('--selectLines',            'selectLines',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectAcknowledges            = [click.option('--selectAcknowledges',            'selectAcknowledges',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectInterface            = [click.option('--selectInterface',            'selectInterface',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectScreenItems            = [click.option('--selectScreenItems',            'selectScreenItems',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectParent            = [click.option('--selectParent',            'selectParent',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectDependencies            = [click.option('--selectDependencies',            'selectDependencies',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectParentDependencies            = [click.option('--selectParentDependencies',            'selectParentDependencies',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTimes            = [click.option('--selectTimes',            'selectTimes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectAlarms            = [click.option('--selectAlarms',            'selectAlarms',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTrigger            = [click.option('--selectTrigger',            'selectTrigger',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectFunctions            = [click.option('--selectFunctions',            'selectFunctions',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectLastEvent            = [click.option('--selectLastEvent',            'selectLastEvent',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTriggerDiscovery            = [click.option('--selectTriggerDiscovery',            'selectTriggerDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectMedias            = [click.option('--selectMedias',            'selectMedias',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectUsrgrps            = [click.option('--selectUsrgrps',            'selectUsrgrps',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectRights            = [click.option('--selectRights',            'selectRights',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
 
-# todo: for future use once we sort out passing queries
-# selectOperations = [
-#    click.option('--selectOperations', 'selectOperations',
-#                help='Return action operations in the operations property.'),
-#    ]
-
-# todo: for future use once we sort out passing queries
-# selectRecoveryOperations = [
-#    click.option('--selectRecoveryOperations', 'selectRecoveryOperations',
-#                help='Return action recovery operations in the recoveryOperations property.'),
-#    ]
-
-# todo: for future use once we sort out passing dynamic choices
-# sortfield = [
-#    click.option('--sortfield',
-#        help='Sort the result by the given properties.'),
-#    ]
 
 # These parameters being common for all get command
 
@@ -234,15 +284,30 @@ sortorder = [
 # are more natural
 
 outputformat = [
-    click.option('-o', 'outputformat',
+    click.option('-o', '--outputformat',
                  default='txt',
                  type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'clip', 'xls', 'txt']),
                  help='Output format.')
     ]
 
+# todo: for future use once we sort out passing dynamic choices
+#@click.option('--sortfield', type=click.Choice(['actionid', 'name', 'status']))
+#    click.option('--sortfield', type=click.Choice(array),
+sortfield = [
+    click.option('--sortfield',
+                 help='Sort the result by the given properties.'),
+    ]
+
 
 def add_options(options):
     def _add_options(func):
+        for option in reversed(options):
+            func = option(func)
+        return func
+    return _add_options
+
+def add_sortfield(options, *args):
+    def _add_options(func, *args):
         for option in reversed(options):
             func = option(func)
         return func

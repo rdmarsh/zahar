@@ -1,23 +1,14 @@
 import click
 from apiclasses import common
-from apiclasses import outputformat
+from apiclasses import engine
 
 
-@click.command(short_help='retrieve service slas')
+@click.command(short_help='retrieve serviceslas')
 @common.add_options(common.serviceids)
-@common.add_options(common.intervals)
+@common.add_options(common.interval_from)
+@common.add_options(common.interval_to)
 @click.pass_obj
 def servicesla(zart, **kwargs):
-    """This command retrieves service slas."""
-
-    # ben magic, throw away False and Empty flags
-    flags = {k: v for k, v in kwargs.items() if v}
-
-    try:
-        obj = zart.zapi.service.getsla(**flags)
-    except:
-        # todo: fix bare except above and write a better error messages
-        click.secho('Error: todo.',
-                    fg='red', err=True)
-
-    # todo: this is probably not working, getsla needs to be in engine.py
+    """This command retrieves serviceslas."""
+    zart.command = 'servicesla'
+    engine.engine(zart, **kwargs)

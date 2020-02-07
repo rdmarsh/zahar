@@ -5,10 +5,8 @@ from apiclasses import engine
 
 @click.command(short_help='retrieve correlations')
 @common.add_options(common.correlationids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectFilter)
-# @common.add_options(common.selectOperations)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectFilter)
+@common.add_options(common.selectOperations)
 @click.option('--sortfield', type=click.Choice(['correlationid', 'name', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -27,4 +25,6 @@ from apiclasses import engine
 def correlation(zart, sortfield, **kwargs):
     """This command retrieves correlations."""
     zart.command = 'correlation'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

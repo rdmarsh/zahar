@@ -3,12 +3,10 @@ from apiclasses import common
 from apiclasses import engine
 
 
-@click.command(short_help='retrieve proxy')
+@click.command(short_help='retrieve proxys')
 @common.add_options(common.proxyids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectInterface)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectInterface)
 @click.option('--sortfield', type=click.Choice(['hostid', 'host', 'status']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -25,6 +23,8 @@ from apiclasses import engine
 @common.add_options(common.outputformat)
 @click.pass_obj
 def proxy(zart, sortfield, **kwargs):
-    """This command retrieves proxy."""
+    """This command retrieves proxys."""
     zart.command = 'proxy'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

@@ -9,24 +9,26 @@ from apiclasses import engine
 @common.add_options(common.hostids)
 @common.add_options(common.objectids)
 @common.add_options(common.applicationids)
-# todo: these dont work
-# @common.add_options(common.source)
-# @common.add_options(common.object)
+@common.add_options(common.source)
+@common.add_options(common.object)
 @common.add_options(common.acknowledged)
+@common.add_options(common.suppressed)
 @common.add_options(common.severities)
+@common.add_options(common.evaltype)
 @common.add_options(common.tags)
 @common.add_options(common.eventid_from)
 @common.add_options(common.eventid_till)
 @common.add_options(common.time_from)
 @common.add_options(common.time_till)
+@common.add_options(common.problem_time_from)
+@common.add_options(common.problem_time_till)
 @common.add_options(common.value)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectRelatedObject)
-# @common.add_options(common.select_alerts)
-# @common.add_options(common.select_acknowledges)
-# @common.add_options(common.selectTags)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectRelatedObject)
+@common.add_options(common.select_alerts)
+@common.add_options(common.select_acknowledges)
+@common.add_options(common.selectTags)
+@common.add_options(common.selectSuppressionData)
 @click.option('--sortfield', type=click.Choice(['eventid', 'objectid', 'clock']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -45,4 +47,6 @@ from apiclasses import engine
 def event(zart, sortfield, **kwargs):
     """This command retrieves events."""
     zart.command = 'event'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

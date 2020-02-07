@@ -5,10 +5,8 @@ from apiclasses import engine
 
 @click.command(short_help='retrieve valuemaps')
 @common.add_options(common.valuemapids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectMappings)
-# todo: work out how to pass choices to DRY this
-@click.option('--sortfield', type=click.Choice(['valuemapid', 'name']))
+@common.add_options(common.selectMappings)
+@click.option('--sortfield', type=click.Choice(['valuemapid']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
 @common.add_options(common.excludeSearch)
@@ -26,4 +24,6 @@ from apiclasses import engine
 def valuemap(zart, sortfield, **kwargs):
     """This command retrieves valuemaps."""
     zart.command = 'valuemap'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

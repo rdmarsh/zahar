@@ -7,11 +7,10 @@ from apiclasses import engine
 @common.add_options(common.groupids)
 @common.add_options(common.hostids)
 @common.add_options(common.maintenanceids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectTimeperiods)
-# todo: work out how to pass choices to DRY this
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectTags)
+@common.add_options(common.selectTimeperiods)
 @click.option('--sortfield', type=click.Choice(['maintenanceid', 'name', 'maintenance_type']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -30,4 +29,6 @@ from apiclasses import engine
 def maintenance(zart, sortfield, **kwargs):
     """This command retrieves maintenances."""
     zart.command = 'maintenance'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)

@@ -3,7 +3,7 @@ from apiclasses import common
 from apiclasses import engine
 
 
-@click.command(short_help='retrieve graphprototype')
+@click.command(short_help='retrieve graphprototypes')
 @common.add_options(common.discoveryids)
 @common.add_options(common.graphids)
 @common.add_options(common.groupids)
@@ -12,15 +12,13 @@ from apiclasses import engine
 @common.add_options(common.itemids)
 @common.add_options(common.templated)
 @common.add_options(common.templateids)
-# todo: for future use once we sort out passing queries
-# @common.add_options(common.selectDiscoveryRule)
-# @common.add_options(common.selectGraphItems)
-# @common.add_options(common.selectGroups)
-# @common.add_options(common.selectHosts)
-# @common.add_options(common.selectItems)
-# @common.add_options(common.selectTemplates)
+@common.add_options(common.selectDiscoveryRule)
+@common.add_options(common.selectGraphItems)
+@common.add_options(common.selectGroups)
+@common.add_options(common.selectHosts)
+@common.add_options(common.selectItems)
+@common.add_options(common.selectTemplates)
 @common.add_options(common.filter)
-# todo: work out how to pass choices to DRY this
 @click.option('--sortfield', type=click.Choice(['graphid', 'name', 'graphtype']))
 @common.add_options(common.countOutput)
 @common.add_options(common.editable)
@@ -36,6 +34,8 @@ from apiclasses import engine
 @common.add_options(common.outputformat)
 @click.pass_obj
 def graphprototype(zart, sortfield, **kwargs):
-    """This command retrieves graphprototype."""
+    """This command retrieves graphprototypes."""
     zart.command = 'graphprototype'
-    engine.engine(zart, sortfield, **kwargs)
+    if sortfield:
+        zart.sortfield = sortfield
+    engine.engine(zart, **kwargs)
