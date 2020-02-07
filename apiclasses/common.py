@@ -154,6 +154,8 @@ valuemapids    = [click.option('--valuemapid',    'valuemapids',    type=int, mu
 tags      = [click.option('--tags',      'tags',      help='Return objects with given tags.')]
 
 selectAcknowledgeOperations            = [click.option('--selectAcknowledgeOperations',            'selectAcknowledgeOperations',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectHostPrototypes            = [click.option('--selectHostPrototypes',            'selectHostPrototypes',            is_flag=True, default=None, help='todo help')]
+selectLLDMacroPaths            = [click.option('--selectLLDMacroPaths',            'selectLLDMacroPaths',            is_flag=True, default=None, help='todo help')]
 selectTagFilters            = [click.option('--selectTagFilters',            'selectTagFilters',            is_flag=True, default=None, help='Return user group tag based permissions in the tag_filters ')]
 selectPreprocessing            = [click.option('--selectPreprocessing',            'selectPreprocessing',            is_flag=True, default=None, help='Return a preprocessing property with LLD rule preprocessing options.')]
 selectSuppressionData            = [click.option('--selectSuppressionData',            'selectSuppressionData',            is_flag=True, default=None, help='Return a suppression_data property with the list of maintenances')]
