@@ -5,6 +5,8 @@ import click
 
 time_from = [click.option('--time_from', help='Return only objects that have been generated after the given time')]
 time_till = [click.option('--time_till', help='Return only objects that have been generated before the given time.')]
+problem_time_from = [click.option('--time_from', help='Returns only events that were in the problem state starting with problem_time_from. Applies only if the source is trigger event and object is trigger. Mandatory if problem_time_till is specified.')]
+problem_time_till = [click.option('--time_till', help='Returns only events that were in the problem state until problem_time_till. Applies only if the source is trigger event and object is trigger. Mandatory if problem_time_from is specified.')]
 lastChangeSince = [click.option('--lastChangeSince', 'lastChangeSince', help='Return only triggers that have changed their state after the given time.')]
 lastChangeTill = [click.option('--lastChangeTill', 'lastChangeTill', help='Return only triggers that have changed their state before the given time.')]
 
@@ -16,6 +18,7 @@ monitored    = [click.option('--monitored', is_flag=True, default=False, help='R
 acknowledged = [click.option('--acknowledged', is_flag=True, default=False, help='Return only objects that have been acknowledged.')]
 dependent    = [click.option('--dependent', is_flag=True, default=False, help='return only triggers that have dependencies')]
 maintenance  = [click.option('--maintenance', is_flag=True, default=False, help='return only enabled triggers that belong to hosts in maintenance')]
+suppressed  = [click.option('--suppressed', is_flag=True, default=False, help='return only suppressed events')]
 
 editable = [click.option('--editable', is_flag=True, default=False, help='Return objects with write permissions.')]
 
@@ -45,6 +48,9 @@ monitored_hosts  = [click.option('--monitored_hosts',  'monitored_hosts',  is_fl
 real_hosts  = [click.option('--real_hosts',  'real_hosts',  is_flag=True, default=None, help='Return only host groups that contain hosts.')]
 templated_hosts  = [click.option('--templated_hosts',  'templated_hosts',  is_flag=True, default=None, help='Return only host groups that templates.')]
 with_applications  = [click.option('--with_applications',  'with_applications',  is_flag=True, default=None, help='Return only host groups that contain hosts with applications.')]
+with_item_prototypes  = [click.option('--with_item_prototypes',  'with_item_prototypes',  is_flag=True, default=None, help='Return only hosts that have item prototypes.')]
+with_simple_graph_item_prototypes  = [click.option('--with_simple_graph_item_prototypes',  'with_simple_graph_item_prototypes',  is_flag=True, default=None, help='Return only hosts that have item prototypes, which are enabled for creation and have numeric type of information.')]
+with_graph_prototypes  = [click.option('--with_graph_prototypes',  'with_graph_prototypes',  is_flag=True, default=None, help='Return only hosts that have graph prototypes.')]
 with_graphs  = [click.option('--with_graphs',  'with_graphs',  is_flag=True, default=None, help='Return only host groups that contain hosts with graphs.')]
 with_hosts_and_templates  = [click.option('--with_hosts_and_templates',  'with_hosts_and_templates',  is_flag=True, default=None, help='Return only host groups that contain hosts or templates.')]
 with_httptests  = [click.option('--with_httptests',  'with_httptests',  is_flag=True, default=None, help='Return only host groups that contain http checks.')]
@@ -66,6 +72,8 @@ functions  = [click.option('--functions',  'functions',  help='Return only trigg
 host  = [click.option('--host',  'host',  help='Return only items that belong to a host with the given name.')]
 application  = [click.option('--application',  'application',  help='Return only items that belong to an application with the given name.')]
 intervals  = [click.option('--intervals',  'intervals',  help='Time intervals to return service layer availability information about')]
+intervals_from  = [click.option('--intervals_from',  'intervals_from',  help='Time intervals to return service layer availability information about')]
+intervals_to  = [click.option('--intervals_to',  'intervals_to',  help='Time intervals to return service layer availability information about')]
 
 # todo: this should be a flag, but zabbix doco says otherwise
 recent  = [click.option('--recent',  'recent',  help='return PROBLEM and recently RESOLVED problems')]
@@ -146,6 +154,9 @@ valuemapids    = [click.option('--valuemapid',    'valuemapids',    type=int, mu
 tags      = [click.option('--tags',      'tags',      help='Return objects with given tags.')]
 
 selectAcknowledgeOperations            = [click.option('--selectAcknowledgeOperations',            'selectAcknowledgeOperations',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
+selectTagFilters            = [click.option('--selectTagFilters',            'selectTagFilters',            is_flag=True, default=None, help='Return user group tag based permissions in the tag_filters ')]
+selectPreprocessing            = [click.option('--selectPreprocessing',            'selectPreprocessing',            is_flag=True, default=None, help='Return a preprocessing property with LLD rule preprocessing options.')]
+selectSuppressionData            = [click.option('--selectSuppressionData',            'selectSuppressionData',            is_flag=True, default=None, help='Return a suppression_data property with the list of maintenances')]
 selectApplicationDiscovery            = [click.option('--selectApplicationDiscovery',            'selectApplicationDiscovery',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
 selectApplicationPrototypes            = [click.option('--selectApplicationPrototypes',            'selectApplicationPrototypes',            is_flag=True, default=None, help='Returns the action filter in the filter property.')]
 selectApplications       = [click.option('--selectApplications',       'selectApplications',       is_flag=True, default=None, help='Returns the action filter in the filter property.')]
