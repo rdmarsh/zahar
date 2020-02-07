@@ -4,38 +4,45 @@ import click
 from click.testing import CliRunner
 from zart import cli
 
-def test_method_base(runner, method):
-    click.secho('test_method_base: ' + method, fg='green')
-    result = runner.invoke(cli, [method])
+def test_noargs(runner):
+    click.secho('test - no args: ', fg='green')
+    result = runner.invoke(cli)
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
-
-def test_method_help(runner, method, flag):
-    flag = '--' + flag
-    click.secho('test_method_help: ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
-    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
-    assert method in result.output
     assert 'Usage:' in result.output
     assert 'Options:' in result.output
 
-def test_method_comm(runner, method, flag):
+def test_command(runner, command):
+    click.secho('test command - ' + command, fg='green')
+    result = runner.invoke(cli, [command])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+
+def test_command_flag(runner, command, flag):
     flag = '--' + flag
-    click.secho('test_method_comm: ' + method + ' ' + flag, fg='green')
-    if method == 'graphitem':
+    click.secho('test command - help: ' + command + ' ' + flag, fg='green')
+    result = runner.invoke(cli, [command, flag])
+    assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
+    assert command in result.output
+    assert 'Usage:' in result.output
+    assert 'Options:' in result.output
+
+def test_command_comm(runner, command, flag):
+    flag = '--' + flag
+    click.secho('test command comm: ' + command + ' ' + flag, fg='green')
+    if command == 'graphitem':
         if flag == '--startSearch':
             click.secho('graphitem: does not have this option', fg='yellow')
             return
-    if method == 'trend':
+    if command == 'trend':
         if flag == '--editable' or flag == '--preservekeys' or flag == '--startSearch':
             click.secho('trend: does not have this option', fg='yellow')
             return
-    result = runner.invoke(cli, [method, flag])
+    result = runner.invoke(cli, [command, flag])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
-def test_method_comm_ints(runner, method, flag):
+def test_command_comm_ints(runner, command, flag):
     flag = '--' + flag
-    click.secho('test_method_comm_ints: ' + method + ' ' + flag + ' 1', fg='green')
-    result = runner.invoke(cli, [method, flag, 1])
+    click.secho('test_command_comm_ints: ' + command + ' ' + flag + ' 1', fg='green')
+    result = runner.invoke(cli, [command, flag, 1])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
 def test_method_ids(runner, method, flag):
@@ -65,7 +72,7 @@ def test_method_sort(runner, method, flag, value):
 def test_method_times(runner, method, flag):
     flag = '--' + flag
     click.secho('test_method_times: ' + method + ' ' + flag, fg='green')
-    result = runner.invoke(cli, [method, flag])
+    result = runner.invoke(cli, [method, flag, 1])
     assert result.exit_code == 0, 'exitcode: ' + str(result.exit_code)
 
 
@@ -163,7 +170,54 @@ def test_method_countoutput(runner, method, flag, exitcode):
 
 def main():
 
-    runner = CliRunner()
+    commands=(
+        'action',
+        'alert',
+        'application',
+        'autoregistration',
+        'correlation',
+        'dashboard',
+        'dcheck',
+        'dhost',
+        'drule',
+        'dservice',
+        'event',
+        'graph',
+        'graphitem',
+        'graphprototype',
+        'history',
+        'host',
+        'hostgroup',
+        'hostinterface',
+        'hostprototype',
+        'httptest',
+        'iconmap',
+        'image',
+        'item',
+        'itemprototype',
+        'maintenance',
+        'map',
+        'mediatype',
+        'problem',
+        'proxy',
+        'screen',
+        'screenitem',
+        'script',
+        'service',
+        'servicesla',
+        'template',
+        'templatescreen',
+        'templatescreenitem',
+        'trend',
+        'trigger',
+        'triggerprototype',
+        'user',
+        'usergroup',
+        'usermacro',
+        'usermedia',
+        'valuemap',
+        )
+
 
     method_bool = {}
     method_bool['application'] = ['inherited', 'templated']
@@ -210,7 +264,7 @@ def main():
     method_ids['template'] = ['templateid', 'groupid', 'parentTemplateid', 'hostid', 'graphid', 'itemid', 'triggerid']
     method_ids['templatescreen'] = ['hostid', 'screenid', 'screenitemid', 'templateid']
     method_ids['templatescreenitem'] = ['screenid', 'screenitemid', 'hostid']
-    method_ids['trend'] = ['itemid']
+#    method_ids['trend'] = ['itemid']
     method_ids['trigger'] = ['triggerid', 'groupid', 'templateid', 'hostid', 'itemid', 'applicationid']
     method_ids['triggerprototype'] = ['applicationid', 'discoveryid', 'groupid', 'hostid', 'templateid', 'triggerid']
     method_ids['user'] = ['mediaid', 'mediatypeid', 'userid', 'usrgrpid']
@@ -266,23 +320,33 @@ def main():
     method_time['alert'] = ['time_from', 'time_till']
     #method_time['history'] = ['time_from', 'time_till']
 
-    for method in {**method_bool, **method_flag, **method_ids, **method_sort, **method_time}:
-        test_method_base(runner, method)
+    runner = CliRunner()
+    test_noargs(runner)
 
-        test_method_help(runner, method, 'help')
+    for command in commands:
+        test_command(runner, command)
 
-        for option in ['countOutput', 'editable', 'preservekeys', 'startSearch']:
-            test_method_comm(runner, method, option)
+    for command in commands:
+        test_command_flag(runner, command, 'help')
 
-        for option in ['limit']:
-            test_method_comm_ints(runner, method, option)
+        for flag in ['countOutput', 'editable', 'preservekeys', 'startSearch']:
+            if command == 'autoregistration' or command == 'history':
+                click.secho(command + ' does not support ' + flag, fg='red')
+            else:
+                test_command_comm(runner, command, flag)
+
+        for flag in ['limit']:
+            if command == 'autoregistration' or command == 'history':
+                click.secho(command + ' does not support ' + flag, fg='red')
+            else:
+                test_command_comm_ints(runner, command, flag)
 
     for method in method_ids:
         for option in method_ids[method]:
             test_method_ids(runner, method, option)
 
     for method in method_bool:
-        for option in method_flag[method]:
+        for option in method_bool[method]:
             test_method_bool(runner, method, option)
 
     for method in method_flag:
@@ -299,5 +363,8 @@ def main():
             test_method_times(runner, method, option)
 
 
+
 if __name__ == '__main__':
     main()
+
+
