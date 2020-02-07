@@ -15,12 +15,12 @@
     { "option": "selectMediatypes", "version": [ 4.4 ] },
     { "option": "selectUsers", "version": [ 4.4 ] },
     { "option": "sortfield", "version": [ 4.4 ], "fields": [
-        { "option": "alertid", "version": [ 4.4 ] },
-        { "option": "clock", "version": [ 4.4 ] },
-        { "option": "eventid", "version": [ 4.4 ] },
-        { "option": "mediatypeid", "version": [ 4.4 ] },
-        { "option": "sendto", "version": [ 4.4 ] },
-        { "option": "status", "version": [ 4.4 ] }
+        { "field": "alertid", "version": [ 4.4 ] },
+        { "field": "clock", "version": [ 4.4 ] },
+        { "field": "eventid", "version": [ 4.4 ] },
+        { "field": "mediatypeid", "version": [ 4.4 ] },
+        { "field": "sendto", "version": [ 4.4 ] },
+        { "field": "status", "version": [ 4.4 ] }
     ] },
     { "option": "countOutput", "version": [ 4.4 ] },
     { "option": "editable", "version": [ 4.4 ] },

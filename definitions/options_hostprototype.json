@@ -5,6 +5,7 @@
         { "option": "selectDiscoveryRule", "version": [ 4.4 ] },
         { "option": "selectGroupLinks", "version": [ 4.4 ] },
         { "option": "selectGroupPrototypes", "version": [ 4.4 ] },
+        { "option": "selectInventory", "version": [ 4.0, 4.2 ] },
         { "option": "selectParentHost", "version": [ 4.4 ] },
         { "option": "selectTemplates", "version": [ 4.4 ] },
         { "option": "sortfield", "version": [ 4.4 ], "fields": [

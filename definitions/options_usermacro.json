@@ -4,6 +4,7 @@
         { "option": "groupids", "version": [ 4.4 ] },
         { "option": "hostids", "version": [ 4.4 ] },
         { "option": "hostmacroids", "version": [ 4.4 ] },
+        { "option": "templateids", "version": [ 2.0, 2.4, 3.2 ] },
         { "option": "selectGroups", "version": [ 4.4 ] },
         { "option": "selectHosts", "version": [ 4.4 ] },
         { "option": "selectTemplates", "version": [ 4.4 ] },

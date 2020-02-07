@@ -1,4 +1,5 @@
 { "command": "graphitem", "options": [
+        { "option": "gitemids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4 ] },
         { "option": "graphids", "version": [ 4.4 ] },
         { "option": "itemids", "version": [ 4.4 ] },
         { "option": "type", "version": [ 4.4 ] },

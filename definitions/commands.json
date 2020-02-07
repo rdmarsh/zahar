@@ -1,6 +1,7 @@
 { "commands": [
     { "command": "action",             "version": [ 4.4 ] },
     { "command": "alert",              "version": [ 4.4 ] },
+    { "command": "api",                "version": [ 4.4 ] },
     { "command": "application",        "version": [ 4.4 ] },
     { "command": "autoregistration",   "version": [ 4.4 ] },
     { "command": "correlation",        "version": [ 4.4 ] },

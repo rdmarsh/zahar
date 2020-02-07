@@ -14,7 +14,6 @@
         { "option": "filter", "version": [ 4.4 ] },
         { "option": "limit", "version": [ 4.4 ] },
         { "option": "output", "version": [ 4.4 ] },
-        { "option": "preservekeys", "version": [ 4.4 ] },
         { "option": "search", "version": [ 4.4 ] },
         { "option": "searchByAny", "version": [ 4.4 ] },
         { "option": "searchWildcardsEnabled", "version": [ 4.4 ] },
