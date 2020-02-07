@@ -26,18 +26,22 @@ __copyright__ = 'Copyright 2020 David Marsh'
 __url__ = 'https://github.com/rdmarsh/zahar'
 
 
+from pyzabbix import ZabbixAPI
 import os
+import sys
 import click
 import click_config_file
-from pyzabbix import ZabbixAPI
-import socks
 import socket
+import socks
 
 
 from apiclasses import action
 from apiclasses import alert
+from apiclasses import api
 from apiclasses import application
+from apiclasses import autoregistration
 from apiclasses import correlation
+from apiclasses import dashboard
 from apiclasses import dcheck
 from apiclasses import dhost
 from apiclasses import drule
@@ -78,6 +82,7 @@ from apiclasses import usermacro
 from apiclasses import usermedia
 from apiclasses import valuemap
 
+config_file=os.path.join(click.get_app_dir(__project__,force_posix=True), 'config.ini')
 
 class Zart(object):
     def __init__(self, zapi, apiv):
@@ -85,15 +90,13 @@ class Zart(object):
         self.apiv = apiv
 
 
-@click.group()
-# todo: replace with click.get_app_dir
-@click_config_file.configuration_option(config_file_name=os.environ['HOME']
-                                        + '/.config/zahar/zahar.ini')
+@click.group(epilog='default config file: ' + click.format_filename(config_file))
+@click_config_file.configuration_option(config_file_name=config_file)
 @click.option('--zaburl', help='Zabbix URL.')
 @click.option('--userid', help='Zabbix username.')
 @click.option('--passwd', help='Zabbix password.')
 @click.option('--proxy', type=(str, int),
-              default=(None, 1080),
+              default=(None, 1080), metavar='<HOST PORT>',
               help='Socks5 proxy address and port.')
 # todo: add a flag to show the api version and exit
 @click.version_option(version=__version__)
@@ -102,6 +105,11 @@ def cli(ctx, zaburl, userid, passwd, proxy):
     """
     zart Zabbix API Retrieval Tool.
     """
+
+    if not zaburl or not userid or not passwd:
+        click.secho('Error: zaburl, userid or passwd not set via cli or in config file', fg='red', err=True)
+        click.secho('Default config file: ' + click.format_filename(config_file), fg='red', err=True)
+        sys.exit(1)
 
     if proxy and None not in proxy:
         socks.set_default_proxy(socks.SOCKS5, proxy[0], proxy[1])
@@ -115,8 +123,11 @@ def cli(ctx, zaburl, userid, passwd, proxy):
 
 cli.add_command(action.action)
 cli.add_command(alert.alert)
+cli.add_command(api.api)
 cli.add_command(application.application)
+cli.add_command(autoregistration.autoregistration)
 cli.add_command(correlation.correlation)
+cli.add_command(dashboard.dashboard)
 cli.add_command(dcheck.dcheck)
 cli.add_command(dhost.dhost)
 cli.add_command(drule.drule)
