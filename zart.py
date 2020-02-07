@@ -37,7 +37,7 @@ import socks
 
 from apiclasses import action
 from apiclasses import alert
-from apiclasses import api
+from apiclasses import apiinfo
 from apiclasses import application
 from apiclasses import autoregistration
 from apiclasses import correlation
@@ -123,7 +123,7 @@ def cli(ctx, zaburl, userid, passwd, proxy):
 
 cli.add_command(action.action)
 cli.add_command(alert.alert)
-cli.add_command(api.api)
+cli.add_command(apiinfo.apiinfo)
 cli.add_command(application.application)
 cli.add_command(autoregistration.autoregistration)
 cli.add_command(correlation.correlation)
