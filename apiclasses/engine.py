@@ -6,61 +6,55 @@ from packaging import version
 def engine(zart, **kwargs):
     """This is common engine for all commands."""
 
+    if zart.command == 'apiinfo':
+        click.echo(zart.apiv)
+        return
+
     # ben magic, throw away False and Empty flags
     flags = {k: v for k, v in kwargs.items() if v}
+
+    # version checks
+    version_check(zart.apiv, zart.command, flags.keys())
 
     # setting the default in common passes a tuple
     # maybe there's a better way?
     #if kwargs.get('output') and 'extend' in kwargs.get('output'):
     if kwargs.get('output') and 'extend' in kwargs.get('output'):
         flags['output'] = 'extend'
-
-    # at the moment it's all or nothing, maybe in future
-    # we can change this and select what we want returned
-    for select in [
-            'selectAcknowledgeOperations',
-            'selectApplicationDiscovery',
-            'selectApplications',
-            'selectDiscoveries',
-            'selectDiscoveryRule',
-            'selectFilter',
-            'selectGraphs',
-            'selectGroups',
-            'selectHost',
-            'selectHosts',
-            'selectItems',
-            'selectMediatypes',
-            'selectOperations',
-            'selectRecoveryOperations',
-            'selectUserGroups',
-            'selectUsers',
-            'selectWidgets',
-            ]:
-        if kwargs.get(select):
-            flags[select] = 'extend'
-
-    # version checks
-    version_check(zart.apiv, zart.command, flags.keys())
-
-    if zart.command == 'apiinfo':
-        try:
-            obj = getattr(zart.zapi, zart.command).version()
-        except:
-            # todo: fix bare except above and write a better error messages
-            click.secho('Error: todo Exception.',
-                        fg='red', err=True)
     else:
+        # at the moment it's all or nothing, maybe in future
+        # we can change this and select what we want returned
+        for select in [
+                'selectAcknowledgeOperations',
+                'selectApplicationDiscovery',
+                'selectApplications',
+                'selectDiscoveries',
+                'selectDiscoveryRule',
+                'selectFilter',
+                'selectGraphs',
+                'selectGroups',
+                'selectHost',
+                'selectHosts',
+                'selectItems',
+                'selectMediatypes',
+                'selectOperations',
+                'selectRecoveryOperations',
+                'selectUserGroups',
+                'selectUsers',
+                'selectWidgets',
+                ]:
+            if kwargs.get(select):
+                flags[select] = 'extend'
 
-        try:
-            obj = getattr(zart.zapi, zart.command).get(**flags)
-        except:
-            # todo: fix bare except above and write a better error messages
-            click.secho('Error: todo Exception.',
-                        fg='red', err=True)
+    try:
+        obj = getattr(zart.zapi, zart.command).get(**flags)
+    except:
+        # todo: fix bare except above and write a better error messages
+        click.secho('Error: todo Exception.',
+                    fg='red', err=True)
 
-    if zart.command == 'apiinfo':
-        click.echo(obj)
-    elif 'countOutput' in flags and flags['countOutput']:
+    # print countoutput otherwise send obj to output with format
+    if 'countOutput' in flags and flags['countOutput']:
         if str(obj).isdigit():
             click.echo(obj)
         else:
