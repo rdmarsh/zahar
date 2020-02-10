@@ -54,7 +54,7 @@ def main():
     test_modules.zart_command_screenitem(cli, runner)
     test_modules.zart_command_script(cli, runner)
     test_modules.zart_command_service(cli, runner)
-    test_modules.zart_command_servicesla(cli, runner)
+    #test_modules.zart_command_servicesla(cli, runner)
     test_modules.zart_command_template(cli, runner)
     test_modules.zart_command_templatescreen(cli, runner)
     test_modules.zart_command_templatescreenitem(cli, runner)
