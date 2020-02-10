@@ -26,13 +26,13 @@ __copyright__ = 'Copyright 2020 David Marsh'
 __url__ = 'https://github.com/rdmarsh/zahar'
 
 
-from pyzabbix import ZabbixAPI
 import os
 import sys
 import click
 import click_config_file
 import socket
 import socks
+from pyzabbix import ZabbixAPI
 
 
 from apiclasses import action
@@ -87,9 +87,10 @@ config_file = os.path.join(click.get_app_dir(__project__, force_posix=True), 'co
 
 
 class Zart(object):
-    def __init__(self, zapi, apiv):
+    def __init__(self, zapi, apiv, format):
         self.zapi = zapi
         self.apiv = apiv
+        self.format = format
 
 
 @click.group(epilog='default config file: ' + click.format_filename(config_file))
@@ -100,10 +101,12 @@ class Zart(object):
 @click.option('--proxy', type=(str, int),
               default=(None, 1080), metavar='<HOST PORT>',
               help='Socks5 proxy address and port.')
-# todo: add a flag to show the api version and exit
+@click.option('-o', '--format', default='txt',
+              type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'txt']),
+              help='Output format.')
 @click.version_option(version=__version__)
 @click.pass_context
-def cli(ctx, zaburl, userid, passwd, proxy):
+def cli(ctx, zaburl, userid, passwd, proxy, format):
     """
     zart Zabbix API Retrieval Tool.
     """
@@ -120,7 +123,7 @@ def cli(ctx, zaburl, userid, passwd, proxy):
     zapi = ZabbixAPI(zaburl)
     zapi.login(userid, passwd)
     apiv = zapi.apiinfo.version()
-    ctx.obj = Zart(zapi, apiv)
+    ctx.obj = Zart(zapi, apiv, format)
 
 
 cli.add_command(action.action)
