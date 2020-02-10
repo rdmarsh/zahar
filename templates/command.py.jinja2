@@ -26,7 +26,7 @@ def {{ command_options.command }}(zart, {% if se.sortenabled is defined and se.s
 {%- if se.sortenabled is defined and se.sortenabled is sameas true %}
     if sortfield:
         kwargs['sortfield'] = sortfield
-        logging.debug('kwargs[sortfield]: %s', kwargs['sortfield'])
+        logging.debug('kwargs[\'sortfield\']: %s', kwargs['sortfield'])
 {%- endif %}
     logging.debug(kwargs)
     engine.engine(zart, **kwargs)

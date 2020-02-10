@@ -72,6 +72,6 @@ def host(zart, sortfield, **kwargs):
     logging.debug('zart.command: %s', zart.command)
     if sortfield:
         kwargs['sortfield'] = sortfield
-        logging.debug('kwargs[sortfield]: %s', kwargs['sortfield'])
+        logging.debug('kwargs[\'sortfield\']: %s', kwargs['sortfield'])
     logging.debug(kwargs)
     engine.engine(zart, **kwargs)
