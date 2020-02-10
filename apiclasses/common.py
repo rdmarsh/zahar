@@ -38,7 +38,7 @@ noInheritance = [click.option('--noInheritance', 'noInheritance', is_flag=True, 
 
 
 active = [click.option('--active', 'active', is_flag=True, default=None, help='Return only enabled triggers that belong to monitored hosts.')]
-countOutput = [click.option('--countOutput', 'countOutput', is_flag=True, help='Return count of records instead of data.')]
+countOutput = [click.option('-c', '--countOutput', 'countOutput', is_flag=True, help='Return count of records instead of data.')]
 expandUrls = [click.option('--expandUrls', 'expandUrls', is_flag=True, default=None, help='Adds global map URLs to the corresponding map elements and expands macros in all map element URLs.')]
 webitems = [click.option('--webitems', 'webitems', is_flag=True, default=None, help='Include web items in the result.')]
 expandStepName = [click.option('--expandStepName', 'expandStepName', is_flag=True, default=None, help='Expand macros in the names of steps.')]
@@ -295,13 +295,6 @@ sortorder = [
 # These parmataers are common for all zart commands
 # we add them to the end rather than the start as they
 # are more natural
-
-outputformat = [
-    click.option('-o', '--outputformat',
-                 default='txt',
-                 type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'clip', 'xls', 'txt']),
-                 help='Output format.')
-    ]
 
 # todo: for future use once we sort out passing dynamic choices
 #@click.option('--sortfield', type=click.Choice(['actionid', 'name', 'status']))

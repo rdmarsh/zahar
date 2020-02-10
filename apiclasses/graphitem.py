@@ -16,7 +16,6 @@ from apiclasses import engine
 @common.add_options(common.output)
 @common.add_options(common.preservekeys)
 @common.add_options(common.sortorder)
-@common.add_options(common.outputformat)
 @click.pass_obj
 def graphitem(zart, sortfield, **kwargs):
     """This command retrieves graphitems."""

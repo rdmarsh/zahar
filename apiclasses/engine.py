@@ -1,6 +1,9 @@
+import logging
 import click
 import pandas as pd
 from packaging import version
+
+log = logging.getLogger(__name__)
 
 
 def engine(zart, **kwargs):
@@ -52,6 +55,8 @@ def engine(zart, **kwargs):
         # todo: fix bare except above and write a better error messages
         click.secho('Error: todo Exception.',
                     fg='red', err=True)
+    finally:
+        logging.debug(flags)
 
     # print countoutput otherwise send obj to output with format
     if 'countOutput' in flags and flags['countOutput']:
@@ -63,7 +68,7 @@ def engine(zart, **kwargs):
                         ' assuming 0 or this flag is not supported.',
                         fg='yellow', err=True)
     else:
-        outputformat(obj, flags['outputformat'])
+        outputformat(obj, zart.format)
 
         if 'limit' in flags and len(obj) >= flags['limit']:
             click.secho('Warning: row limit matches records returned,'

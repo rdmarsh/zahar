@@ -10,7 +10,6 @@ from apiclasses import engine
 @common.add_options(common.countOutput)
 @common.add_options(common.limit)
 @common.add_options(common.output)
-@common.add_options(common.outputformat)
 @click.pass_obj
 def trend(zart, **kwargs):
     """This command retrieves trends."""

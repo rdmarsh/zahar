@@ -42,7 +42,6 @@ from apiclasses import engine
 @common.add_options(common.searchWildcardsEnabled)
 @common.add_options(common.sortorder)
 @common.add_options(common.startSearch)
-@common.add_options(common.outputformat)
 @click.pass_obj
 def event(zart, sortfield, **kwargs):
     """This command retrieves events."""
