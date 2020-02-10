@@ -16,6 +16,5 @@
         { "option": "searchByAny", "version": [ 4.4 ] },
         { "option": "searchWildcardsEnabled", "version": [ 4.4 ] },
         { "option": "sortorder", "version": [ 4.4 ] },
-        { "option": "startSearch", "version": [ 4.4 ] },
-        { "option": "outputformat", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
+        { "option": "startSearch", "version": [ 4.4 ] }
 ] }
