@@ -1,41 +1,57 @@
+import logging
+
 def zart(cli, runner):
+    logging.info('zart')
     result = runner.invoke(cli)
+    logging.info(result.exit_code)
     assert result.exit_code == 0, "exitcode: " + str(result.exit_code)
     assert 'Usage:' in result.output, "Text 'Usage:' missing in output"
     assert 'Options:' in result.output, "Text 'Options:' missing in output"
     assert 'Commands:' in result.output, "Text 'Commands:' missing in output"
 
 def zart_flag_help(cli,runner):
+    logging.info('zart --help')
     result = runner.invoke(cli, ['--help'])
+    logging.info(result.exit_code)
     assert result.exit_code == 0, "exitcode: " + str(result.exit_code)
     assert 'Usage:' in result.output, "Text 'Usage:' missing in output"
     assert 'Options:' in result.output, "Text 'Options:' missing in output"
     assert 'Commands:' in result.output, "Text 'Commands:' missing in output"
 
 def zart_flag_version(cli,runner):
+    logging.info('zart --version')
     result = runner.invoke(cli, ['--version'])
+    logging.info(result.exit_code)
     assert result.exit_code == 0, "exitcode: " + str(result.exit_code)
     assert 'version' in result.output, "Text 'version' missing in output"
 {% for flag in flags %}
 def zart_flag_{{ flag }}(cli,runner):
+    logging.info('zart --{{ flag }}')
     result = runner.invoke(cli, ['--{{ flag }}'])
+    logging.info(result.exit_code)
     assert result.exit_code == 2, "exitcode: " + str(result.exit_code)
     assert 'Error:' in result.output, "Text 'Error:' missing in output"
     assert 'option requires an argument' in result.output, "Text 'option requires an argument' missing in output"
 {% endfor %}
 def zart_flag_proxy(cli,runner):
+    logging.info('zart --proxy')
     result = runner.invoke(cli, ['--proxy'])
+    logging.info(result.exit_code)
     assert result.exit_code == 2, "exitcode: " + str(result.exit_code)
     assert 'Error:' in result.output, "Text 'Error:' missing in output"
     assert 'option requires 2 arguments' in result.output, "Text 'option requires 2 arguments' missing in output"
 
 def zart_flag_proxy_bad_flag(cli,runner):
+    logging.info('zart --proxy')
     result = runner.invoke(cli, ['--proxy', 'bad', 'flag'])
+    logging.info(result.exit_code)
     assert result.exit_code == 2, "exitcode: " + str(result.exit_code)
     assert 'Error:' in result.output, "Text 'Error:' missing in output"
     assert 'flag is not a valid integer' in result.output, "Text 'flag is not a valid integer' missing in output"
 {% for command in commands %}
 def zart_command_{{ command }}(cli,runner):
+    logging.info('zart {{ command }}')
     result = runner.invoke(cli, ['{{ command }}'])
+    logging.info(result.exit_code)
     assert result.exit_code == 0, "exitcode: " + str(result.exit_code)
 {% endfor %}
