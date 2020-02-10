@@ -1,3 +1,4 @@
+import logging
 import click
 {%- if 'apiinfo' not in command_options.command %}
 from apiclasses import common
@@ -21,9 +22,12 @@ from apiclasses import engine
 def {{ command_options.command }}(zart, {% if se.sortenabled is defined and se.sortenabled is sameas true %}sortfield, {% endif %}**kwargs):
     """This command retrieves {{ command_options.command }}s."""
     zart.command = '{{ command_options.command }}'
+    logging.debug('zart.command: %s', zart.command)
 {%- if se.sortenabled is defined and se.sortenabled is sameas true %}
     if sortfield:
-        zart.sortfield = sortfield
+        kwargs['sortfield'] = sortfield
+        logging.debug('kwargs[sortfield]: %s', kwargs['sortfield'])
 {%- endif %}
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)
 

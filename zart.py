@@ -28,12 +28,12 @@ __url__ = 'https://github.com/rdmarsh/zahar'
 
 import os
 import sys
+import logging
 import click
 import click_config_file
 import socket
 import socks
 from pyzabbix import ZabbixAPI
-
 
 from apiclasses import action
 from apiclasses import alert
@@ -83,6 +83,8 @@ from apiclasses import usermacro
 from apiclasses import usermedia
 from apiclasses import valuemap
 
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
 config_file = os.path.join(click.get_app_dir(__project__, force_posix=True), 'config.ini')
 
 

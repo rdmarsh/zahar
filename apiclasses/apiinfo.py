@@ -1,3 +1,4 @@
+import logging
 import click
 from apiclasses import engine
 
@@ -7,4 +8,6 @@ from apiclasses import engine
 def apiinfo(zart, **kwargs):
     """This command retrieves apiinfos."""
     zart.command = 'apiinfo'
+    logging.debug('zart.command: %s', zart.command)
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)

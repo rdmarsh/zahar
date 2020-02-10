@@ -1,3 +1,4 @@
+import logging
 import click
 from apiclasses import common
 from apiclasses import engine
@@ -47,6 +48,9 @@ from apiclasses import engine
 def item(zart, sortfield, **kwargs):
     """This command retrieves items."""
     zart.command = 'item'
+    logging.debug('zart.command: %s', zart.command)
     if sortfield:
-        zart.sortfield = sortfield
+        kwargs['sortfield'] = sortfield
+        logging.debug('kwargs[sortfield]: %s', kwargs['sortfield'])
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)

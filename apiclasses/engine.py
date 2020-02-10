@@ -15,6 +15,7 @@ def engine(zart, **kwargs):
 
     # ben magic, throw away False and Empty flags
     flags = {k: v for k, v in kwargs.items() if v}
+    logging.debug('flags: %s', flags)
 
     # version checks
     version_check(zart.apiv, zart.command, flags.keys())
@@ -55,8 +56,6 @@ def engine(zart, **kwargs):
         # todo: fix bare except above and write a better error messages
         click.secho('Error: todo Exception.',
                     fg='red', err=True)
-    finally:
-        logging.debug(flags)
 
     # print countoutput otherwise send obj to output with format
     if 'countOutput' in flags and flags['countOutput']:
@@ -68,6 +67,7 @@ def engine(zart, **kwargs):
                         ' assuming 0 or this flag is not supported.',
                         fg='yellow', err=True)
     else:
+        logging.debug('zart.format: %s', zart.format)
         outputformat(obj, zart.format)
 
         if 'limit' in flags and len(obj) >= flags['limit']:

@@ -1,3 +1,4 @@
+import logging
 import click
 from apiclasses import common
 from apiclasses import engine
@@ -33,6 +34,9 @@ from apiclasses import engine
 def httptest(zart, sortfield, **kwargs):
     """This command retrieves httptests."""
     zart.command = 'httptest'
+    logging.debug('zart.command: %s', zart.command)
     if sortfield:
-        zart.sortfield = sortfield
+        kwargs['sortfield'] = sortfield
+        logging.debug('kwargs[sortfield]: %s', kwargs['sortfield'])
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)

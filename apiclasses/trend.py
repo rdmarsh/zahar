@@ -1,3 +1,4 @@
+import logging
 import click
 from apiclasses import common
 from apiclasses import engine
@@ -14,4 +15,6 @@ from apiclasses import engine
 def trend(zart, **kwargs):
     """This command retrieves trends."""
     zart.command = 'trend'
+    logging.debug('zart.command: %s', zart.command)
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)

@@ -1,3 +1,4 @@
+import logging
 import click
 from apiclasses import common
 from apiclasses import engine
@@ -9,4 +10,6 @@ from apiclasses import engine
 def autoregistration(zart, **kwargs):
     """This command retrieves autoregistrations."""
     zart.command = 'autoregistration'
+    logging.debug('zart.command: %s', zart.command)
+    logging.debug(kwargs)
     engine.engine(zart, **kwargs)
