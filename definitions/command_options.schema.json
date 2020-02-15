@@ -7,42 +7,55 @@
     "description": "An explanation about the purpose of this instance.",
     "readOnly": true,
     "required": [
-        "commands"
+        "command",
+        "options"
     ],
     "properties": {
-        "commands": {
-            "$id": "#/properties/commands",
+        "command": {
+            "$id": "#/properties/command",
+            "type": "string",
+            "title": "The Command Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "action"
+            ],
+            "readOnly": true,
+            "pattern": "^(.*)$"
+        },
+        "options": {
+            "$id": "#/properties/options",
             "type": "array",
-            "title": "The Commands Schema",
+            "title": "The Options Schema",
             "description": "An explanation about the purpose of this instance.",
             "readOnly": true,
             "uniqueItems": true,
             "additionalItems": false,
             "items": {
-                "$id": "#/properties/commands/items",
+                "$id": "#/properties/options/items",
                 "type": "object",
                 "title": "The Items Schema",
                 "description": "An explanation about the purpose of this instance.",
                 "readOnly": true,
                 "required": [
-                    "command",
+                    "option",
                     "version"
                 ],
                 "properties": {
-                    "command": {
-                        "$id": "#/properties/commands/items/properties/command",
+                    "option": {
+                        "$id": "#/properties/options/items/properties/option",
                         "type": "string",
-                        "title": "The Command Schema",
+                        "title": "The Option Schema",
                         "description": "An explanation about the purpose of this instance.",
                         "default": "",
                         "examples": [
-                            "action"
+                            "actionids"
                         ],
                         "readOnly": true,
                         "pattern": "^(.*)$"
                     },
                     "version": {
-                        "$id": "#/properties/commands/items/properties/version",
+                        "$id": "#/properties/options/items/properties/version",
                         "type": "array",
                         "title": "The Version Schema",
                         "description": "An explanation about the purpose of this instance.",
@@ -50,7 +63,7 @@
                         "uniqueItems": true,
                         "additionalItems": false,
                         "items": {
-                            "$id": "#/properties/commands/items/properties/version/items",
+                            "$id": "#/properties/options/items/properties/version/items",
                             "type": "number",
                             "title": "The Items Schema",
                             "description": "An explanation about the purpose of this instance.",
