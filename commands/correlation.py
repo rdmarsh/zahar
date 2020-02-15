@@ -1,26 +1,26 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve correlations')
-@common.add_options(common.correlationids)
-@common.add_options(common.selectFilter)
-@common.add_options(common.selectOperations)
+@options.add_options(options.correlationids)
+@options.add_options(options.selectFilter)
+@options.add_options(options.selectOperations)
 @click.option('--sortfield', type=click.Choice(['correlationid', 'name', 'status']))
-@common.add_options(common.countOutput)
-@common.add_options(common.editable)
-@common.add_options(common.excludeSearch)
-@common.add_options(common.filter)
-@common.add_options(common.limit)
-@common.add_options(common.output)
-@common.add_options(common.preservekeys)
-@common.add_options(common.search)
-@common.add_options(common.searchByAny)
-@common.add_options(common.searchWildcardsEnabled)
-@common.add_options(common.sortorder)
-@common.add_options(common.startSearch)
+@options.add_options(options.countOutput)
+@options.add_options(options.editable)
+@options.add_options(options.excludeSearch)
+@options.add_options(options.filter)
+@options.add_options(options.limit)
+@options.add_options(options.output)
+@options.add_options(options.preservekeys)
+@options.add_options(options.search)
+@options.add_options(options.searchByAny)
+@options.add_options(options.searchWildcardsEnabled)
+@options.add_options(options.sortorder)
+@options.add_options(options.startSearch)
 @click.pass_obj
 def correlation(zart, sortfield, **kwargs):
     """This command retrieves correlations."""

@@ -1,13 +1,13 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve serviceslas')
-@common.add_options(common.serviceids)
-@common.add_options(common.intervals_from)
-@common.add_options(common.intervals_to)
+@options.add_options(options.serviceids)
+@options.add_options(options.intervals_from)
+@options.add_options(options.intervals_to)
 @click.pass_obj
 def servicesla(zart, **kwargs):
     """This command retrieves serviceslas."""

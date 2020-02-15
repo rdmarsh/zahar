@@ -1,31 +1,31 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve usergroups')
-@common.add_options(common.status)
-@common.add_options(common.userids)
-@common.add_options(common.usrgrpids)
-@common.add_options(common.with_gui_access)
-@common.add_options(common.selectTagFilters)
-@common.add_options(common.selectUsers)
-@common.add_options(common.selectRights)
-@common.add_options(common.limitSelects)
+@options.add_options(options.status)
+@options.add_options(options.userids)
+@options.add_options(options.usrgrpids)
+@options.add_options(options.with_gui_access)
+@options.add_options(options.selectTagFilters)
+@options.add_options(options.selectUsers)
+@options.add_options(options.selectRights)
+@options.add_options(options.limitSelects)
 @click.option('--sortfield', type=click.Choice(['usrgrpid', 'name']))
-@common.add_options(common.countOutput)
-@common.add_options(common.editable)
-@common.add_options(common.excludeSearch)
-@common.add_options(common.filter)
-@common.add_options(common.limit)
-@common.add_options(common.output)
-@common.add_options(common.preservekeys)
-@common.add_options(common.search)
-@common.add_options(common.searchByAny)
-@common.add_options(common.searchWildcardsEnabled)
-@common.add_options(common.sortorder)
-@common.add_options(common.startSearch)
+@options.add_options(options.countOutput)
+@options.add_options(options.editable)
+@options.add_options(options.excludeSearch)
+@options.add_options(options.filter)
+@options.add_options(options.limit)
+@options.add_options(options.output)
+@options.add_options(options.preservekeys)
+@options.add_options(options.search)
+@options.add_options(options.searchByAny)
+@options.add_options(options.searchWildcardsEnabled)
+@options.add_options(options.sortorder)
+@options.add_options(options.startSearch)
 @click.pass_obj
 def usergroup(zart, sortfield, **kwargs):
     """This command retrieves usergroups."""

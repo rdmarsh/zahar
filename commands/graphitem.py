@@ -1,22 +1,22 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve graphitems')
-@common.add_options(common.gitemids)
-@common.add_options(common.graphids)
-@common.add_options(common.itemids)
-@common.add_options(common.type)
-@common.add_options(common.selectGraphs)
+@options.add_options(options.gitemids)
+@options.add_options(options.graphids)
+@options.add_options(options.itemids)
+@options.add_options(options.type)
+@options.add_options(options.selectGraphs)
 @click.option('--sortfield', type=click.Choice(['gitemid']))
-@common.add_options(common.countOutput)
-@common.add_options(common.editable)
-@common.add_options(common.limit)
-@common.add_options(common.output)
-@common.add_options(common.preservekeys)
-@common.add_options(common.sortorder)
+@options.add_options(options.countOutput)
+@options.add_options(options.editable)
+@options.add_options(options.limit)
+@options.add_options(options.output)
+@options.add_options(options.preservekeys)
+@options.add_options(options.sortorder)
 @click.pass_obj
 def graphitem(zart, sortfield, **kwargs):
     """This command retrieves graphitems."""

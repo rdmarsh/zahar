@@ -1,16 +1,16 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve trends')
-@common.add_options(common.itemids)
-@common.add_options(common.time_from)
-@common.add_options(common.time_till)
-@common.add_options(common.countOutput)
-@common.add_options(common.limit)
-@common.add_options(common.output)
+@options.add_options(options.itemids)
+@options.add_options(options.time_from)
+@options.add_options(options.time_till)
+@options.add_options(options.countOutput)
+@options.add_options(options.limit)
+@options.add_options(options.output)
 @click.pass_obj
 def trend(zart, **kwargs):
     """This command retrieves trends."""

@@ -1,31 +1,31 @@
 import logging
 import click
-from apiclasses import common
-from apiclasses import engine
+from commands import options
+import engine
 
 
 @click.command(short_help='retrieve hostinterfaces')
-@common.add_options(common.hostids)
-@common.add_options(common.interfaceids)
-@common.add_options(common.itemids)
-@common.add_options(common.triggerids)
-@common.add_options(common.selectItems)
-@common.add_options(common.selectHosts)
-@common.add_options(common.limitSelects)
+@options.add_options(options.hostids)
+@options.add_options(options.interfaceids)
+@options.add_options(options.itemids)
+@options.add_options(options.triggerids)
+@options.add_options(options.selectItems)
+@options.add_options(options.selectHosts)
+@options.add_options(options.limitSelects)
 @click.option('--sortfield', type=click.Choice(['interfaceid', 'dns', 'ip']))
-@common.add_options(common.countOutput)
-@common.add_options(common.editable)
-@common.add_options(common.excludeSearch)
-@common.add_options(common.filter)
-@common.add_options(common.limit)
-@common.add_options(common.nodeids)
-@common.add_options(common.output)
-@common.add_options(common.preservekeys)
-@common.add_options(common.search)
-@common.add_options(common.searchByAny)
-@common.add_options(common.searchWildcardsEnabled)
-@common.add_options(common.sortorder)
-@common.add_options(common.startSearch)
+@options.add_options(options.countOutput)
+@options.add_options(options.editable)
+@options.add_options(options.excludeSearch)
+@options.add_options(options.filter)
+@options.add_options(options.limit)
+@options.add_options(options.nodeids)
+@options.add_options(options.output)
+@options.add_options(options.preservekeys)
+@options.add_options(options.search)
+@options.add_options(options.searchByAny)
+@options.add_options(options.searchWildcardsEnabled)
+@options.add_options(options.sortorder)
+@options.add_options(options.startSearch)
 @click.pass_obj
 def hostinterface(zart, sortfield, **kwargs):
     """This command retrieves hostinterfaces."""
