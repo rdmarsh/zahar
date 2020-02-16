@@ -64,6 +64,7 @@
 
     { "option": "output",                      "metavar": "PROPERTY", "multiple": true, "help": "Object properties to be returned (refered to as 'output' in API docs)." },
 
+    { "option": "selectConditions",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectFilter",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectOperations",            "metavar": "PROPERTY", "multiple": true, "help": "Return action operations in the operations property." },
     { "option": "selectRecoveryOperations",    "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
