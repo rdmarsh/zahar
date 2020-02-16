@@ -14,6 +14,7 @@ import engine
 @options.add_options(options.excludeSearch)
 @options.add_options(options.filter)
 @options.add_options(options.limit)
+@options.add_options(options.nodeids)
 @options.add_options(options.output)
 @options.add_options(options.preservekeys)
 @options.add_options(options.search)

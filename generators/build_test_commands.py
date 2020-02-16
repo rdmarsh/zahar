@@ -7,13 +7,13 @@ from jinja2 import Environment, FileSystemLoader
 file_loader = FileSystemLoader('../templates')
 env = Environment(loader=file_loader)
 
-template = env.get_template('test_command.py.jinja2')
+template = env.get_template('test_command.py.j2')
 
 # load our commands from denifition file
 with open('../definitions/commands.json') as json_file:
     json_obj = json.load(json_file)
 
-flags=['config', 'zaburl', 'userid', 'passwd']
+flags=['config', 'zab_url', 'zab_usr', 'zab_pwd']
 
 commands = []
 for command_detail in json_obj['commands']:

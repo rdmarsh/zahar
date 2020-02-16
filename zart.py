@@ -35,97 +35,105 @@ import socket
 import socks
 from pyzabbix import ZabbixAPI
 
-from apiclasses import action
-from apiclasses import alert
-from apiclasses import apiinfo
-from apiclasses import application
-from apiclasses import autoregistration
-from apiclasses import correlation
-from apiclasses import dashboard
-from apiclasses import dcheck
-from apiclasses import dhost
-from apiclasses import discoveryrule
-from apiclasses import drule
-from apiclasses import dservice
-from apiclasses import event
-from apiclasses import graph
-from apiclasses import graphitem
-from apiclasses import graphprototype
-from apiclasses import history
-from apiclasses import host
-from apiclasses import hostgroup
-from apiclasses import hostinterface
-from apiclasses import hostprototype
-from apiclasses import httptest
-from apiclasses import iconmap
-from apiclasses import image
-from apiclasses import item
-from apiclasses import itemprototype
-from apiclasses import maintenance
-from apiclasses import map
-from apiclasses import mediatype
-from apiclasses import problem
-from apiclasses import proxy
-from apiclasses import screen
-from apiclasses import screenitem
-from apiclasses import script
-from apiclasses import service
-from apiclasses import servicesla
-from apiclasses import template
-from apiclasses import templatescreen
-from apiclasses import templatescreenitem
-from apiclasses import trend
-from apiclasses import trigger
-from apiclasses import triggerprototype
-from apiclasses import user
-from apiclasses import usergroup
-from apiclasses import usermacro
-from apiclasses import usermedia
-from apiclasses import valuemap
+from commands import action
+from commands import alert
+from commands import apiinfo
+from commands import application
+from commands import autoregistration
+from commands import correlation
+from commands import dashboard
+from commands import dcheck
+from commands import dhost
+from commands import discoveryrule
+from commands import drule
+from commands import dservice
+from commands import event
+from commands import graph
+from commands import graphitem
+from commands import graphprototype
+from commands import history
+from commands import host
+from commands import hostgroup
+from commands import hostinterface
+from commands import hostprototype
+from commands import httptest
+from commands import iconmap
+from commands import image
+from commands import item
+from commands import itemprototype
+from commands import maintenance
+from commands import map
+from commands import mediatype
+from commands import problem
+from commands import proxy
+from commands import screen
+from commands import screenitem
+from commands import script
+from commands import service
+from commands import servicesla
+from commands import template
+from commands import templatescreen
+from commands import templatescreenitem
+from commands import trend
+from commands import trigger
+from commands import triggerprototype
+from commands import user
+from commands import usergroup
+from commands import usermacro
+from commands import usermedia
+from commands import valuemap
 
 root_logger = logging.getLogger()
-root_logger.setLevel(logging.DEBUG)
 config_file = os.path.join(click.get_app_dir(__project__, force_posix=True), 'config.ini')
 
 
 class Zart(object):
-    def __init__(self, zapi, apiv, format):
+    def __init__(self, config_file, zapi, apiv, out_fmt, export_filename):
+        self.config_file = config_file
         self.zapi = zapi
         self.apiv = apiv
-        self.format = format
+        self.out_fmt = out_fmt
+        self.export_filename = export_filename
 
 
 @click.group(epilog='default config file: ' + click.format_filename(config_file))
 @click_config_file.configuration_option(config_file_name=config_file)
-@click.option('--zaburl', help='Zabbix URL.')
-@click.option('--userid', help='Zabbix username.')
-@click.option('--passwd', help='Zabbix password.')
-@click.option('--proxy', type=(str, int),
-              default=(None, 1080), metavar='<HOST PORT>',
-              help='Socks5 proxy address and port.')
-@click.option('-o', '--format', default='txt',
-              type=click.Choice(['csv', 'html', 'json', 'latex', 'raw', 'txt']),
-              help='Output format.')
+@click.option('-z', '--zab_url', help='Zabbix URL.')
+@click.option('-u', '--zab_usr', help='Zabbix username.')
+@click.option('-p', '--zab_pwd', help='Zabbix password.')
+@click.option('-s', '--sck_prx', type=(str, int), default=(None, 1080), metavar='<HOST PORT>', help='Socks5 proxy address and port.')
+@click.option('-o', '--out_fmt', default='txt', type=click.Choice(['csv', 'html', 'pretty-html', 'json', 'pretty-json', 'latex', 'raw', 'txt']), help='Output format.')
+@click.option('-v', '--verbose', count=True, help='Be more verbose, -v is INFO, -vv is DEBUG')
+@click.option('-x', '--export', 'export_filename', type=click.File('w'), help='Export the query to FILENAME')
 @click.version_option(version=__version__)
 @click.pass_context
-def cli(ctx, zaburl, userid, passwd, proxy, format):
+def cli(ctx, zab_url, zab_usr, zab_pwd, sck_prx, out_fmt, verbose, export_filename):
     """
     zart Zabbix API Retrieval Tool.
     """
 
-    if not zaburl or not userid or not passwd:
-        click.secho('Error: zaburl, userid or passwd not set via cli or in config file', fg='red', err=True)
+    if verbose >= 2:
+        root_logger.setLevel(logging.DEBUG)
+    elif verbose == 1:
+        root_logger.setLevel(logging.INFO)
+    else:
+        root_logger.setLevel(logging.WARNING)
+
+    if not zab_url or not zab_usr or not zab_pwd:
+        click.secho('Error: zabbix url, username or password not set via cli or in config file', fg='red', err=True)
         click.secho('Default config file: ' + click.format_filename(config_file), fg='red', err=True)
         sys.exit(1)
 
-    if proxy and None not in proxy:
-        socks.set_default_proxy(socks.SOCKS5, proxy[0], proxy[1])
+    if sck_prx and None not in sck_prx:
+        socks.set_default_proxy(socks.SOCKS5, sck_prx[0], sck_prx[1])
         socket.socket = socks.socksocket
+        logging.info('proxy: %s:%s', sck_prx[0], sck_prx[1])
 
-    zapi = ZabbixAPI(zaburl)
-    zapi.login(userid, passwd)
+    zapi = ZabbixAPI(zab_url)
+    zapi.login(zab_usr, zab_pwd)
     apiv = zapi.apiinfo.version()
-    ctx.obj = Zart(zapi, apiv, format)
+    logging.info('api version: %s', apiv)
+    ctx.obj = Zart(config_file, zapi, apiv, out_fmt, export_filename)
 
 
 cli.add_command(action.action)

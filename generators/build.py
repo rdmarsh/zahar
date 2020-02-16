@@ -50,8 +50,22 @@ def render_options(env):
 
 def render_engine(env):
     print('rendering engine')
+
+    with open('../definitions/options.json') as json_file:
+        options_obj = json.load(json_file)
+    
+    properties = []
+    for options_detail in options_obj['options']:
+        try:
+            options_detail['metavar']
+
+            if options_detail['metavar'] == 'PROPERTY':
+                properties.append(options_detail['option'])
+        except:
+            pass
+
     template = env.get_template('engine.py.j2')
-    output = template.render()
+    output = template.render(properties=properties)
 
     file_name = '../engine.py'
     print("\tbuilding", file_name)

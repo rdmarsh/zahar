@@ -30,3 +30,11 @@ servicesget sla:
 template:
 # todo: status may not be part of the api even though it's in the zabbix doco
 
+http://www.catb.org/~esr/writings/taoup/html/ch10s05.html
+
+# todo: preservekeys messes up stuff, should we keep it?
+
+todo: tags suck at the moment
+# todo: fix bare except left lying around and write a better error messages
+# todo: pull in help text for search from definition file
+
