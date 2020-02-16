@@ -1,0 +1,33 @@
+import logging
+import click
+{%- if 'apiinfo' not in command_options.command %}
+from commands import options
+{%- endif %}
+import engine
+
+
+{% set se = namespace(sortenabled=false) -%}
+@click.command(short_help='retrieve {{ command_options.command }}s')
+{%- for option in command_options.options -%}
+{%- if 'sortfield' in option.option %}
+{% set se.sortenabled=true -%}
+@click.option('--{{ option.option }}', type=click.Choice([
+{%- for fields in option.fields -%}'{{ fields.field }}'{{ ", " if not loop.last }}{%- endfor -%}
+]))
+{%- else %}
+@options.add_options(options.{{ option.option }})
+{%- endif %}
+{%- endfor %}
+@click.pass_obj
+def {{ command_options.command }}(zart, {% if se.sortenabled is defined and se.sortenabled is sameas true %}sortfield, {% endif %}**kwargs):
+    """This command retrieves {{ command_options.command }}s."""
+    zart.command = '{{ command_options.command }}'
+    logging.debug('zart.command: %s', zart.command)
+{%- if se.sortenabled is defined and se.sortenabled is sameas true %}
+    if sortfield:
+        kwargs['sortfield'] = sortfield
+        logging.debug('kwargs[\'sortfield\']: %s', kwargs['sortfield'])
+{%- endif %}
+    logging.debug(kwargs)
+    engine.engine(zart, **kwargs)
+
