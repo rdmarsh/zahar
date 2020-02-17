@@ -58,6 +58,7 @@
     { "option": "with_simple_graph_item_prototypes", "is_flag": true, "help": "Return only objects item prototypes, which are enabled for creation and have numeric type of information." },
     { "option": "with_simple_graph_items",           "is_flag": true, "help": "Return only objects with numeric items." },
     { "option": "with_triggers",                     "is_flag": true, "help": "Return only objects with triggers." },
+    { "option": "expandData",                  "is_flag": true, "help": "Return additional data about the object." },
 
     { "option": "with_gui_access", "type": "int", "multiple": true, "help": "Return only objects with gui_access." },
 
@@ -69,7 +70,6 @@
     { "option": "selectOperations",            "metavar": "PROPERTY", "multiple": true, "help": "Return action operations in the operations property." },
     { "option": "selectRecoveryOperations",    "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
 
-    { "option": "expandData",                  "metavar": "PROPERTY", "multiple": true, "help": "Return the name of the host that the application belongs to as a property of the application object." },
     { "option": "selectHosts",                 "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectMediatypes",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectUsers",                 "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
@@ -91,6 +91,7 @@
 
     { "option": "selectRelatedObject",         "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "select_alerts",               "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+    { "option": "selectGraphs",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the filter in the filter property." },
 
     { "option": "searchByAny",                 "is_flag": true, "help": "Return results that match either filter or search instead of all of them" },
     { "option": "searchWildcardsEnabled",      "is_flag": true, "help": "Enables use of '*' as a wildcard character" },
@@ -110,7 +111,6 @@
     { "option": "selectFunctions",             "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGraphDiscovery",        "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGraphItems",            "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
-    { "option": "selectGraphs",                "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGroupDiscovery",        "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGroupLinks",            "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGroupPrototypes",       "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
