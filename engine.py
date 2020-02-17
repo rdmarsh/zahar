@@ -31,7 +31,6 @@ def engine(zart, **kwargs):
         'selectFilter',
         'selectOperations',
         'selectRecoveryOperations',
-        'expandData',
         'selectHosts',
         'selectMediatypes',
         'selectUsers',
@@ -47,6 +46,7 @@ def engine(zart, **kwargs):
         'selectDChecks',
         'selectRelatedObject',
         'select_alerts',
+        'selectGraphs',
         ]:
         try:
             flags[select]
