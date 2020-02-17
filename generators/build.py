@@ -61,6 +61,7 @@ def render_engine(env):
 
             if options_detail['metavar'] == 'PROPERTY':
                 properties.append(options_detail['option'])
+                print('\t\tadding', options_detail['option'])
         except:
             pass
 
