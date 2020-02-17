@@ -38,3 +38,7 @@ todo: tags suck at the moment
 # todo: fix bare except left lying around and write a better error messages
 # todo: pull in help text for search from definition file
 
+# todo: for zahar: 
+#action = subprocess.run(['./zart.py', 'action','--limit','2','-o','json'], stdout=subprocess.PIPE, encoding='utf-8')
+#user = subprocess.run(['./zart.py', 'user','--limit','2','-o','json'], stdout=subprocess.PIPE, encoding='utf-8')
+
