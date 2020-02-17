@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import pdb
 import click
 from click.testing import CliRunner
 from zart import cli
@@ -12,12 +13,12 @@ def main():
     test_modules.zart_flag_version(cli, runner)
 
     test_modules.zart_flag_config(cli, runner)
-    test_modules.zart_flag_zaburl(cli, runner)
-    test_modules.zart_flag_userid(cli, runner)
-    test_modules.zart_flag_passwd(cli, runner)
+    test_modules.zart_flag_zab_url(cli, runner)
+    test_modules.zart_flag_zab_usr(cli, runner)
+    test_modules.zart_flag_zab_pwd(cli, runner)
 
-    test_modules.zart_flag_proxy(cli, runner)
-    test_modules.zart_flag_proxy_bad_flag(cli, runner)
+    test_modules.zart_flag_sck_prx(cli, runner)
+    test_modules.zart_flag_sck_prx_bad_flag(cli, runner)
 
     test_modules.zart_command_action(cli, runner)
     test_modules.zart_command_alert(cli, runner)
