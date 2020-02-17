@@ -1,16 +1,17 @@
 { "command": "graphitem", "options": [
         { "option": "gitemids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4 ] },
-        { "option": "graphids", "version": [ 4.4 ] },
-        { "option": "itemids", "version": [ 4.4 ] },
-        { "option": "type", "version": [ 4.4 ] },
-        { "option": "selectGraphs", "version": [ 4.4 ] },
-        { "option": "sortfield", "version": [ 4.4 ], "fields": [
-            { "field": "gitemid", "version": [ 4.4 ] }
+        { "option": "graphids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "itemids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "type", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "expandData", "version": [ 2.0, 2.2, 2.4 ] },
+        { "option": "selectGraphs", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "sortfield", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ], "fields": [
+            { "field": "gitemid", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
         ] },
-        { "option": "countOutput", "version": [ 4.4 ] },
-        { "option": "editable", "version": [ 4.4 ] },
-        { "option": "limit", "version": [ 4.4 ] },
-        { "option": "output", "version": [ 4.4 ] },
-        { "option": "preservekeys", "version": [ 4.4 ] },
-        { "option": "sortorder", "version": [ 4.4 ] }
+        { "option": "countOutput", "version": [ 2.0, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "editable", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "limit", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "output", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "preservekeys", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "sortorder", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
 ] }
