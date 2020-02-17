@@ -9,6 +9,7 @@ import engine
 @options.add_options(options.graphids)
 @options.add_options(options.itemids)
 @options.add_options(options.type)
+@options.add_options(options.expandData)
 @options.add_options(options.selectGraphs)
 @click.option('--sortfield', type=click.Choice(['gitemid']))
 @options.add_options(options.countOutput)
