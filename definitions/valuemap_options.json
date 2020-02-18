@@ -1,19 +1,20 @@
 { "command": "valuemap", "options": [
-        { "option": "valuemapids", "version": [ 4.4 ] },
-        { "option": "selectMappings", "version": [ 4.4 ] },
-        { "option": "sortfield", "version": [ 4.4 ], "fields": [
-            { "field": "valuemapid", "version": [ 4.4 ] }
+        { "option": "valuemapids", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "selectMappings", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "sortfield", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ], "fields": [
+            { "field": "valuemapid", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+            { "field": "name", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
         ] },
-        { "option": "countOutput", "version": [ 4.4 ] },
-        { "option": "editable", "version": [ 4.4 ] },
-        { "option": "excludeSearch", "version": [ 4.4 ] },
-        { "option": "filter", "version": [ 4.4 ] },
-        { "option": "limit", "version": [ 4.4 ] },
-        { "option": "output", "version": [ 4.4 ] },
-        { "option": "preservekeys", "version": [ 4.4 ] },
-        { "option": "search", "version": [ 4.4 ] },
-        { "option": "searchByAny", "version": [ 4.4 ] },
-        { "option": "searchWildcardsEnabled", "version": [ 4.4 ] },
-        { "option": "sortorder", "version": [ 4.4 ] },
-        { "option": "startSearch", "version": [ 4.4 ] }
+        { "option": "countOutput", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "editable", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "excludeSearch", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "filter", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "limit", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "output", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "preservekeys", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "search", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "searchByAny", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "searchWildcardsEnabled", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "sortorder", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
+        { "option": "startSearch", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
 ] }
