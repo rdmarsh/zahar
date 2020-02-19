@@ -23,7 +23,7 @@
     { "command": "httptest",           "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
     { "command": "iconmap",            "version": [ 4.4 ] },
     { "command": "image",              "version": [ 4.4 ] },
-    { "command": "item",               "version": [ 4.4 ] },
+    { "command": "item",               "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
     { "command": "itemprototype",      "version": [ 4.4 ] },
     { "command": "maintenance",        "version": [ 4.4 ] },
     { "command": "map",                "version": [ 4.4 ] },
