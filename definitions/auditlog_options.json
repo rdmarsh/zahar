@@ -1,0 +1,27 @@
+{ "command": "auditlog", "options": [
+    { "option": "auditids", "version": [ 5.0 ] },
+    { "option": "userids", "version": [ 5.0 ] },
+
+    { "option": "time_from", "version": [ 5.0 ] },
+    { "option": "time_till", "version": [ 5.0 ] },
+
+    { "option": "selectDetails", "version": [ 5.0 ] },
+
+    { "option": "sortfield", "version": [ 5.0 ], "fields": [
+        { "field": "auditid", "version": [ 5.0 ] },
+        { "field": "userid", "version": [ 5.0 ] },
+        { "field": "clock", "version": [ 5.0 ] }
+    ] },
+
+    { "option": "filter", "version": [ 5.0 ] },
+    { "option": "search", "version": [ 5.0 ] },
+    { "option": "countOutput", "version": [ 5.0 ] },
+    { "option": "excludeSearch", "version": [ 5.0 ] },
+    { "option": "limit", "version": [ 5.0 ] },
+    { "option": "output", "version": [ 5.0 ] },
+    { "option": "preservekeys", "version": [ 5.0 ] },
+    { "option": "searchByAny", "version": [ 5.0 ] },
+    { "option": "searchWildcardsEnabled", "version": [ 5.0 ] },
+    { "option": "sortorder", "version": [ 5.0 ] },
+    { "option": "startSearch", "version": [ 5.0 ] }
+] }
