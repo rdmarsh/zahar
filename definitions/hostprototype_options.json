@@ -1,29 +1,34 @@
 { "command": "hostprototype", "options": [
-        { "option": "hostids", "version": [ 4.4 ] },
-        { "option": "discoveryids", "version": [ 4.4 ] },
-        { "option": "inherited", "version": [ 4.4 ] },
-        { "option": "selectDiscoveryRule", "version": [ 4.4 ] },
-        { "option": "selectGroupLinks", "version": [ 4.4 ] },
-        { "option": "selectGroupPrototypes", "version": [ 4.4 ] },
-        { "option": "selectInventory", "version": [ 4.0, 4.2 ] },
-        { "option": "selectParentHost", "version": [ 4.4 ] },
-        { "option": "selectTemplates", "version": [ 4.4 ] },
-        { "option": "sortfield", "version": [ 4.4 ], "fields": [
-            { "field": "hostid", "version": [ 4.4 ] },
-            { "field": "host", "version": [ 4.4 ] },
-            { "field": "name", "version": [ 4.4 ] },
-            { "field": "status", "version": [ 4.4 ] }
-        ] },
-        { "option": "countOutput", "version": [ 4.4 ] },
-        { "option": "editable", "version": [ 4.4 ] },
-        { "option": "excludeSearch", "version": [ 4.4 ] },
-        { "option": "filter", "version": [ 4.4 ] },
-        { "option": "limit", "version": [ 4.4 ] },
-        { "option": "output", "version": [ 4.4 ] },
-        { "option": "preservekeys", "version": [ 4.4 ] },
-        { "option": "search", "version": [ 4.4 ] },
-        { "option": "searchByAny", "version": [ 4.4 ] },
-        { "option": "searchWildcardsEnabled", "version": [ 4.4 ] },
-        { "option": "sortorder", "version": [ 4.4 ] },
-        { "option": "startSearch", "version": [ 4.4 ] }
+    { "option": "hostids", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "discoveryids", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "inherited", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "selectDiscoveryRule", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectGroupLinks", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectGroupPrototypes", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectInventory", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2 ] },
+    { "option": "selectParentHost", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectTemplates", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "sortfield", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ], "fields": [
+        { "field": "hostid", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+        { "field": "host", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+        { "field": "name", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+        { "field": "status", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] }
+    ] },
+
+    { "option": "countOutput", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "editable", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "excludeSearch", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "filter", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "limit", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "nodeids", "version": [ 2.2 ] },
+    { "option": "output", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "preservekeys", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "search", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "searchByAny", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "searchWildcardsEnabled", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "sortorder", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] },
+    { "option": "startSearch", "version": [ 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4,2, 4.4, 5.0 ] }
 ] }

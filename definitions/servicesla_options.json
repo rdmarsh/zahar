@@ -1,5 +1,5 @@
 { "command": "servicesla", "options": [
-        { "option": "serviceids", "version": [ 4.4 ] },
-        { "option": "intervals_from", "version": [ 4.4 ] },
-        { "option": "intervals_to", "version": [ 4.4 ] }
+    { "option": "serviceids", "version": [ 4.4 ] },
+    { "option": "intervals_from", "version": [ 4.4 ] },
+    { "option": "intervals_to", "version": [ 4.4 ] }
 ] }

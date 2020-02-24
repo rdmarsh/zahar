@@ -1,7 +1,15 @@
 { "options": [
+    { "option": "actionids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given action ID." },
+    { "option": "groupids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given group ID." },
+    { "option": "hostids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given host ID." },
+    { "option": "triggerids",        "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given trigger ID." },
+    { "option": "mediatypeids",      "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given mediatype ID." },
+    { "option": "usrgrpids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that send messages to the given user group ID." },
+    { "option": "userids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to send messages to the given users." },
+    { "option": "scriptids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to run the given scripts." },
 
-    { "option": "countOutput", "short_flag": "-c", "is_flag": true,"help": "Return count of objects instead of data." },
-    { "option": "limit",       "short_flag": "-l", "type": "int", "default": 1000, "help": "Limit results returned." },
+    { "option": "selectFilter",                "metavar": "PROPERTY", "multiple": true, "help": "Returns a filter property." },
+
 
     { "option": "eventid_from", "type": "int", "help": "Return only objects equal to or less than event id." },
     { "option": "eventid_till", "type": "int", "help": "Return only objects equal to or more than event id." },
@@ -19,8 +27,6 @@
     { "option": "acknowledged",                "is_flag": true, "help": "Return objects that have been acknowledged." },
     { "option": "active",                      "is_flag": true, "help": "enabled triggers that belong to monitored hosts." },
     { "option": "dependent",                   "is_flag": true, "help": "objects with triggers that have dependencies" },
-    { "option": "editable",                    "is_flag": true, "help": "objects with write permissions." },
-    { "option": "excludeSearch",               "is_flag": true, "help": "results that do not match the search criteria." },
     { "option": "expandComment",               "is_flag": true, "help": "Expand macros in the trigger description." },
     { "option": "expandDescription",           "is_flag": true, "help": "Expand macros in the name of the trigger." },
     { "option": "expandExpression",            "is_flag": true, "help": "Expand functions and macros in the trigger expression." },
@@ -30,12 +36,12 @@
     { "option": "getAccess",                   "is_flag": true, "help": "Return user groups that the user belongs to in the usrgrps property." },
     { "option": "globalmacro",                 "is_flag": true, "help": "Return global macros instead of host macros." },
     { "option": "inherited",                   "is_flag": true, "help": "Return objects that have been inherited." },
+    { "option": "inheritedTags",                   "is_flag": true, "help": "Return objects that have been inherited." },
     { "option": "maintenance",                 "is_flag": true, "help": "Return enabled triggers that belong to hosts in maintenance" },
     { "option": "monitored",                   "is_flag": true, "help": "Return enabled objects that belong to monitored host." },
     { "option": "monitored_hosts",             "is_flag": true, "help": "Return objects that contain monitored hosts." },
     { "option": "noInheritance",               "is_flag": true, "help": "Do not return inherited template screens." },
     { "option": "only_true",                   "is_flag": true, "help": "Return only triggers that have recently been in a problem state." },
-    { "option": "preservekeys",                "is_flag": true, "help": "Use IDs as keys in the resulting array." },
     { "option": "proxy_hosts",                 "is_flag": true, "help": "Return only objects that are proxies." },
     { "option": "real_hosts",                  "is_flag": true, "help": "Return only objects that contain hosts." },
     { "option": "templated",                   "is_flag": true, "help": "Return only objects that belong to a template." },
@@ -43,6 +49,7 @@
     { "option": "webitems",                    "is_flag": true, "help": "Include web items in the result." },
     { "option": "withAcknowledgedEvents",      "is_flag": true, "help": "Return only objects with acknowledged events" },
     { "option": "withInventory",               "is_flag": true, "help": "Return only objects with inventory data." },
+    { "option": "withProblemsSuppressed",               "is_flag": true, "help": "Return only objects with inventory data." },
     { "option": "withLastEventUnacknowledged", "is_flag": true, "help": "Return only objects with last event unacknowledged" },
     { "option": "withUnacknowledgedEvents",    "is_flag": true, "help": "Return only objects with unacknowledged events." },
     { "option": "with_applications",           "is_flag": true, "help": "Return only objects with applications." },
@@ -63,10 +70,11 @@
     { "option": "with_gui_access", "type": "int", "multiple": true, "help": "Return only objects with gui_access." },
 
 
-    { "option": "output",                      "metavar": "PROPERTY", "multiple": true, "help": "Object properties to be returned (refered to as 'output' in API docs)." },
 
     { "option": "selectConditions",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
-    { "option": "selectFilter",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+    { "option": "selectMessageTemplates",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+    { "option": "selectInheritedTags",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+    { "option": "selectDetails",               "metavar": "PROPERTY", "multiple": true, "help": "Returns the Details filter in the filter property." },
     { "option": "selectOperations",            "metavar": "PROPERTY", "multiple": true, "help": "Return action operations in the operations property." },
     { "option": "selectRecoveryOperations",    "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
 
@@ -93,10 +101,7 @@
     { "option": "select_alerts",               "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectGraphs",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the filter in the filter property." },
 
-    { "option": "searchByAny",                 "is_flag": true, "help": "Return results that match either filter or search instead of all of them" },
-    { "option": "searchWildcardsEnabled",      "is_flag": true, "help": "Enables use of '*' as a wildcard character" },
 
-    { "option": "filter",                      "metavar": "KEY VALUE", "nargs": 2, "multiple": true, "help": "Return only results that exactly match the filter." },
 
     { "option": "tags",                        "metavar": "TAG VALUE", "nargs": 2, "multiple": true, "help": "Return objects with given tags." },
 
@@ -157,7 +162,7 @@
 
     { "option": "select_image",           "is_flag": true, "help": "Return the Base64 encoded image in the image property." },
 
-    { "option": "actionids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given action id." },
+    { "option": "auditids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given audit id." },
     { "option": "alertids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given alert id." },
     { "option": "applicationids",    "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given application id." },
     { "option": "childids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given child id." },
@@ -172,8 +177,6 @@
     { "option": "gitemids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return results with the given graphitem id." },
     { "option": "globalmacroids",    "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given globmacro id." },
     { "option": "graphids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given graph id." },
-    { "option": "groupids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses that use the given groups." },
-    { "option": "hostids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses that use the host id." },
     { "option": "hostmacroids",      "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given hostmacro id." },
     { "option": "httptestids",       "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given httptest id." },
     { "option": "iconmapids",        "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given iconmap id." },
@@ -182,7 +185,6 @@
     { "option": "itemids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to send messages to the given user groups." },
     { "option": "maintenanceids",    "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given maintenance id." },
     { "option": "mediaids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given media id." },
-    { "option": "mediatypeids",      "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the mediatype id." },
     { "option": "nodeids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given node id." },
     { "option": "objectids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to send messages to the given user groups." },
     { "option": "parentTemplateids", "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given parentTemplate id." },
@@ -190,13 +192,9 @@
     { "option": "proxyids",          "metavar": "ID", "type": "int", "multiple": true, "help": "Return only hosts that are monitored by the given proxies." },
     { "option": "screenids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given screen id." },
     { "option": "screenitemids",     "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects that use the given screenitem id." },
-    { "option": "scriptids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to run the given scripts." },
     { "option": "serviceids",        "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given service id." },
     { "option": "sysmapids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given sysmap id." },
     { "option": "templateids",       "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given template id." },
-    { "option": "triggerids",        "metavar": "ID", "type": "int", "multiple": true, "help": "Return objects with the given triggers id." },
-    { "option": "userids",           "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to send messages to the given users." },
-    { "option": "usrgrpids",         "metavar": "ID", "type": "int", "multiple": true, "help": "Return only actions that are configured to send messages to the given user groups." },
     { "option": "valuemapids",       "metavar": "ID", "type": "int", "multiple": true, "help": "Return responses with the given valuemap id." },
 
     { "option": "evaltype", "type": "int", "multiple": true, "default": 0, "help": "Rules for tag searching" },
@@ -207,28 +205,35 @@
     { "option": "functions",   "help": "Return only triggers that use the given functions." },
     { "option": "group",       "help": "Return only items that belong to a group with the given name." },
     { "option": "history",     "type": "int", "help": "History object types to return." },
+    { "option": "with_historical_items",     "help": "History object types to return." },
     { "option": "host",        "help": "Return only items that belong to a host with the given name." },
     { "option": "limitSelects", "type": "int", "default": 1000, "help": "Return objects generated by events of the given type" },
     { "option": "min_severity", "help": "Return only triggers with severity greater or equal than the given severity." },
     { "option": "object", "type": "int", "help": "Return objects with the given type" },
     { "option": "recent", "help": "return PROBLEM and recently RESOLVED problems" },
 
-    { "option": "search", "nargs": 2, "multiple": true, "help": "Return results that match wildcard search (case-insensitive)." },
 
     { "option": "searchInventory", "help": "Return only hosts that have inventory data matching the given wildcard search." },
 
     { "option": "severities", "type": "int", "multiple": true, "help": "Return only objects with given trigger severities." },
     { "option": "skipDependent", "is_flag": true, "help": "Skip triggers in a problem state that are dependent on other triggers" },
     { "option": "sortfield", "help": "Sort the result by the given properties." },
-    { "option": "sortorder", "type": "click.Choice(['ASC', 'DESC'])", "help": "Order of sorting" },
     { "option": "source", "type": "int", "help": "Return objects with the given type" },
-    { "option": "startSearch", "is_flag": true, "help": "Compare from the beginning of fields." },
     { "option": "status", "type": "int", "multiple": true, "help": "Return users with given status." },
     { "option": "suppressed", "is_flag": true, "default": false, "help": "return only suppressed events" },
     { "option": "value", "type": "int", "multiple": true, "help": "Return objects with given value." },
-    { "option": "type", "type": "int", "default": 0, "help": "Return only graph items with the given type." }
+    { "option": "type", "type": "int", "default": 0, "help": "Return only graph items with the given type." },
 
-
-
-
+    { "option": "countOutput", "short_flag": "-c", "is_flag": true,"help": "Return count of objects instead of data." },
+    { "option": "editable",                    "is_flag": true, "help": "objects with write permissions." },
+    { "option": "excludeSearch",               "is_flag": true, "help": "results that do not match the search criteria." },
+    { "option": "filter",      "short_flag": "-f",                "metavar": "KEY VALUE", "nargs": 2, "multiple": true, "help": "Return only results that exactly match the filter." },
+    { "option": "limit",       "short_flag": "-l", "type": "int", "default": 1000, "help": "Limit results returned." },
+    { "option": "output",                      "metavar": "PROPERTY", "multiple": true, "help": "Object properties to be returned (refered to as 'output' in API docs)." },
+    { "option": "preservekeys",                "is_flag": true, "help": "Use IDs as keys in the resulting array." },
+    { "option": "search",      "short_flag": "-s", "nargs": 2, "multiple": true, "help": "Return results that match wildcard search (case-insensitive)." },
+    { "option": "searchByAny",                 "is_flag": true, "help": "Return results that match either filter or search instead of all of them" },
+    { "option": "searchWildcardsEnabled",      "is_flag": true, "help": "Enables use of '*' as a wildcard character" },
+    { "option": "sortorder", "type": "click.Choice(['ASC', 'DESC'])", "help": "Order of sorting" },
+    { "option": "startSearch", "is_flag": true, "help": "Compare from the beginning of fields." }
 ] }

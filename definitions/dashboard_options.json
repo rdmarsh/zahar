@@ -1,21 +1,24 @@
 { "command": "dashboard", "options": [
-        { "option": "dashboardids", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "selectWidgets", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "selectUsers", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "selectUserGroups", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "sortfield", "version": [ 3.4, 4.0, 4.2, 4.4 ], "fields": [
-            { "field": "dashboardid", "version": [ 3.4, 4.0, 4.2, 4.4 ] }
-        ] },
-        { "option": "countOutput", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "editable", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "excludeSearch", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "filter", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "limit", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "output", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "preservekeys", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "search", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "searchByAny", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "searchWildcardsEnabled", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "sortorder", "version": [ 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "startSearch", "version": [ 3.4, 4.0, 4.2, 4.4 ] }
+    { "option": "dashboardids", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "selectWidgets", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectUsers", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "selectUserGroups", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "sortfield", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ], "fields": [
+        { "field": "dashboardid", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] }
+    ] },
+
+    { "option": "countOutput", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "editable", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "excludeSearch", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "filter", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "limit", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "output", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "preservekeys", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "search", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "searchByAny", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "searchWildcardsEnabled", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "sortorder", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "startSearch", "version": [ 3.4, 4.0, 4.2, 4.4, 5.0 ] }
 ] }

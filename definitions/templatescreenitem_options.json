@@ -1,22 +1,25 @@
 { "command": "templatescreenitem", "options": [
-        { "option": "screenids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "screenitemids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "hostids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "sortfield", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ], "fields": [
-            { "field": "screenitemid", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-            { "field": "screenid", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
-        ] },
-        { "option": "countOutput", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "editable", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "excludeSearch", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "filter", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "limit", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "nodeids", "version": [ 2.0, 2.2 ] },
-        { "option": "output", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "preservekeys", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "search", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "searchByAny", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "searchWildcardsEnabled", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "sortorder", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "startSearch", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
+    { "option": "screenids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "screenitemids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "hostids", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+
+    { "option": "sortfield", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ], "fields": [
+        { "field": "screenitemid", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+        { "field": "screenid", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] }
+    ] },
+
+    { "option": "countOutput", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "editable", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "excludeSearch", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "filter", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "limit", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "nodeids", "version": [ 2.0, 2.2 ] },
+    { "option": "output", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "preservekeys", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "search", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "searchByAny", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "searchWildcardsEnabled", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "sortorder", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "startSearch", "version": [ 2.0, 2.2, 2.4, 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] }
 ] }

@@ -1,8 +1,8 @@
 { "command": "trend", "options": [
-        { "option": "itemids", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "time_from", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "time_till", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "countOutput", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "limit", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] },
-        { "option": "output", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4 ] }
+    { "option": "itemids", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "time_from", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "time_till", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "countOutput", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "limit", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] },
+    { "option": "output", "version": [ 3.0, 3.2, 3.4, 4.0, 4.2, 4.4, 5.0 ] }
 ] }
