@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -33,7 +33,7 @@ import engine
 @options.add_options(options.select_acknowledges)
 @options.add_options(options.selectTags)
 @options.add_options(options.selectSuppressionData)
-@click.option('--sortfield', type=click.Choice(['eventid', 'objectid', 'clock', 'object']))
+@click.option('--sortfield', type=click.Choice(['eventid', 'object', 'objectid', 'clock']))
 @options.add_options(options.countOutput)
 @options.add_options(options.editable)
 @options.add_options(options.excludeSearch)

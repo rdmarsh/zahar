@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -13,8 +13,8 @@ import engine
 @options.add_options(options.templated)
 @options.add_options(options.templateids)
 @options.add_options(options.expandData)
-@options.add_options(options.selectHost)
 @options.add_options(options.selectHosts)
+@options.add_options(options.selectHost)
 @options.add_options(options.selectItems)
 @options.add_options(options.selectDiscoveryRule)
 @options.add_options(options.selectApplicationDiscovery)

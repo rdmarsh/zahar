@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -8,12 +8,14 @@ import engine
 @options.add_options(options.proxyids)
 @options.add_options(options.selectHosts)
 @options.add_options(options.selectInterface)
+@options.add_options(options.selectInterfaces)
 @click.option('--sortfield', type=click.Choice(['hostid', 'host', 'status']))
 @options.add_options(options.countOutput)
 @options.add_options(options.editable)
 @options.add_options(options.excludeSearch)
 @options.add_options(options.filter)
 @options.add_options(options.limit)
+@options.add_options(options.nodeids)
 @options.add_options(options.output)
 @options.add_options(options.preservekeys)
 @options.add_options(options.search)

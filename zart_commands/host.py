@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -25,6 +25,7 @@ import engine
 @options.add_options(options.with_simple_graph_item_prototypes)
 @options.add_options(options.with_applications)
 @options.add_options(options.with_graphs)
+@options.add_options(options.with_historical_items)
 @options.add_options(options.with_graph_prototypes)
 @options.add_options(options.with_httptests)
 @options.add_options(options.with_monitored_httptests)
@@ -32,9 +33,12 @@ import engine
 @options.add_options(options.with_monitored_triggers)
 @options.add_options(options.with_simple_graph_items)
 @options.add_options(options.with_triggers)
+@options.add_options(options.withProblemsSuppressed)
 @options.add_options(options.withInventory)
 @options.add_options(options.evaltype)
+@options.add_options(options.severities)
 @options.add_options(options.tags)
+@options.add_options(options.inheritedTags)
 @options.add_options(options.selectApplications)
 @options.add_options(options.selectDiscoveries)
 @options.add_options(options.selectDiscoveryRule)
@@ -49,6 +53,7 @@ import engine
 @options.add_options(options.selectParentTemplates)
 @options.add_options(options.selectScreens)
 @options.add_options(options.selectTags)
+@options.add_options(options.selectInheritedTags)
 @options.add_options(options.selectTriggers)
 @options.add_options(options.filter)
 @options.add_options(options.limitSelects)
@@ -59,6 +64,7 @@ import engine
 @options.add_options(options.editable)
 @options.add_options(options.excludeSearch)
 @options.add_options(options.limit)
+@options.add_options(options.nodeids)
 @options.add_options(options.output)
 @options.add_options(options.preservekeys)
 @options.add_options(options.searchByAny)

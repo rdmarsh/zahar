@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -13,8 +13,8 @@ import engine
 @options.add_options(options.usrgrpids)
 @options.add_options(options.userids)
 @options.add_options(options.scriptids)
-@options.add_options(options.selectConditions)
 @options.add_options(options.selectFilter)
+@options.add_options(options.selectConditions)
 @options.add_options(options.selectOperations)
 @options.add_options(options.selectRecoveryOperations)
 @options.add_options(options.selectAcknowledgeOperations)

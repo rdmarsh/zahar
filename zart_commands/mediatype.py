@@ -1,6 +1,6 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
@@ -8,6 +8,7 @@ import engine
 @options.add_options(options.mediatypeids)
 @options.add_options(options.mediaids)
 @options.add_options(options.userids)
+@options.add_options(options.selectMessageTemplates)
 @options.add_options(options.selectUsers)
 @click.option('--sortfield', type=click.Choice(['mediatypeid']))
 @options.add_options(options.countOutput)
@@ -15,6 +16,7 @@ import engine
 @options.add_options(options.excludeSearch)
 @options.add_options(options.filter)
 @options.add_options(options.limit)
+@options.add_options(options.nodeids)
 @options.add_options(options.output)
 @options.add_options(options.preservekeys)
 @options.add_options(options.search)

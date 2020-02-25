@@ -1,13 +1,13 @@
 import logging
 import click
-from commands import options
+from zart_commands import options
 import engine
 
 
 @click.command(short_help='retrieve valuemaps')
 @options.add_options(options.valuemapids)
 @options.add_options(options.selectMappings)
-@click.option('--sortfield', type=click.Choice(['valuemapid']))
+@click.option('--sortfield', type=click.Choice(['valuemapid', 'name']))
 @options.add_options(options.countOutput)
 @options.add_options(options.editable)
 @options.add_options(options.excludeSearch)
