@@ -36,7 +36,7 @@ import socks
 from pyzabbix import ZabbixAPI
 
 {% for command in commands -%}
-from commands import {{ command }}
+from zart_commands import {{ command }}
 {% endfor %}
 root_logger = logging.getLogger()
 config_file = os.path.join(click.get_app_dir(__project__, force_posix=True), 'config.ini')
