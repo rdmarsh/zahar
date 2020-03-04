@@ -5,6 +5,7 @@ import pandas as pd
 from packaging import version
 from jinja2 import Environment, FileSystemLoader
 from pygments import highlight, lexers, formatters
+from collections import defaultdict
 
 
 log = logging.getLogger(__name__)
@@ -26,9 +27,11 @@ def engine(zart, **kwargs):
 
     # todo: somehow make better
     for select in [
-        'output',
-        'selectConditions',
         'selectFilter',
+        'selectConditions',
+        'selectMessageTemplates',
+        'selectInheritedTags',
+        'selectDetails',
         'selectOperations',
         'selectRecoveryOperations',
         'selectHosts',
@@ -47,6 +50,12 @@ def engine(zart, **kwargs):
         'selectRelatedObject',
         'select_alerts',
         'selectGraphs',
+        'selectTagFilters',
+        'selectTags',
+        'selectLastEvent',
+        'selectGroups',
+        'selectParentTemplates',
+        'output',
         ]:
         try:
             flags[select]
@@ -60,16 +69,21 @@ def engine(zart, **kwargs):
             pass
 
 
-    #filters need to be dicts
+    #filters and search need to be dicts
+    #https://docs.python.org/3/library/collections.html#collections.defaultdict.default_factory
     if 'filter' in flags and flags['filter']:
-        flags['filter'] = dict(flags['filter'])
+        filter_dict = defaultdict(list)
+        for k, v in flags['filter']:
+            filter_dict[k].append(v)
+        flags['filter'] = dict(filter_dict.items())
+        logging.info(flags['filter'])
 
-#todo search
-#    if 'search' in flags and flags['search']:
-#        flags['search'] = dict(flags['search'])
-#
-#    if 'selectFilter' in flags and flags['selectFilter']:
-#        flags['selectFilter'] = dict(flags['selectFilter'])
+    if 'search' in flags and flags['search']:
+        search_dict = defaultdict(list)
+        for k, v in flags['search']:
+            search_dict[k].append(v)
+        flags['search'] = dict(search_dict.items())
+        logging.info(flags['search'])
 
     try:
         obj = getattr(zart.zapi, zart.command).get(**flags)
