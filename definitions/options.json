@@ -78,7 +78,7 @@
     { "option": "selectOperations",            "metavar": "PROPERTY", "multiple": true, "help": "Return action operations in the operations property." },
     { "option": "selectRecoveryOperations",    "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
 
-    { "option": "selectHosts",                 "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+    { "option": "selectHosts",                 "metavar": "PROPERTY", "multiple": true, "help": "Return the hosts that are linked to the object in the hosts property." },
     { "option": "selectMediatypes",            "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectUsers",                 "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
 
@@ -101,7 +101,14 @@
     { "option": "select_alerts",               "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectGraphs",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the filter in the filter property." },
 
+    { "option": "selectTagFilters",            "metavar": "PROPERTY", "multiple": true, "help": "Return user group tag based permissions in the tag_filters " },
+    { "option": "selectTags",                  "metavar": "PROPERTY", "multiple": true, "help": "Return tags in the tag property." },
 
+    { "option": "selectLastEvent",             "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
+
+    { "option": "selectGroups",                "metavar": "PROPERTY", "multiple": true, "help": "Returns the filter in the filter property." },
+
+    { "option": "selectParentTemplates",       "metavar": "PROPERTY", "multiple": true, "help": "Returns the action filter in the filter property." },
 
     { "option": "tags",                        "metavar": "TAG VALUE", "nargs": 2, "multiple": true, "help": "Return objects with given tags." },
 
@@ -119,7 +126,6 @@
     { "option": "selectGroupDiscovery",        "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGroupLinks",            "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectGroupPrototypes",       "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
-    { "option": "selectGroups",                "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectHostDiscovery",         "nargs": 2, "multiple": true, "help": "Returns the filter in the filter property." },
     { "option": "selectHostPrototypes",        "nargs": 2, "multiple": true, "help": "todo help" },
     { "option": "selectHttpTests",             "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
@@ -129,7 +135,6 @@
     { "option": "selectInventory",             "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectItemDiscovery",         "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectLLDMacroPaths",         "nargs": 2, "multiple": true, "help": "todo help" },
-    { "option": "selectLastEvent",             "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectLines",                 "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectLinks",                 "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectMacros",                "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
@@ -138,7 +143,6 @@
     { "option": "selectParent",                "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectParentDependencies",    "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectParentHost",            "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
-    { "option": "selectParentTemplates",       "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectPreprocessing",         "nargs": 2, "multiple": true, "help": "Return a preprocessing property with LLD rule preprocessing options." },
     { "option": "selectRights",                "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectScreenItems",           "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
@@ -147,8 +151,6 @@
     { "option": "selectShapes",                "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectSteps",                 "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectSuppressionData",       "nargs": 2, "multiple": true, "help": "Return a suppression_data property with the list of maintenances" },
-    { "option": "selectTagFilters",            "nargs": 2, "multiple": true, "help": "Return user group tag based permissions in the tag_filters " },
-    { "option": "selectTags",                  "nargs": 2, "multiple": true, "help": "Return tags in the tag property." },
     { "option": "selectTemplates",             "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectTimeperiods",           "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
     { "option": "selectTimes",                 "nargs": 2, "multiple": true, "help": "Returns the action filter in the filter property." },
@@ -207,7 +209,7 @@
     { "option": "history",     "type": "int", "help": "History object types to return." },
     { "option": "with_historical_items",     "help": "History object types to return." },
     { "option": "host",        "help": "Return only items that belong to a host with the given name." },
-    { "option": "limitSelects", "type": "int", "default": 1000, "help": "Return objects generated by events of the given type" },
+    { "option": "limitSelects", "type": "int", "default": 1000, "help": "Return objects generated by events of the given type (0==all)" },
     { "option": "min_severity", "help": "Return only triggers with severity greater or equal than the given severity." },
     { "option": "object", "type": "int", "help": "Return objects with the given type" },
     { "option": "recent", "help": "return PROBLEM and recently RESOLVED problems" },
@@ -228,8 +230,8 @@
     { "option": "editable",                    "is_flag": true, "help": "objects with write permissions." },
     { "option": "excludeSearch",               "is_flag": true, "help": "results that do not match the search criteria." },
     { "option": "filter",      "short_flag": "-f",                "metavar": "KEY VALUE", "nargs": 2, "multiple": true, "help": "Return only results that exactly match the filter." },
-    { "option": "limit",       "short_flag": "-l", "type": "int", "default": 1000, "help": "Limit results returned." },
-    { "option": "output",                      "metavar": "PROPERTY", "multiple": true, "help": "Object properties to be returned (refered to as 'output' in API docs)." },
+    { "option": "limit",       "short_flag": "-l", "type": "int", "default": 1000, "help": "Limit results returned (0==all)." },
+    { "option": "output",      "short_flag": "-o", "metavar": "PROPERTY", "multiple": true, "help": "Object properties to be returned (refered to as 'output' in API docs)." },
     { "option": "preservekeys",                "is_flag": true, "help": "Use IDs as keys in the resulting array." },
     { "option": "search",      "short_flag": "-s", "nargs": 2, "multiple": true, "help": "Return results that match wildcard search (case-insensitive)." },
     { "option": "searchByAny",                 "is_flag": true, "help": "Return results that match either filter or search instead of all of them" },
