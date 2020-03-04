@@ -4,6 +4,17 @@ import json
 from jinja2 import Environment, FileSystemLoader
 
 
+def render_zahar(env, commands):
+    print('rendering zahar')
+    template = env.get_template('zahar.py.j2')
+    output = template.render(commands=commands)
+
+    file_name = '../zahar.py'
+    print("\tbuilding", file_name)
+    f = open(file_name, 'w')
+    f.write(output)
+    f.close()
+
 def render_zart(env, commands):
     print('rendering zart')
     template = env.get_template('zart.py.j2')
@@ -26,7 +37,7 @@ def render_commands(env, commands):
             command_options_obj = json.load(json_file)
             output = template.render(command_options=command_options_obj)
 
-            file_name = '../commands/' + command + '.py'
+            file_name = '../zart_commands/' + command + '.py'
             print("\tbuilding", file_name)
             f = open(file_name, 'w')
             f.write(output)
@@ -41,7 +52,7 @@ def render_options(env):
         options_obj = json.load(json_file)
         output = template.render(options=options_obj['options'])
 
-        file_name = '../commands/options.py'
+        file_name = '../zart_commands/options.py'
         print("\tbuilding", file_name)
         f = open(file_name, 'w')
         f.write(output)
@@ -88,6 +99,7 @@ def main():
         commands.append(command_detail['command'])
 
     render_zart(env, commands)
+    render_zahar(env, commands)
     render_commands(env, commands)
     render_options(env)
     render_engine(env)
